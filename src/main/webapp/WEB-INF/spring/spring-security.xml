@@ -1,0 +1,114 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+    <!-- enable use-expressions -->
+	<http auto-config="true" use-expressions="true">
+	<!-- ADMIN PAGES -->
+		<intercept-url pattern="/irInicio**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/Disenio.html" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/Modulos.html" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/register2.html" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/Alta" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/Pruebas.html**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/Requerimientos.html**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/Riesgos.html**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/Empresa.html**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/Issues.html**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/ModDis.html**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/ModReq.html**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/ModPru.html**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/ListaPro" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/ListaVer**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/VerUsuariosD.html**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/PassD**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/Proyectos.html**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/Registros" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/UpdateDiseno" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/UpdateEmpresa" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/UpdateIsues" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/updateModulos" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/editProyecto" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/updatePruebas" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/updateRequerimiento" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/updateRiesgos" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/verProyectos.html" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/verPruebas.html" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/verProyecto" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/VerEmpresas.html" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/VerDiseno.html" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/VerModulos.html" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/VerIssues.html" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/VerRequerimientos.html" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/VerRiesgos.html" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/ListaPro.html" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/updateIssues" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/Reportes.html" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/VerReportesD.html" access="hasRole('ROLE_ADMIN')" />
+		
+		
+	<!-- CLIENT PAGES -->
+		<intercept-url pattern="/Cliente.html**" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/Issues" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/PassC**" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/ReqCliente.html" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/UpdateIssuesC" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/ProyectosLista.html" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/PruebasCliente.html" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/VerTickets.html" access="hasRole('ROLE_USER')" />
+	
+	<!-- SUPER PAGES -->
+		<intercept-url pattern="/Admin**" access="hasRole('ROLE_SUPER')" />
+		<intercept-url pattern="/RegistrosA" access="hasRole('ROLE_SUPER')" />
+		<intercept-url pattern="/register.html" access="hasRole('ROLE_SUPER')" />
+		<intercept-url pattern="/VerRegistrosA.html" access="hasRole('ROLE_SUPER')" />
+		<intercept-url pattern="/DisenioA.html" access="hasRole('ROLE_SUPER')" />
+		<intercept-url pattern="/AltaA**" access="hasRole('ROLE_SUPER')" />
+		<intercept-url pattern="/PruebasA.html**" access="hasRole('ROLE_SUPER')" />
+		<intercept-url pattern="/RequerimientosA.html**" access="hasRole('ROLE_SUPER')" />
+		<intercept-url pattern="/RiesgosA.html**" access="hasRole('ROLE_SUPER')" />
+		<intercept-url pattern="/EmpresaA.html**" access="hasRole('ROLE_SUPER')" />
+		<intercept-url pattern="/IssuesAdmin**" access="hasRole('ROLE_SUPER')" />
+		<intercept-url pattern="/ListaProA.html" access="hasRole('ROLE_SUPER')" />
+		<intercept-url pattern="/ProyectosAd.html**" access="hasRole('ROLE_SUPER')" />
+		<intercept-url pattern="/UpdateDisenoA" access="hasRole('ROLE_SUPER')" />
+		<intercept-url pattern="/UpdateEmpresaA" access="hasRole('ROLE_SUPER')" />
+		<intercept-url pattern="/UpdateIssuesA" access="hasRole('ROLE_SUPER')" />
+		<intercept-url pattern="/updateModulosA" access="hasRole('ROLE_SUPER')" />
+		<intercept-url pattern="/editProyectoA" access="hasRole('ROLE_SUPER')" />
+		<intercept-url pattern="/updatePruebasA" access="hasRole('ROLE_SUPER')" />
+		<intercept-url pattern="/updateRequerimientoA" access="hasRole('ROLE_SUPER')" />
+		<intercept-url pattern="/updateRiesgosA" access="hasRole('ROLE_SUPER')" />
+		<intercept-url pattern="/updateUsuarios" access="hasRole('ROLE_SUPER')" />
+	    <intercept-url pattern="/verProyectoA" access="hasRole('ROLE_SUPER')" />
+	    <intercept-url pattern="/Actividades.html" access="hasRole('ROLE_SUPER')" />
+	    <intercept-url pattern="/VerReportes.html" access="hasRole('ROLE_SUPER')" />
+		
+		<!-- access denied page -->
+		<access-denied-handler error-page="/403" />
+		<form-login
+		    login-page="/login"
+		    default-target-url="/loginProcess"
+			authentication-failure-url="/login?error"
+			username-parameter="username"
+			password-parameter="password" />
+		<logout logout-success-url="/login?logout"/>
+		<!-- enable csrf protection -->
+		<csrf/>
+	</http>
+
+	<!-- Select users and user_roles from database -->
+	<authentication-manager>
+	  <authentication-provider>
+		<jdbc-user-service data-source-ref="ds"
+		  users-by-username-query=
+		    "select email, password, enabled from usuarios where email=?"
+		  authorities-by-username-query=
+		    "select email, tipo_usuario from usuarios where email=?" />
+	  </authentication-provider>
+	</authentication-manager>
+
+</beans:beans>
