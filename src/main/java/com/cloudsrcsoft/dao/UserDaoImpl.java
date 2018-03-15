@@ -42,9 +42,10 @@ public class UserDaoImpl{
   }
   
   public void requerimientos (Requerimientos requerimientos) {
-	  String sql = "insert into requerimientos values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	  String sql = "insert into requerimientos values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	  template.update(sql, new Object[] {null, requerimientos.getId_pro(), requerimientos.getTipo(), requerimientos.getActividad(), requerimientos.getDescripcion(), requerimientos.getEntrega(), 
-			  requerimientos.getCriticidad(), requerimientos.getAccion(), requerimientos.getSolucion(), requerimientos.getComentarios(), 1, "NO_INICIADO", requerimientos.getAlta(), requerimientos.getId_mod()});
+			  requerimientos.getCriticidad(), requerimientos.getAccion(), requerimientos.getSolucion(), requerimientos.getComentarios(), 1, "NO_INICIADO", requerimientos.getAlta(), requerimientos.getId_mod(), 
+			  null, null, null});
   }  
   
   public void modulo (Modulo modulo) {
@@ -65,8 +66,8 @@ public class UserDaoImpl{
   }
   
   public void issues (Issues issues) {
-	  String sql = "insert into issuesG values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-	  template.update(sql, new Object[] {null, issues.getProyecto(), issues.getSolicitante(), issues.getDescripcion(), 
+	  String sql = "insert into issues values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	  template.update(sql, new Object[] {null, 1, issues.getSolicitante(), issues.getDescripcion(), 
 			  issues.getCriticidad(), issues.getComentarios(), "NO_INICIADO", "NO_RESUELTO", issues.getAlta(), null, 
 			  issues.getArchivo(), issues.getType(), issues.getNombre(),1,1 });
   }

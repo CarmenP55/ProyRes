@@ -245,4 +245,18 @@ public class ConsultasController {
 	      return model;
 	  }	      	
 	
+		@RequestMapping(value = "/ArchivoTicket", method = RequestMethod.GET)
+	  public ModelAndView download(HttpServletRequest request,
+	        HttpServletResponse response) throws Exception {
+			int id = Integer.parseInt(request.getParameter("id")); 
+	        Issues file = verDaoImpl.find(id);	 
+	        response.setContentType(file.getType());
+	        response.setContentLength(file.getArchivo().length);
+	        response.setHeader("Content-Disposition","attachment; filename=\"" + file.getNombre() +"\"");
+	 
+	        FileCopyUtils.copy(file.getArchivo(), response.getOutputStream());
+	 
+	        return null;	 
+	  }
+	
 }

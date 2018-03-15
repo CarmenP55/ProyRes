@@ -10,6 +10,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,8 +20,10 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.cloudsrcsoft.beans.*;
+import com.cloudsrcsoft.springmvc.HomeController;
 
 public class VerDaoImpl{
+	private static final Logger logger = LoggerFactory.getLogger(VerDaoImpl.class);
 	JdbcTemplate template;
 
 	public void setTemplate(JdbcTemplate template) {
@@ -49,6 +54,30 @@ public class VerDaoImpl{
 		});
 		return listProyectos;
 	}
+  
+public Issues find(int id) {
+	logger.info("Metodo find");
+      String query = "select archivo, type, nombre_archivo from issues where id_issue = ?";
+      try {
+          Issues file = (Issues) template.queryForObject(query, new Object[] {id},
+              new RowMapper() {
+                  Issues fl;
+                  public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+                      fl = new Issues();
+                      fl.setNombre(rs.getString(3));
+                      fl.setType(rs.getString(2));
+                      fl.setArchivo(rs.getBytes(1));
+                      return fl;
+                  }
+          });
+
+          return file;
+      } catch (Exception ex) {
+          ex.printStackTrace();
+      }
+
+      return null;
+  }
   
   
   public User getUserBy(String e) {

@@ -17,7 +17,7 @@ import com.cloudsrcsoft.dao.EmpDao;
 public class EmpController {
 	@Autowired
 	EmpDao dao;
-
+/*
 	@RequestMapping("/empform")
 	public ModelAndView showform() {
 		return new ModelAndView("empform", "command", new Emp());
@@ -52,5 +52,5 @@ public class EmpController {
 		dao.delete(id);
 		return new ModelAndView("redirect:/viewemp");
 	}
-
+*/
 }

@@ -261,9 +261,7 @@ function showhide(id) {
 	<div class="cuadroIssues">	
 	<table border=1 cellspacing=0>
             <tr style="border-top-color:transparent">
-                <th>Area</th>
                 <th>Solicitante</th>
-                <th>Telefono</th>
                 <th>Descripcion</th>
                 <th>Criticidad</th>
                 <th>Comentarios</th>
@@ -277,9 +275,7 @@ function showhide(id) {
                 
                 <c:forEach var="req" items="${listIssues}" varStatus="status">
                 <tr style="border-top-color:transparent">
-                    <td>${req.area}</td>
                     <td>${req.solicitante}</td>
-                    <td>${req.numero}</td>
                     <td>${req.descripcion}</td>
                     <td>${req.criticidad}</td>
                     <td>${req.comentarios}</td>
@@ -288,7 +284,7 @@ function showhide(id) {
                     <td>${req.nombre}</td>
                     <td>${req.type}</td>
                     
-                    <td><a href="download.htm?id=${req.id}">${req.nombre}</a></td>                    
+                    <td><a href="ArchivoTicket?id=${req.id}">${req.nombre}</a></td>                    
                     <td>
                         <a href="updateIssuesA?id=${req.id}">Editar</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;

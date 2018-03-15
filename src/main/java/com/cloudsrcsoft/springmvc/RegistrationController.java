@@ -9,6 +9,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -467,14 +469,19 @@ public class RegistrationController {
   }
   
 	@RequestMapping(value = "/issuesProcessA", method = RequestMethod.POST)
-	public ModelAndView processFileUpload(@RequestParam("archivo") MultipartFile archivo) throws IOException{
+	public ModelAndView processFileUpload(HttpServletRequest request, @RequestParam("archivo") MultipartFile archivo) throws IOException{
 		Issues issues = new Issues();
-		
+		issues.setDescripcion(request.getParameter("descripcion"));
+		issues.setCriticidad(request.getParameter("criticidad"));
+		issues.setComentarios(request.getParameter("comentarios"));
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String name = auth.getName(); //get logged in username
+		issues.setSolicitante(name);
 		issues.setNombre(archivo.getOriginalFilename());
 	    issues.setType(archivo.getContentType());     
 	    issues.setArchivo(archivo.getBytes());
 	      
-		//userDaoImpl.issues(issues);
+		userDaoImpl.issues(issues);
 		ModelAndView mav = new ModelAndView("Admin");
 		return mav;
 	}
