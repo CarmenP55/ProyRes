@@ -45,7 +45,7 @@ public class UserDaoImpl{
 	  String sql = "insert into requerimientos values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	  template.update(sql, new Object[] {null, requerimientos.getId_pro(), requerimientos.getTipo(), requerimientos.getActividad(), requerimientos.getDescripcion(), requerimientos.getEntrega(), 
 			  requerimientos.getCriticidad(), requerimientos.getAccion(), requerimientos.getSolucion(), requerimientos.getComentarios(), 1, "NO_INICIADO", requerimientos.getAlta(), requerimientos.getId_mod(), 
-			  null, null, null});
+			  requerimientos.getArchivo(), requerimientos.getNombre_archivo(), requerimientos.getTipo_archivo()});
   }  
   
   public void modulo (Modulo modulo) {
@@ -66,10 +66,10 @@ public class UserDaoImpl{
   }
   
   public void issues (Issues issues) {
-	  String sql = "insert into issues values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-	  template.update(sql, new Object[] {null, 1, issues.getSolicitante(), issues.getDescripcion(), 
+	  String sql = "insert into issues values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	  template.update(sql, new Object[] {null, 1, null, issues.getDescripcion(), 
 			  issues.getCriticidad(), issues.getComentarios(), "NO_INICIADO", "NO_RESUELTO", issues.getAlta(), null, 
-			  issues.getArchivo(), issues.getType(), issues.getNombre(),1,1 });
+			  issues.getArchivo(), issues.getType(), issues.getNombre(),1,1, issues.getId_sol()});
   }
   
   public void pruebas (Pruebas pruebas) {

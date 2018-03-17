@@ -79,31 +79,36 @@ div.cuadro {
 <div class="cuadro">
             <table border=1 cellspacing=0>
             	<tr><th>Elegir opcion</th>
-            	<th>Ver</th></tr>
+            	<th>Agregar</th>
+            	<th>Ver Registros</th>
+            	</tr>
                 <tr>
-                <td><a href="ModDisT.html?id_proyecto=${param.id_proyecto}"><img src="https://image.flaticon.com/icons/svg/74/74960.svg" alt="Home" width="50" height="50" title="Agregar informacion"></a>Agregar Tareas<br></td>
+                <td><img src="https://image.flaticon.com/icons/svg/74/74960.svg" alt="Home" width="50" height="50">Agregar Tareas<br></td>
+                <td><a href=ModDis.html?id_proyecto=${param.id_proyecto}>Agregar</a><br></td>
                 <td><a href=VerTareas.html?id_proyecto=${param.id_proyecto}>Ver registros</a><br></td></tr>
                 <tr>
                 <tr>
-                <td><a href="ModDis.html?id_proyecto=${param.id_proyecto}"><img src="https://impulsando.academy/blog/content/images/2017/02/programacion-nuevo.jpg" alt="Home" width="50" height="50" title="Agregar informacion"></a>Implementar Tareas<br></td>
-                <td><a href=VerDiseno.html?id_proyecto=${param.id_proyecto}>Ver registros</a><br></td></tr>
-                <tr>
                 <td><img src="https://www.redeszone.net/app/uploads/2016/11/especificaciones-tecnicas.png" alt="Home" width="50" height="50">Especificacion Tecnica</td>
+                <td>NA<br></td>
                 <td><a href="ET.pdf?id_proyecto=${param.id_proyecto}" target="_blank">Ver</a></td></tr>
                 <tr>
-                <td><a href=Modulos.html?id_proyecto=${param.id_proyecto}><img src="https://ecosagile.com/EcosAgile/SPA/images/moduli-e-processi.png" alt="Home" width="50" height="50" title="Agregar informacion"></a>Modulos<br></td>
+                <td><img src="https://ecosagile.com/EcosAgile/SPA/images/moduli-e-processi.png" alt="Home" width="50" height="50">Modulos<br></td>
+                <td><a href=Modulos.html?id_proyecto=${param.id_proyecto}>Agregar</a><br></td>
                 <td><a href="VerModulos.html?id_proyecto=${param.id_proyecto}">Ver registros</a><br></td></tr>
 				<tr>
-				<td><a href="ModPru.html?id_proyecto=${param.id_proyecto}"><img src="https://userscontent2.emaze.com/images/8bcc1df3-5fd7-452a-b935-102d351b241b/897ac9fb-7778-4510-aa2e-823a44c5be72.png" alt="Home" width="50" height="50" title="Agregar informacion"></a>Pruebas<br></td>
+				<td><img src="https://userscontent2.emaze.com/images/8bcc1df3-5fd7-452a-b935-102d351b241b/897ac9fb-7778-4510-aa2e-823a44c5be72.png" alt="Home" width="50" height="50">Pruebas<br></td>
+				<td><a href="ModPru.html?id_proyecto=${param.id_proyecto}">Agregar</a><br></td>
 				<td><a href=VerPruebas.html?id_proyecto=${param.id_proyecto}>Ver registros</a><br></td></tr>
 				<tr>
-				<td><a href=Requerimientos.html?id_proyecto=${param.id_proyecto}><img src="https://www.csticorp.biz/wp-content/uploads/2014/07/Imagen8.jpg" alt="Home" width="50" height="50" title="Agregar informacion"></a>Requerimientos<br></td>
+				<td><img src="https://www.csticorp.biz/wp-content/uploads/2014/07/Imagen8.jpg" alt="Home" width="50" height="50">Requerimientos<br></td>
+				<td><a href=Requerimientos.html?id_proyecto=${param.id_proyecto}>Agregar</a><br></td>
 				<td><a href="ModReq.html?id_proyecto=${param.id_proyecto}">Ver registros</a><br></td></tr>
-				<tr>
-
-				<td><a href=Riesgos.html?id_proyecto=${param.id_proyecto}><img src="http://finantechcolombia.com/wp-content/uploads/2013/11/Consultoria-financiera-en-riesgos-para-empresas-peque%C3%B1as-en-Colombia.jpg" alt="Home" width="50" height="50" title="Agregar informacion"></a>Riesgos<br></td>
+				<tr>				
+				<td><img src="http://finantechcolombia.com/wp-content/uploads/2013/11/Consultoria-financiera-en-riesgos-para-empresas-peque%C3%B1as-en-Colombia.jpg" alt="Home" width="50" height="50">Riesgos<br></td>
+				<td><a href=Riesgos.html?id_proyecto=${param.id_proyecto}>Agregar</a><br></td>
 				<td><a href=VerRiesgos.html?id_proyecto=${param.id_proyecto}>Ver registros</a><br></td></tr>
             </table>
+                       
 </div>
 </body>
 </html>

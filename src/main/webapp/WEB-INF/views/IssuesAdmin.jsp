@@ -125,6 +125,7 @@ method="POST" enctype="multipart/form-data">
  	</form:select>            
 	<br><br>
 	 -->
+	<form:hidden name="id_sol" id="id_sol" path="id_sol" value="${id}"/>
 	<form:label path="descripcion">Descripcion del issue</form:label>
 	<form:textarea path="descripcion" name="descripcion" id="descripcion" col="30" rows="5"/>
 	<form:label path="criticidad">Criticidad</form:label><br>
@@ -133,7 +134,7 @@ method="POST" enctype="multipart/form-data">
 	<form:radiobutton path="criticidad" name="criticidad" id="criticidad" value="alta"/>Alta</div><br>
 	<form:label path="comentarios">Comentarios adicionales</form:label>
 	<form:textarea path="comentarios" name="comentarios" id="comentarios" col="30" rows="4"/>
-	<form:label path="descripcion">Descripcion del issue</form:label>
+	<form:label path="descripcion">Archivo</form:label>
 	<form:input type="file" name="archivo" id="archivo" path="archivo"/>
 
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

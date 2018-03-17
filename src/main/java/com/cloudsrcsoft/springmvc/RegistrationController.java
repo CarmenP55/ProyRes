@@ -161,12 +161,26 @@ public class RegistrationController {
   }
   
   @RequestMapping(value = "/reqProcess", method = RequestMethod.POST)
-  public ModelAndView addReq(HttpServletRequest request, HttpServletResponse response,
-  @ModelAttribute("requerimientos") Requerimientos requerimientos) {
-  userDaoImpl.requerimientos(requerimientos);
-  ModelAndView mav = new ModelAndView("Inicio");
-  mav.addObject("requerimientos", new Requerimientos());
-  return mav;
+  public ModelAndView addReq(HttpServletResponse response, HttpServletRequest request, 
+  @RequestParam("archivo") MultipartFile archivo) throws IOException{
+	  Requerimientos requerimientos= new Requerimientos();
+	  requerimientos.setNombre_archivo(archivo.getOriginalFilename());
+	  requerimientos.setTipo_archivo(archivo.getContentType());     
+	  requerimientos.setArchivo(archivo.getBytes());	  
+	  requerimientos.setId_pro(Integer.parseInt(request.getParameter("id_pro")));
+	  requerimientos.setId_mod(Integer.parseInt(request.getParameter("id_mod")));
+	  requerimientos.setTipo(request.getParameter("tipo"));
+	  requerimientos.setActividad(request.getParameter("actividad"));
+	  requerimientos.setDescripcion(request.getParameter("descripcion"));
+	  requerimientos.setCriticidad(request.getParameter("criticidad"));
+	  requerimientos.setAccion(request.getParameter("accion"));
+	  requerimientos.setEntrega(request.getParameter("entrega"));
+	  requerimientos.setSolucion(request.getParameter("solucion"));
+	  requerimientos.setComentarios(request.getParameter("comentarios"));
+	  userDaoImpl.requerimientos(requerimientos);
+	  ModelAndView mav = new ModelAndView("Inicio");
+	  mav.addObject("requerimientos", new Requerimientos());
+	  return mav;
   }
   //add req su
   @RequestMapping(value = "/RequerimientosA.html**", method = RequestMethod.GET)
@@ -180,13 +194,28 @@ public class RegistrationController {
   }
   
   @RequestMapping(value = "/reqProcessA", method = RequestMethod.POST)
-  public ModelAndView addReqA(HttpServletRequest request, HttpServletResponse response,
-  @ModelAttribute("requerimientos") Requerimientos requerimientos) {
-  userDaoImpl.requerimientos(requerimientos);
-  ModelAndView mav = new ModelAndView("Admin");
-  mav.addObject("requerimientos", new Requerimientos());
-  return mav;
+  public ModelAndView addReqA(HttpServletResponse response, HttpServletRequest request, 
+  @RequestParam("archivo") MultipartFile archivo) throws IOException{
+	  Requerimientos requerimientos= new Requerimientos();
+	  requerimientos.setNombre_archivo(archivo.getOriginalFilename());
+	  requerimientos.setTipo_archivo(archivo.getContentType());     
+	  requerimientos.setArchivo(archivo.getBytes());	  
+	  requerimientos.setId_pro(Integer.parseInt(request.getParameter("id_pro")));
+	  requerimientos.setId_mod(Integer.parseInt(request.getParameter("id_mod")));
+	  requerimientos.setTipo(request.getParameter("tipo"));
+	  requerimientos.setActividad(request.getParameter("actividad"));
+	  requerimientos.setDescripcion(request.getParameter("descripcion"));
+	  requerimientos.setCriticidad(request.getParameter("criticidad"));
+	  requerimientos.setEntrega(request.getParameter("entrega"));
+	  requerimientos.setAccion(request.getParameter("accion"));
+	  requerimientos.setSolucion(request.getParameter("solucion"));
+	  requerimientos.setComentarios(request.getParameter("comentarios"));
+	  userDaoImpl.requerimientos(requerimientos);
+	  ModelAndView mav = new ModelAndView("Admin");
+	  mav.addObject("requerimientos", new Requerimientos());
+	  return mav;
   }
+  
   //LISTA DE modulos paara despues ingresar el diseño
   @RequestMapping(value = "/ModDis.html**", method = RequestMethod.GET)
   public ModelAndView showDisD(HttpServletRequest request, HttpServletResponse response) {
@@ -408,19 +437,37 @@ public class RegistrationController {
 	  List<Proyectos> listProyectos = verDaoImpl.verProyectos();
 	  mav.addObject("listProyectos", listProyectos);
 	  mav.addObject("issues", new Issues());
+	  String e = request.getParameter("e");
+	  User l=verDaoImpl.getUserBy(e);
+	  int id=l.getId();
+	  mav.addObject("id", id);
 	  return mav;
   }
   
   @RequestMapping(value = "/issuesProcess", method = RequestMethod.POST)
-  public ModelAndView addIssu(HttpServletRequest request, HttpServletResponse response,
-  @ModelAttribute("issues") Issues issues) {
-	  userDaoImpl.issues(issues);
-	  ModelAndView mav = new ModelAndView("Inicio");
-	  List<Proyectos> listProyectos = verDaoImpl.verProyectos();
-	  mav.addObject("listProyectos", listProyectos);
-	  mav.addObject("issues", new Issues());
-	  return mav;
-  }
+	public ModelAndView iss(HttpServletRequest request, @RequestParam("archivo") MultipartFile archivo) throws IOException{
+		Issues issues = new Issues();
+		issues.setDescripcion(request.getParameter("descripcion"));
+		issues.setCriticidad(request.getParameter("criticidad"));
+		issues.setComentarios(request.getParameter("comentarios"));
+		issues.setSolicitante(request.getParameter("solicitante"));
+		issues.setNombre(archivo.getOriginalFilename());
+	    issues.setType(archivo.getContentType());     
+	    issues.setArchivo(archivo.getBytes());
+	    ModelAndView mav=null;
+	    int id = Integer.parseInt(request.getParameter("id_sol"));
+	    issues.setId_sol(id);
+	    if (id==0) {
+	    	mav = new ModelAndView("Inicio");
+	    	mav.addObject("errorMessage", "No se ha encontrado el solicitante");
+	    }
+	    else {
+	    	userDaoImpl.issues(issues);
+			mav = new ModelAndView("Inicio");
+	    }
+	    		
+		return mav;
+	}
   
   //add is cli
   @RequestMapping(value = "/Issues", method = RequestMethod.GET)
@@ -429,42 +476,48 @@ public class RegistrationController {
 	  String e = request.getParameter("e");
 	  User l=verDaoImpl.getUserBy(e);
 	  int id=l.getId();
+	  mav.addObject("id", id);
 	  List<Proyectos> listProyectos = verDaoImpl.verProyectosC(id);
-	  mav.addObject("e", e);
 	  mav.addObject("listProyectos", listProyectos);
 	  mav.addObject("issues", new Issues());
 	  return mav;
   }
   //add iss cli
   @RequestMapping(value = "/issuesP", method = RequestMethod.POST)
-  public ModelAndView addIssuC(HttpServletRequest request, HttpServletResponse response,
-  @ModelAttribute("issues") Issues issues) {
-	  userDaoImpl.issues(issues);
-	  ModelAndView mav = new ModelAndView("Cliente");
-	  mav.addObject("issues", new Issues());
-	  return mav;
-  }
+	public ModelAndView processFileP(HttpServletRequest request, @RequestParam("archivo") MultipartFile archivo) throws IOException{
+		Issues issues = new Issues();
+		issues.setDescripcion(request.getParameter("descripcion"));
+		issues.setCriticidad(request.getParameter("criticidad"));
+		issues.setComentarios(request.getParameter("comentarios"));
+		issues.setSolicitante(request.getParameter("solicitante"));
+		issues.setNombre(archivo.getOriginalFilename());
+	    issues.setType(archivo.getContentType());     
+	    issues.setArchivo(archivo.getBytes());
+	    ModelAndView mav=null;
+	    int id = Integer.parseInt(request.getParameter("id_sol"));
+	    issues.setId_sol(id);
+	    if (id==0) {
+	    	mav = new ModelAndView("Cliente");
+	    	mav.addObject("errorMessage", "No se ha encontrado el solicitante");
+	    }
+	    else {
+	    	userDaoImpl.issues(issues);
+			mav = new ModelAndView("Cliente");
+	    }
+	    		
+		return mav;
+	}
   //add iss su
   @RequestMapping(value = "/IssuesAdmin**", method = RequestMethod.GET)
   public ModelAndView issuA(HttpServletRequest request, HttpServletResponse response) {
 	  ModelAndView mav = new ModelAndView("IssuesAdmin");
 	  List<Proyectos> listProyectos = verDaoImpl.verProyectos();
 	  mav.addObject("listProyectos", listProyectos);
+	  String e = request.getParameter("e");
+	  User l=verDaoImpl.getUserBy(e);
+	  int id=l.getId();
 	  mav.addObject("issues", new Issues());
-	  return mav;
-  }
-  
-  @RequestMapping(value = "/issuesProcessAG", method = RequestMethod.GET)
-  public ModelAndView addIssuA(HttpServletRequest request, HttpServletResponse response) throws Exception {	  
-	  MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-	  MultipartFile multipartFile = multipartRequest.getFile("archivo");  
-	  Issues issues = new Issues();
-	  issues.setNombre(multipartFile.getOriginalFilename());
-      issues.setType(multipartFile.getContentType());     
-      issues.setArchivo(multipartFile.getBytes());
-      
-      //userDaoImpl.issues(issues);
-	  ModelAndView mav = new ModelAndView("Admin");
+	  mav.addObject("id", id);
 	  return mav;
   }
   
@@ -474,15 +527,22 @@ public class RegistrationController {
 		issues.setDescripcion(request.getParameter("descripcion"));
 		issues.setCriticidad(request.getParameter("criticidad"));
 		issues.setComentarios(request.getParameter("comentarios"));
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    String name = auth.getName(); //get logged in username
-		issues.setSolicitante(name);
+		issues.setSolicitante(request.getParameter("solicitante"));
 		issues.setNombre(archivo.getOriginalFilename());
 	    issues.setType(archivo.getContentType());     
 	    issues.setArchivo(archivo.getBytes());
-	      
-		userDaoImpl.issues(issues);
-		ModelAndView mav = new ModelAndView("Admin");
+	    ModelAndView mav=null;
+	    int id = Integer.parseInt(request.getParameter("id_sol"));
+	    issues.setId_sol(id);
+	    if (id==0) {
+	    	mav = new ModelAndView("Admin");
+	    	mav.addObject("errorMessage", "No se ha encontrado el solicitante");
+	    }
+	    else {
+	    	userDaoImpl.issues(issues);
+			mav = new ModelAndView("Admin");
+	    }
+	    		
 		return mav;
 	}
    

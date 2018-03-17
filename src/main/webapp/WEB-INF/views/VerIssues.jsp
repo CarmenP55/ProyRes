@@ -178,9 +178,8 @@ div.head {
 <div class="cuadro">	
             <table border=1 cellspacing=0>
             <tr style="border-top-color:transparent">
-                <th>Area</th>
+            	<td>Proyecto</td>
                 <th>Solicitante</th>
-                <th>Telefono</th>
                 <th>Descripcion</th>
                 <th>Criticidad</th>
                 <th>Comentarios</th>
@@ -188,13 +187,13 @@ div.head {
                 <th>Estatus Cliente</th>
                 <th>Fecha de registro</th>
                 <th>Fecha de cierre</th>
+                <th>Archivo</th>
                 </tr>
                 
                 <c:forEach var="req" items="${listIssues}" varStatus="status">
                 <tr style="border-top-color:transparent">
-                    <td>${req.area}</td>
+                    <td>${req.nombre_proyecto}
                     <td>${req.solicitante}</td>
-                    <td>${req.numero}</td>
                     <td>${req.descripcion}</td>
                     <td>${req.criticidad}</td>
                     <td>${req.comentarios}</td>
@@ -202,6 +201,7 @@ div.head {
                     <td>${req.estatus_cliente}</td>
                     <td>${req.alta}</td>
                     <td>${req.cierre}</td>
+                    <td><a href="ArchivoTicket?id=${req.id}">${req.nombre}</a></td> 
                     <td>
                         <a href="updateIssues?id=${req.id}">Editar</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;

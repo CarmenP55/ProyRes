@@ -299,7 +299,6 @@ function showhide(id) {
 			<h2>Requerimientos</h2>
             <table border=1 cellspacing=0>
             <tr>
-                <th>Tipo</th>
                 <th>Actividad</th>
                 <th>Descripcion</th>
                 <th>Entrega</th>
@@ -307,11 +306,11 @@ function showhide(id) {
                 <th>Accion</th>
                 <th>Solucion</th>
                 <th>Comentarios</th>
+                <th>Archivo</th>
                 <th>Estatus</th>
                 </tr>
                 <c:forEach var="req" items="${listRequerimientos}" varStatus="status">
                 <tr style="border-top-color:transparent">
-                    <td>${req.tipo}</td>
                     <td><a title="Modificar" href="updateRequerimientoA?id_req=${req.id_req}">${req.actividad}</a></td>
                     <td>${req.descripcion}</td>
                     <td>${req.entrega}</td>
@@ -319,6 +318,7 @@ function showhide(id) {
                     <td>${req.accion}</td>
                     <td>${req.solucion}</td>
                     <td>${req.comentarios}</td>
+                    <td><a href="ArchivoReq?id=${req.id_req}">${req.nombre_archivo}</a></td>
                     <td>${req.estatus}</td>
                 </tr>
                 </c:forEach>             

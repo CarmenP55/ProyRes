@@ -67,11 +67,10 @@
 		</script>
 	</sec:authorize>
 	
-    <div class="container"> <br>    
-		<div class="row">
+<div class="container"> <br>    
           <div class="col-sm-4">
             <div class="sidebar-nav">
-            
+            <img src="${pageContext.request.contextPath}/resources/logo.jpg" width="220px" />      
               <div class="navbar navbar-default" role="navigation">
                 <div class="navbar-header">
                   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
@@ -92,7 +91,7 @@
                             <li><a href=ListaProA.html>Informacion de Proyectos</a></li>							
                           	<li class="divider"></li>
                           	<li class="dropdown-header">Otros registros</li>
-                          	<li><a href=IssuesAdmin.html>Tickets</a></li>
+                          	<li><a href=IssuesAdmin.html?e="${pageContext.request.userPrincipal.name}">Tickets</a></li>
 							<li><a href=EmpresaA.html>Empresas</a></li>
 							<li><a href=register.html>Usuarios</a></li>
 							<li><a href=Actividades.html>Actividades</a></li>
@@ -108,17 +107,8 @@
                 </div><!--/.nav-collapse -->
               </div>
             </div>
-          </div>
-         
-        </div>
-
-    </div><!-- /.container -->
-    
-    <nav id="colorNav">
-			<ul>
-				
-			</ul>
-		</nav>
+          </div>             
+</div><!-- /.container -->
 
 </body>
 </html>

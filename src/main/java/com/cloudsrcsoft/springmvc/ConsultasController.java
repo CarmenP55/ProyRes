@@ -177,7 +177,9 @@ public class ConsultasController {
 	@RequestMapping(value="/VerTickets.html")
 	public ModelAndView listTickets(ModelAndView model, HttpServletRequest request) throws IOException{
 		String e = request.getParameter("e");
-		List<Issues> listIssues = verDaoImpl.verIssuesC(e);
+		User l=verDaoImpl.getUserBy(e);
+		int id=l.getId();
+		List<Issues> listIssues = verDaoImpl.verIssuesC(id);
 		model.addObject("listIssues", listIssues);
 		model.setViewName("VerTickets");
 		return model;
@@ -245,17 +247,27 @@ public class ConsultasController {
 	      return model;
 	  }	      	
 	
-		@RequestMapping(value = "/ArchivoTicket", method = RequestMethod.GET)
+	@RequestMapping(value = "/ArchivoTicket", method = RequestMethod.GET)
 	  public ModelAndView download(HttpServletRequest request,
 	        HttpServletResponse response) throws Exception {
 			int id = Integer.parseInt(request.getParameter("id")); 
 	        Issues file = verDaoImpl.find(id);	 
 	        response.setContentType(file.getType());
 	        response.setContentLength(file.getArchivo().length);
-	        response.setHeader("Content-Disposition","attachment; filename=\"" + file.getNombre() +"\"");
-	 
-	        FileCopyUtils.copy(file.getArchivo(), response.getOutputStream());
-	 
+	        response.setHeader("Content-Disposition","attachment; filename=\"" + file.getNombre() +"\"");	 
+	        FileCopyUtils.copy(file.getArchivo(), response.getOutputStream());	 
+	        return null;	 
+	  }
+	
+	@RequestMapping(value = "/ArchivoReq", method = RequestMethod.GET)
+	  public ModelAndView downloadA(HttpServletRequest request,
+	        HttpServletResponse response) throws Exception {
+			int id = Integer.parseInt(request.getParameter("id")); 
+	        Requerimientos file = verDaoImpl.findReq(id);	 
+	        response.setContentType(file.getTipo_archivo());
+	        response.setContentLength(file.getArchivo().length);
+	        response.setHeader("Content-Disposition","attachment; filename=\"" + file.getNombre_archivo() +"\"");	 
+	        FileCopyUtils.copy(file.getArchivo(), response.getOutputStream());	 
 	        return null;	 
 	  }
 	

@@ -97,7 +97,7 @@ div.radio {
 </div>
 <div class="cuadro">
 	<h2> Alta de Requerimientos</h2>
-	<form:form id="regForm" modelAttribute="requerimientos" action="reqProcessA" method="post">
+	<form:form id="regForm" modelAttribute="requerimientos" action="reqProcessA" method="post" enctype="multipart/form-data">
                 <div class="container">
                 			<form:hidden required="true" path="id_pro" name="id_pro" id="id_pro" value="${param.id_proyecto}"/>
                 			<form:label path="id_mod">Modulo</form:label>
@@ -126,6 +126,9 @@ div.radio {
                             <form:input required="true" path="solucion" name="solucion" id="solucion" type="date"/>
                             <form:label path="comentarios">Comentarios adicionales</form:label>
                             <form:textarea path="comentarios" name="comentarios" id="comentarios" col="30" rows="5" />
+                            <form:label path="archivo">Archivo</form:label>
+							<form:input type="file" name="archivo" id="archivo" path="archivo"/>
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             <form:button>Guardar</form:button>
                      </div>
             </form:form>

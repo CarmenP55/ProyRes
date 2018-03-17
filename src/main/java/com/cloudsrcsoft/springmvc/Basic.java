@@ -4,6 +4,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,7 +29,9 @@ public class Basic {
 	@RequestMapping(value="Admin**")
 	public ModelAndView inicioAdmin(){
 		ModelAndView model=new ModelAndView();
+
 		model.setViewName("Admin");
+		
 		return model;
 	}	
 	

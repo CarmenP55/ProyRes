@@ -261,29 +261,26 @@ function showhide(id) {
 	<div class="cuadroIssues">	
 	<table border=1 cellspacing=0>
             <tr style="border-top-color:transparent">
+            	<td>Proyecto</td>
                 <th>Solicitante</th>
                 <th>Descripcion</th>
                 <th>Criticidad</th>
                 <th>Comentarios</th>
                 <th>Estatus Desarrollo</th>
                 <th>Estatus Cliente</th>
-                <th>Nombre</th>
-                <th>Tipo</th>
                 <th>Descargar archivo</th>
                 <th>Opciones</th>
                 </tr>
                 
                 <c:forEach var="req" items="${listIssues}" varStatus="status">
                 <tr style="border-top-color:transparent">
+                	<td>${req.nombre_proyecto}
                     <td>${req.solicitante}</td>
                     <td>${req.descripcion}</td>
                     <td>${req.criticidad}</td>
                     <td>${req.comentarios}</td>
                     <td>${req.estatus_desarrollo}</td>
-                    <td>${req.estatus_cliente}</td>
-                    <td>${req.nombre}</td>
-                    <td>${req.type}</td>
-                    
+                    <td>${req.estatus_cliente}</td>                    
                     <td><a href="ArchivoTicket?id=${req.id}">${req.nombre}</a></td>                    
                     <td>
                         <a href="updateIssuesA?id=${req.id}">Editar</a>

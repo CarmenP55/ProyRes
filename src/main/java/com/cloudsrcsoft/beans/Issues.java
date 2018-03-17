@@ -5,8 +5,10 @@ import java.util.Date;
 public class Issues {
 	private int id;
 	private int proyecto;
+	private String nombre_proyecto;
 	private int id_mod;
 	private int id_req;
+	private int id_sol;
 	private String solicitante;
 	private String descripcion;
 	private String criticidad;
@@ -18,7 +20,19 @@ public class Issues {
 	private byte[] archivo;
 	private String type;
 	private String nombre;
-		
+			
+	public String getNombre_proyecto() {
+		return nombre_proyecto;
+	}
+	public void setNombre_proyecto(String nombre_proyecto) {
+		this.nombre_proyecto = nombre_proyecto;
+	}
+	public int getId_sol() {
+		return id_sol;
+	}
+	public void setId_sol(int id_sol) {
+		this.id_sol = id_sol;
+	}
 	public int getId_mod() {
 		return id_mod;
 	}

@@ -6,6 +6,7 @@ public class Requerimientos {
 	private int id_req;
 	private int id_pro;
 	private int id_mod;
+	private String nombre_proyecto;
 	private String tipo;
 	private String actividad;
 	private String descripcion;
@@ -17,7 +18,34 @@ public class Requerimientos {
 	private int version;
 	private String estatus;
 	private Date alta;
-	
+	private String tipo_archivo;
+	private String nombre_archivo;
+	private byte[] archivo;
+		
+	public String getNombre_proyecto() {
+		return nombre_proyecto;
+	}
+	public void setNombre_proyecto(String nombre_proyecto) {
+		this.nombre_proyecto = nombre_proyecto;
+	}
+	public String getTipo_archivo() {
+		return tipo_archivo;
+	}
+	public void setTipo_archivo(String tipo_archivo) {
+		this.tipo_archivo = tipo_archivo;
+	}
+	public String getNombre_archivo() {
+		return nombre_archivo;
+	}
+	public void setNombre_archivo(String nombre_archivo) {
+		this.nombre_archivo = nombre_archivo;
+	}
+	public byte[] getArchivo() {
+		return archivo;
+	}
+	public void setArchivo(byte[] archivo) {
+		this.archivo = archivo;
+	}
 	public Date getAlta() {
 		alta=new Date();
 		return alta;

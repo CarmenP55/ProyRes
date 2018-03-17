@@ -100,10 +100,6 @@ div.radio {
 	<form:form id="regForm" modelAttribute="issues" action="updateIss" method="post">
                 <div class="container">
                 			<form:hidden path="id" name="id" id="id"/>
-                            <form:label path="area">Area</form:label>
-                            <form:input required="true" path="area" name="area" id="area" />
-                            <form:label path="numero">Numero telefonico</form:label>
-                            <form:input required="true" path="numero" name="numero" id="numero"/>
                             <form:label path="descripcion">Descripcion del issue</form:label>
                             <form:textarea required="true" path="descripcion" name="descripcion" id="descripcion" col="30" rows="5"/>
                             <form:label path="criticidad">Criticidad</form:label><br>

@@ -99,30 +99,48 @@ div.radio {
 </div>
 <div class="cuadro">
 	<h2> Levantar ticket</h2>
-	<form:form id="regForm" modelAttribute="issues" action="issuesProcess" method="post">
+	<form:form id="regForm" modelAttribute="issues" action="issuesProcess" method="post" enctype="multipart/form-data">
                 <div class="container">
-                			<form:label path="proyecto">Proyectos</form:label>
-                			<form:select required="true" path="proyecto" name="proyecto" id="proyecto">
-                			<c:forEach var="req" items="${listProyectos}" varStatus="status">
-                    		<option value="${req.id_proyecto}">${req.nombre}</option>
-                			</c:forEach> 
-                			</form:select>            
-                			<br><br>
-                            <form:label path="area">Area</form:label>
-                            <form:input required="true" path="area" name="area" id="area" />
-                            <form:hidden path="solicitante" name="solicitante" id="solicitante" value="${pageContext.request.userPrincipal.name}"/><br>
-                            <form:label path="numero">Numero telefonico</form:label>
-                            <form:input required="true" path="numero" name="numero" id="numero"/>
-                            <form:label path="descripcion">Descripcion del issue</form:label>
-                            <form:textarea required="true" path="descripcion" name="descripcion" id="descripcion" col="30" rows="5"/>
-                            <form:label path="criticidad">Criticidad</form:label><br>
-                            <div class="radio"><form:radiobutton path="criticidad" name="criticidad" id="criticidad" value="baja"/> Baja
-                            <form:radiobutton path="criticidad" name="criticidad" id="criticidad" value="media"/>Media
-                            <form:radiobutton path="criticidad" name="criticidad" id="criticidad" value="alta"/>Alta</div><br>
-                            <form:label path="comentarios">Comentarios adicionales</form:label>
-                            <form:textarea path="comentarios" name="comentarios" id="comentarios" col="30" rows="4"/>
-                            <form:button>Guardar</form:button>
-                     </div>
+	<form:label path="proyecto">Proyectos</form:label>
+	<form:select required="true" path="proyecto" name="proyecto" id="proyecto">
+	<c:forEach var="req" items="${listProyectos}" varStatus="status">
+	<option value="${req.id_proyecto}">${req.nombre}</option>
+	</c:forEach> 
+	</form:select>            
+	<br><br>
+	<!-- 
+	<form:label path="proyecto">Modulo</form:label>
+	<form:select required="true" path="proyecto" name="proyecto" id="proyecto">
+	<c:forEach var="req" items="${listProyectos}" varStatus="status">
+	<option value="${req.id_proyecto}">${req.nombre}</option>
+	<option value="0">--DESCONOCIDO--</option>
+	</c:forEach> 
+	</form:select>            
+	<br><br>
+	<form:label path="proyecto">Requerimiento</form:label>
+	<form:select required="true" path="proyecto" name="proyecto" id="proyecto">
+	<c:forEach var="req" items="${listProyectos}" varStatus="status">
+	<option value="${req.id_proyecto}">${req.nombre}</option>
+	</c:forEach> 
+ 	</form:select>            
+	<br><br>
+	 -->
+	<form:hidden name="id_sol" id="id_sol" path="id_sol" value="${id}"/>
+	<form:label path="descripcion">Descripcion del issue</form:label>
+	<form:textarea path="descripcion" name="descripcion" id="descripcion" col="30" rows="5"/>
+	<form:label path="criticidad">Criticidad</form:label><br>
+	<div class="radio"><form:radiobutton path="criticidad" name="criticidad" id="criticidad" value="baja"/> Baja
+	<form:radiobutton path="criticidad" name="criticidad" id="criticidad" value="media"/>Media
+	<form:radiobutton path="criticidad" name="criticidad" id="criticidad" value="alta"/>Alta</div><br>
+	<form:label path="comentarios">Comentarios adicionales</form:label>
+	<form:textarea path="comentarios" name="comentarios" id="comentarios" col="30" rows="4"/>
+	<form:label path="descripcion">Archivo</form:label>
+	<form:input type="file" name="archivo" id="archivo" path="archivo"/>
+
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					                            
+	<form:button>Guardar</form:button>
+	 </div>
             </form:form>
 </div>
 </body>

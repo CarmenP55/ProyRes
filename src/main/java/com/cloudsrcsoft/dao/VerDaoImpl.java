@@ -70,15 +70,34 @@ public Issues find(int id) {
                       return fl;
                   }
           });
-
           return file;
       } catch (Exception ex) {
           ex.printStackTrace();
       }
-
       return null;
   }
-  
+
+public Requerimientos findReq(int id) {
+	logger.info("Metodo find");
+      String query = "select archivo, tipo_archivo, nombre_archivo from requerimientos where id_req = ?";
+      try {
+          Requerimientos file = (Requerimientos) template.queryForObject(query, new Object[] {id},
+              new RowMapper() {
+                  Requerimientos fl;
+                  public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+                      fl = new Requerimientos();
+                      fl.setNombre_archivo(rs.getString(3));
+                      fl.setTipo_archivo(rs.getString(2));
+                      fl.setArchivo(rs.getBytes(1));
+                      return fl;
+                  }
+          });
+          return file;
+      } catch (Exception ex) {
+          ex.printStackTrace();
+      }
+      return null;
+  }
   
   public User getUserBy(String e) {
 	  String sql="SELECT id_usuario from usuarios where email="+e;
@@ -312,7 +331,10 @@ public Issues find(int id) {
 				aRequerimientos.setSolucion(rs.getString("solucion"));
 				aRequerimientos.setComentarios(rs.getString("comentarios"));
 				aRequerimientos.setVersion(rs.getInt("version"));
-				aRequerimientos.setEstatus(rs.getString("estatus"));				
+				aRequerimientos.setEstatus(rs.getString("estatus"));
+				aRequerimientos.setNombre_archivo(rs.getString("nombre_archivo"));
+				aRequerimientos.setTipo_archivo(rs.getString("tipo_archivo"));
+				aRequerimientos.setArchivo(rs.getBytes("archivo"));
 				return aRequerimientos;
 			  }
 		});
@@ -335,7 +357,10 @@ public Issues find(int id) {
 				aRequerimientos.setSolucion(rs.getString("solucion"));
 				aRequerimientos.setComentarios(rs.getString("comentarios"));
 				aRequerimientos.setVersion(rs.getInt("version"));
-				aRequerimientos.setEstatus(rs.getString("estatus"));				
+				aRequerimientos.setEstatus(rs.getString("estatus"));	
+				aRequerimientos.setNombre_archivo(rs.getString("nombre_archivo"));
+				aRequerimientos.setTipo_archivo(rs.getString("tipo_archivo"));
+				aRequerimientos.setArchivo(rs.getBytes("archivo"));
 				return aRequerimientos;
 			  }
 		});
@@ -474,12 +499,14 @@ public Issues find(int id) {
 		return listRiesgos;
 	}
   
-  public List<Issues> verIssuesC(String e) {
-		String sql = "SELECT * FROM issues where solicitante ="+e;
+  public List<Issues> verIssuesC(int e) {
+		String sql = "SELECT * FROM issues join proyectos on proyectos.id_proyecto=issues.id_pro "
+				+ "where id_sol ="+e;
 		List<Issues> listIssues = template.query(sql, new RowMapper<Issues>() {
 			public Issues mapRow(ResultSet rs, int arg1) throws SQLException {
 				Issues aIssues = new Issues();
 				aIssues.setId(rs.getInt("id_issue"));
+				aIssues.setNombre_proyecto(rs.getString("nombre_proyecto"));
 				aIssues.setProyecto(rs.getInt("id_pro"));
 				aIssues.setDescripcion(rs.getString("descripcion"));
 				aIssues.setCriticidad(rs.getString("criticidad"));
@@ -496,15 +523,18 @@ public Issues find(int id) {
 	}
   
   public List<Issues> verIssues() {
-		String sql = "SELECT * FROM issues";
+		String sql = "SELECT * FROM issues join proyectos on proyectos.id_proyecto=issues.id_pro";
 		List<Issues> listIssues = template.query(sql, new RowMapper<Issues>() {
 			public Issues mapRow(ResultSet rs, int arg1) throws SQLException {
 				Issues aIssues = new Issues();
 				aIssues.setId(rs.getInt("id_issue"));
-				aIssues.setProyecto(rs.getInt("id_pro"));
+				aIssues.setNombre_proyecto(rs.getString("nombre_proyecto"));
 				aIssues.setDescripcion(rs.getString("descripcion"));
 				aIssues.setCriticidad(rs.getString("criticidad"));
 				aIssues.setComentarios(rs.getString("comentarios"));
+				User u= new User();
+				u=getUser(rs.getInt("id_sol"));
+				aIssues.setSolicitante(u.getFirstname()+" "+u.getLastname());
 				aIssues.setEstatus_desarrollo(rs.getString("estatus_desarrollo"));
 				aIssues.setEstatus_cliente(rs.getString("estatus_cliente"));
 				aIssues.setAlta(rs.getDate("fecha_alta"));
@@ -693,7 +723,6 @@ public Issues find(int id) {
 				if (rs.next()) {
 						Requerimientos aReq = new Requerimientos();
 					    aReq.setId_pro(rs.getInt("id_pro"));
-						aReq.setTipo(rs.getString("tipo_req"));
 						aReq.setActividad(rs.getString("actividad"));
 						aReq.setDescripcion(rs.getString("descripcion"));
 						aReq.setEntrega(rs.getString("entrega"));
@@ -703,6 +732,9 @@ public Issues find(int id) {
 						aReq.setComentarios(rs.getString("comentarios"));
 						aReq.setVersion(rs.getInt("version"));
 						aReq.setEstatus(rs.getString("estatus"));
+						aReq.setNombre_archivo(rs.getString("nombre_archivo"));
+						aReq.setTipo_archivo(rs.getString("tipo_archivo"));
+						aReq.setArchivo(rs.getBytes("archivo"));
 						return aReq;
 					  }
 				return null;
