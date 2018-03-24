@@ -9,110 +9,51 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Registros</title>
-<STYLE type="text/css">
-p{
-	font-family: Trebuchet MS;
-}
-
-h2{
-	text-align:center;
-}
-
-td{
-	font-family:Trebuchet MS;
-	font-size:16;
-	padding: 10px 10px 10px 10px;
-}
-
-th{
-	padding:15px;
-}
-
-table tr {
-    background-color: #eee;
-}
-
-table tr:nth-child(2) {
-    background-color: #eee;
-}
-table tr:nth-child(even) {
-    background-color: #eee;
-}
- 
-table tr:nth-child(odd) {
-    background-color: #fff;
-}
-
-div.head {
- 	width:auto;
-    height:60px;
-    float: right;
-    margin-bottom: 30px;
-    margin-top: 30px;
-    margin-right: 30px;
-}
-
-div.cuadro {
-	padding: 16px;
-    border: 5px solid #f1f1f1;
-    width: 35%;
-    margin: auto; 
-}
-
-form {
-    border: 3px solid #f1f1f1;
-    width: 40%;
-    margin: auto;
-}
-
-input[type=text], input[type=password], input[type=date], textarea {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    font-family: Trebuchet MS;
-    font-size:14;
-}
-
-select {
-    width: 100%;
-    padding: 16px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #f1f1f1;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 0.4cm 0.4cm 0.4cm 0.4cm;
-    border: none;
-    cursor: pointer;
-    width: 30%;
-    float: right;
-}
-
-.container {
-    padding: 16px;
-    margin-bottom: 35px; 
-}
-
-div.verDis {
-	padding: 16px;
-    border: 5px solid #f1f1f1;
-    width: 50%;
-    margin: auto; 
-}
-
-div.verR {
-	padding: 16px;
-    border: 5px solid #f1f1f1;
-    width: 80%;
-    margin: auto; 
-}
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <style type="text/css">
+	/* make sidebar nav vertical */ 
+	@media (min-width: 768px) {
+	  .sidebar-nav .navbar .navbar-collapse {
+		padding: 0;
+		max-height: none;
+	  }
+	  .sidebar-nav .navbar ul {
+		float: none;
+	  }
+	  .sidebar-nav .navbar ul:not {
+		display: block;
+	  }
+	  .sidebar-nav .navbar li {
+		float: none;
+		display: block;
+	  }
+	  .sidebar-nav .navbar li a {
+		padding-top: 12px;
+		padding-bottom: 12px;
+	  }
+	}
+	@media (min-width: 768px) {
+	  /* uncomment if you would like the menu to be fixed */
+	  /* .navbar {
+		  position: fixed;
+		  width: 170px;
+		  z-index: 2;
+	  } */
+	}
+	@media (min-width: 992px) {
+	  .navbar {
+		  width: 212px;
+	  }
+	}
+	@media (min-width: 1200px) {
+	  .navbar {
+		  width: 262px;
+	  }
+	}
+	.sidebar-nav .navbar-header{ float: none; }
 </style>
 <script>
 function showhide(id) {
@@ -135,12 +76,53 @@ function showhide(id) {
 			}
 		</script>
 	</sec:authorize>
-<div class="head">
-<a href=Admin.html><img src="https://image.flaticon.com/icons/svg/25/25694.svg" alt="Home" width="50" height="50"></a><br>
-</div>
-<div class="cuadro" id="all">
-            <table border=1 cellspacing=0 width=97% style="margin:auto">
-            	<tr><th>Seleccionar</th>
+<div class="container"> <br>    
+          <div class="col-sm-4">
+            <div class="sidebar-nav">
+            <img src="${pageContext.request.contextPath}/resources/logo.jpg" width="220px" />      
+              <div class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <span class="visible-xs navbar-brand">Menu Principal</span>
+                </div>
+                <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="Admin.html">Inicio</a></li> 
+                    <li><a href="ProyectosAd.html" class="icon-cogs">Proyectos</a></li>   
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registros<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href=ListaProA.html>Informacion de Proyectos</a></li>							
+                          	<li class="divider"></li>
+                          	<li class="dropdown-header">Otros registros</li>
+                          	<li><a href=IssuesAdmin.html?e="${pageContext.request.userPrincipal.name}">Tickets</a></li>
+							<li><a href=EmpresaA.html>Empresas</a></li>
+							<li><a href=register.html>Usuarios</a></li>
+							<li><a href=Actividades.html>Actividades</a></li>
+							<li><a href=CrearTareas.html>Tareas</a></li>
+							<li><a href=CrearSub.html>Subtareas</a></li>
+                        </ul>
+                      </li>
+                    <li><a href="VerRegistrosA.html" class="icon-twitter">Consultas</a></li>
+                    <c:if test="${pageContext.request.userPrincipal.name != null}">
+					<li><a href="javascript:formSubmit()" class="icon-envelope">Salir</a></li>
+					</c:if>
+                  </ul>
+                </div><!--/.nav-collapse -->
+              </div>
+            </div>
+          </div>      
+          
+          <div class="col-sm-5" id="all">                    
+		  <br><br><br>
+		  <table class="table table-bordered table-hover">
+            <tr bgcolor="#31B404">
+            	<th>Seleccionar</th>
             	<th colspan="2">Opciones</th></tr>
             	<tr>
                 <td><img src="https://www.redeszone.net/app/uploads/2016/11/especificaciones-tecnicas.png" alt="Home" width="50" height="50">Esp. Tecnica</td>
@@ -167,14 +149,13 @@ function showhide(id) {
 				<td><img src="http://finantechcolombia.com/wp-content/uploads/2013/11/Consultoria-financiera-en-riesgos-para-empresas-peque%C3%B1as-en-Colombia.jpg" alt="Home" width="50" height="50" title="Agregar informacion">Riesgos<br></td>
 				<td><a href=RiesgosA.html?id_proyecto=${param.id_proyecto}>Agregar</a><br></td>
 				<td><a href="javascript:showhide('verRiesgos')"?id_proyecto=${param.id_proyecto}>Ver registros</a><br></td></tr>
-            </table>
-</div>
+            </table>	                     
+          </div>                  
 
-<div class="cuadro" id="diseno" style="display:none;">
+<div class="col-sm-4" id="diseno" style="display:none;">
 	<h2>Elegir Modulo</h2>	
-     <table border=1 cellspacing=0 style="margin:auto">
-        <tr style="border-top-color:transparent"></tr>
-           <tr><th>Modulo</th>
+     <table class="table table-bordered table-hover">
+            <tr bgcolor="#31B404"><th>Modulo</th>
                <c:forEach var="req" items="${listModulos}" varStatus="status">
                <tr style="border-top-color:transparent">
                <td><a href=DisenioA.html?id=${req.id}&id_proyecto=${param.id_proyecto}>${req.nombre}</a></td>
@@ -183,10 +164,10 @@ function showhide(id) {
     </table>
 </div>
 
-<div class="cuadro" id="pruebas" style="display:none;">
+<div class="col-sm-4" id="pruebas" style="display:none;">
 	<h2>Elegir Modulo</h2>	
-     <table border=1 cellspacing=0 style="margin:auto">
-        <tr style="border-top-color:transparent">
+     <table class="table table-bordered table-hover">
+            <tr bgcolor="#31B404">
            	   <th>Modulo</th>
                <c:forEach var="req" items="${listModulos}" varStatus="status">
                <tr style="border-top-color:transparent">
@@ -195,32 +176,32 @@ function showhide(id) {
                </c:forEach>             
     </table>
 </div>
-
-<div id="modulos" style="display:none;">
+<div class="col-sm-4" id="modulos" style="display:none; border: 3px solid #f1f1f1; padding:30px; margin-top:65px">		
 	<h2>Modulos</h2>
-	<form:form id="regForm" modelAttribute="modulo" action="modulosProcessA" method="post">
-                <div class="container">
+	<form:form id="regForm" modelAttribute="modulo" action="modulosProcessA" method="post"  class="form-horizontal">                
                 	<form:hidden path="proyectos" name="proyectos" id="proyectos" value="${param.id_proyecto}"/>
                     <form:label path="nombre">Nombre</form:label>
-                    <form:input required="true" path="nombre" name="nombre" id="nombre" />
+                    <form:input class="form-control" required="true" path="nombre" name="nombre" id="nombre" />
                     <form:label path="descripcion">Descripcion</form:label>
-                    <form:textarea required="true" path="descripcion" name="descripcion" id="descripcion" col="40" rows="4" />
+                    <form:textarea class="form-control" required="true" path="descripcion" name="descripcion" id="descripcion" col="40" rows="4" />
                     <form:label path="entrega">Fecha de entrega</form:label>
-                    <form:input required="true" path="entrega" name="entrega" id="entrega" type="date" />                     
-                    <form:button>Guardar</form:button>
-                </div>
+                    <form:input class="form-control" required="true" path="entrega" name="entrega" id="entrega" type="date" />                     
+                    <br><form:button class="btn btn-success col-xs-4 col-sm-offset-8">Guardar</form:button> 
+                
             </form:form>
 </div>
 
-<div class="verDis" id="verDiseno" style="display:none;">	
+<div class="col-sm-4" id="verDiseno" style="display:none;">	
 			<h2>Diseno</h2>
-            <table border=1 cellspacing=0>
-            <tr style="border-top-color:transparent">
+            <table class="table table-bordered table-hover">
+	            <tr bgcolor="#31B404">
                 <th>Actividad</th>
                 <th>Descripcion</th>
                 <th>Entrega</th>
                 <th>Comentarios</th>
-                <th>Estatus</th></tr>
+                <th>Estatus</th>
+                <th>Opciones</th>
+                </tr>
                 <c:forEach var="req" items="${listDiseno}" varStatus="status">
                 <tr style="border-top-color:transparent">
                     <td>${req.actividad}</td>
@@ -229,7 +210,7 @@ function showhide(id) {
                     <td>${req.comentarios}</td>
                     <td>${req.estatus}</td>
                     <td>
-                        <a href="updateDisenoA?id=${req.id}">Edit</a>
+                        <a href="updateDisenoA?id=${req.id}">Editar</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                     </td>
                 </tr>
@@ -237,10 +218,10 @@ function showhide(id) {
             </table>
 </div>
 
-<div class="verR" id="verPruebas" style="display:none;">	
+<div class="col-sm-4" id="verPruebas" style="display:none;">	
 			<h2>Pruebas</h2>
-            <table border=1 cellspacing=0>
-            <tr style="border-top-color:transparent">
+            <table class="table table-bordered table-hover">
+            <tr bgcolor="#31B404">
                 <th>Entrada</th>
                 <th>Proceso</th>
                 <th>Salida</th>
@@ -248,7 +229,9 @@ function showhide(id) {
                 <th>Severidad</th>
                 <th>Responsable</th>
                 <th>Version</th>
-                <th>Estatus</th></tr>
+                <th>Estatus</th>
+                <th>Opciones</th>
+                </tr>
                 
                 <c:forEach var="req" items="${listPruebas}" varStatus="status">
                 <tr style="border-top-color:transparent">
@@ -261,7 +244,7 @@ function showhide(id) {
                     <td>${req.version}</td>
                     <td>${req.estatus}</td>
                     <td>
-                        <a href="updatePruebasA?id=${req.id}">Edit</a>
+                        <a href="updatePruebasA?id=${req.id}">Editar</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                     </td>
                 </tr>
@@ -269,25 +252,23 @@ function showhide(id) {
             </table>
 </div>
 
-<div class="verDis" id="verModulos" style="display:none;">	
-			<h2>Modulos</h2>
-            <table border=1 cellspacing=0>
-            <tr style="border-top-color:transparent">
-                <th>Nombre</th>
+<div class="col-sm-7" id="verModulos" style="display:none;">
+			<h4>Modulos</h4>
+            <table class="table table-bordered table-hover">
+            <tr bgcolor="#31B404">
+            	<th>Modulo</th>
                 <th>Descripcion</th>
-                <th>Fecha de registro</th>
                 <th>Fecha de entrega</th>
                 <th>Estatus</th>                
-                
+                <th>Opciones</th>
                 <c:forEach var="req" items="${listModulos}" varStatus="status">
                 <tr style="border-top-color:transparent">
                     <td>${req.nombre}</td>
                     <td>${req.descripcion}</td>
-                    <td>${req.alta}</td>
                     <td>${req.entrega}</td>
                     <td>${req.estatus}</td>
                     <td>
-                        <a href="updateModulosA?id=${req.id}">Edit</a>
+                        <a href="updateModulosA?id=${req.id}">Editar</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                     </td>
                 </tr>
@@ -295,16 +276,15 @@ function showhide(id) {
             </table>
 </div>
 
-<div class="verR" id="verReq" style="display:none;">	
-			<h2>Requerimientos</h2>
-            <table border=1 cellspacing=0>
-            <tr>
+<div class="col-sm-9" id="verReq" style="display:none; width:fit-content;">	
+			<h4>Requerimientos</h4>
+            <table class="table table-bordered table-hover">
+            <tr bgcolor="#31B404">
                 <th>Actividad</th>
                 <th>Descripcion</th>
-                <th>Entrega</th>
+                <th>Fecha de Entrega</th>
                 <th>Criticidad</th>
                 <th>Accion</th>
-                <th>Solucion</th>
                 <th>Comentarios</th>
                 <th>Archivo</th>
                 <th>Estatus</th>
@@ -316,7 +296,6 @@ function showhide(id) {
                     <td>${req.entrega}</td>
                     <td>${req.criticidad}</td>
                     <td>${req.accion}</td>
-                    <td>${req.solucion}</td>
                     <td>${req.comentarios}</td>
                     <td><a href="ArchivoReq?id=${req.id_req}">${req.nombre_archivo}</a></td>
                     <td>${req.estatus}</td>
@@ -326,10 +305,10 @@ function showhide(id) {
 </div>
 
 
-<div class="verR" id="verRiesgos" style="display:none;">
+<div class="col-sm-4" id="verRiesgos" style="display:none;">
 			<h2>Riesgos</h2>	
-            <table border=1 cellspacing=0>
-            <tr style="border-top-color:transparent">
+            <table class="table table-bordered table-hover">
+            <tr bgcolor="#31B404">            
                 <th>Riesgos</th>
                 <th>Descripcion</th>
                 <th>Probabilidad de Ocurrencia</th>
@@ -337,7 +316,9 @@ function showhide(id) {
                 <th>Accion</th>
                 <th>Contingencia</th>
                 <th>Clasificacion</th>
-                <th>Version</th></tr>
+                <th>Version</th>
+                <th>Opciones</th>
+                </tr>
                 
                 <c:forEach var="req" items="${listRiesgos}" varStatus="status">
                 <tr style="border-top-color:transparent">
@@ -357,5 +338,7 @@ function showhide(id) {
                 </c:forEach>             
             </table>
 </div>
+
+</div><!-- /.container -->
 </body>
 </html>

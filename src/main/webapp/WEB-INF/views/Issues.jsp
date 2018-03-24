@@ -6,80 +6,52 @@
 <html>
 <head>
 <title>Lanconta</title>
-<STYLE type="text/css">
-p{
-	font-family: Trebuchet MS;
-}
-
-h2{
-	text-align:center;
-}
-form {
-    border: 3px solid #f1f1f1;
-    width: 40%;
-    margin: auto;
-}
-
-input[type=text], input[type=password], input[type=date], textarea {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    font-family: Trebuchet MS;
-    font-size:14;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 0.4cm 0.4cm 0.4cm 0.4cm;
-    border: none;
-    cursor: pointer;
-    width: 30%;
-    float: right;
-}
-
-.container {
-    padding: 16px;
-    margin-bottom: 35px; 
-}
-
-div.head {    
-    width:50px;
-    height:50px;
-    float: right;
-    margin-right:70px;
-    margin-top:10px;
-    padding-bottom: 5px;
-}
-
-select {
-    width: 100%;
-    padding: 16px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #f1f1f1;
-}
-
-div.cuadro {
-	width: auto;
-	margin:auto;
-	padding-top:10px;
-}
-
-div.radio {
-	width: 100%;
-    padding: 5px 10px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    font-family: Trebuchet MS;
-    font-size:14;
-}
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<title>Inicio</title>
+<style type="text/css">
+	/* make sidebar nav vertical */ 
+	@media (min-width: 768px) {
+	  .sidebar-nav .navbar .navbar-collapse {
+		padding: 0;
+		max-height: none;
+	  }
+	  .sidebar-nav .navbar ul {
+		float: none;
+	  }
+	  .sidebar-nav .navbar ul:not {
+		display: block;
+	  }
+	  .sidebar-nav .navbar li {
+		float: none;
+		display: block;
+	  }
+	  .sidebar-nav .navbar li a {
+		padding-top: 12px;
+		padding-bottom: 12px;
+	  }
+	}
+	@media (min-width: 768px) {
+	  /* uncomment if you would like the menu to be fixed */
+	  /* .navbar {
+		  position: fixed;
+		  width: 170px;
+		  z-index: 2;
+	  } */
+	}
+	@media (min-width: 992px) {
+	  .navbar {
+		  width: 212px;
+	  }
+	}
+	@media (min-width: 1200px) {
+	  .navbar {
+		  width: 262px;
+	  }
+	}
+	.sidebar-nav .navbar-header{ float: none; }
 </style>
 </head>
 <body>
@@ -94,15 +66,71 @@ div.radio {
 			}
 		</script>
 	</sec:authorize>
-<div class="head">
-<a href=irInicio.html><img src="https://image.flaticon.com/icons/svg/25/25694.svg" alt="Home" width="50" height="50"></a>
-</div>
-<div class="cuadro">
+<div class="container"> <br>    
+          <div class="col-sm-4">
+            <div class="sidebar-nav">
+            <img src="${pageContext.request.contextPath}/resources/logo.jpg" width="220px" />      
+              <div class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <span class="visible-xs navbar-brand">Menu Principal</span>
+                </div>
+                <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="irInicio.html">Inicio</a></li> 
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Proyectos<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="VerProyectos.html">Ver Proyectos</a></li>
+							<li><a href="Proyectos.html">Agregar nuevo proyecto</a></li>						                          	
+                        </ul>
+                      </li>  
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registrar<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href=ListaPro.html>Informacion de Proyectos</a></li>
+							<li><a href=IssuesD.html?e="${pageContext.request.userPrincipal.name}">Tickets</a></li>
+							<li><a href=Empresa.html>Empresas</a></li>
+							<li><a href=register2.html>Usuarios</a></li>
+                        </ul>
+                    </li>                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultar<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href=ListaVer.html>Informacion de Proyectos</a></li>
+							<li><a href=VerIssues.html>Tickets</a></li>
+							<li><a href=VerEmpresas.html>Empresas</a></li>
+							<li><a href=VerUsuariosD.html>Usuarios</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportes<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href=Reportes.html?e="${pageContext.request.userPrincipal.name}">Nuevo</a></li>
+							<li><a href=VerReportesD.html?e="${pageContext.request.userPrincipal.name}">Mis reportes</a></li>
+                        </ul>
+                    </li>
+                    <li><a href=PassD?e="${pageContext.request.userPrincipal.name}" class="icon-envelope">Mi cuenta</a></li>
+                    <c:if test="${pageContext.request.userPrincipal.name != null}">
+					<li><a href="javascript:formSubmit()" class="icon-envelope">Salir</a></li>
+					</c:if>
+                  </ul>
+                </div><!--/.nav-collapse -->
+              </div>
+            </div>
+          </div>
+    <br><br><br>
+    <div class="col-sm-5" style="border: 3px solid #f1f1f1; padding:30px">
 	<h2> Levantar ticket</h2>
+	<hr>
 	<form:form id="regForm" modelAttribute="issues" action="issuesProcess" method="post" enctype="multipart/form-data">
-                <div class="container">
 	<form:label path="proyecto">Proyectos</form:label>
-	<form:select required="true" path="proyecto" name="proyecto" id="proyecto">
+	<form:select required="true" path="proyecto" name="proyecto" id="proyecto" class="form-control">
 	<c:forEach var="req" items="${listProyectos}" varStatus="status">
 	<option value="${req.id_proyecto}">${req.nombre}</option>
 	</c:forEach> 
@@ -127,22 +155,26 @@ div.radio {
 	 -->
 	<form:hidden name="id_sol" id="id_sol" path="id_sol" value="${id}"/>
 	<form:label path="descripcion">Descripcion del issue</form:label>
-	<form:textarea path="descripcion" name="descripcion" id="descripcion" col="30" rows="5"/>
+	<form:textarea path="descripcion" name="descripcion" id="descripcion" class="form-control" rows="5"/>
 	<form:label path="criticidad">Criticidad</form:label><br>
-	<div class="radio"><form:radiobutton path="criticidad" name="criticidad" id="criticidad" value="baja"/> Baja
-	<form:radiobutton path="criticidad" name="criticidad" id="criticidad" value="media"/>Media
-	<form:radiobutton path="criticidad" name="criticidad" id="criticidad" value="alta"/>Alta</div><br>
+	<div class="radio-inline"><form:radiobutton path="criticidad" name="criticidad" id="criticidad" value="baja"/> Baja</div>
+	<div class="radio-inline"><form:radiobutton path="criticidad" name="criticidad" id="criticidad" value="media"/>Media</div>
+	<div class="radio-inline"><form:radiobutton path="criticidad" name="criticidad" id="criticidad" value="alta"/>Alta</div><br>
 	<form:label path="comentarios">Comentarios adicionales</form:label>
-	<form:textarea path="comentarios" name="comentarios" id="comentarios" col="30" rows="4"/>
+	<form:textarea path="comentarios" name="comentarios" id="comentarios" class="form-control" rows="4"/>
 	<form:label path="descripcion">Archivo</form:label>
-	<form:input type="file" name="archivo" id="archivo" path="archivo"/>
+	<form:input type="file" name="archivo" id="archivo" path="archivo" class="form-control"/>
 
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-					                            
-	<form:button>Guardar</form:button>
-	 </div>
-            </form:form>
+	<br><br>					                            
+	<form:button class="btn btn-success col-xs-4 col-sm-offset-8">Guardar</form:button>
+	 
+    </form:form>
 </div>
+          
+                       
+</div><!-- /.container -->
+
 </body>
 </html>
 

@@ -6,76 +6,51 @@
 <html>
 <head>
 <title>Lanconta</title>
-<STYLE type="text/css">
-h2{
-	text-align:center;
-}
-form {
-    border: 3px solid #f1f1f1;
-    width: 40%;
-    margin: auto;
-}
-
-div.radio {
-	width: 100%;
-    padding: 5px 10px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    font-family: Trebuchet MS;
-    font-size:14;
-}
-
-input[type=text], input[type=password], input[type=date], input[type=file], textarea {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    font-family: Trebuchet MS;
-    font-size:14;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 0.4cm 0.4cm 0.4cm 0.4cm;
-    border: none;
-    cursor: pointer;
-    width: 30%;
-    float: right;
-}
-
-.container {
-    padding: 16px;
-    margin-bottom: 35px; 
-}
-
-
-div.head {    
-    width:60px;
-    height:60px;
-    float: right;
-    margin-right:70px;
-    margin-top:10px;
-}
-
-div.cuadro {
-	width:auto;
-	margin:auto;
-	padding-top:10px;
-}
-
-select {
-    width: 100%;
-    padding: 16px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #f1f1f1;
-}
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <style type="text/css">
+	/* make sidebar nav vertical */ 
+	@media (min-width: 768px) {
+	  .sidebar-nav .navbar .navbar-collapse {
+		padding: 0;
+		max-height: none;
+	  }
+	  .sidebar-nav .navbar ul {
+		float: none;
+	  }
+	  .sidebar-nav .navbar ul:not {
+		display: block;
+	  }
+	  .sidebar-nav .navbar li {
+		float: none;
+		display: block;
+	  }
+	  .sidebar-nav .navbar li a {
+		padding-top: 12px;
+		padding-bottom: 12px;
+	  }
+	}
+	@media (min-width: 768px) {
+	  /* uncomment if you would like the menu to be fixed */
+	  /* .navbar {
+		  position: fixed;
+		  width: 170px;
+		  z-index: 2;
+	  } */
+	}
+	@media (min-width: 992px) {
+	  .navbar {
+		  width: 212px;
+	  }
+	}
+	@media (min-width: 1200px) {
+	  .navbar {
+		  width: 262px;
+	  }
+	}
+	.sidebar-nav .navbar-header{ float: none; }
 </style>
 </head>
 <body>
@@ -90,48 +65,95 @@ select {
 			}
 		</script>
 	</sec:authorize>
-<div class="head">
-<a href=Admin.html><img src="https://image.flaticon.com/icons/svg/25/25694.svg" alt="Home" width="50" height="50"></a>
-</div>
-<div class="cuadro">
-	<h2>Pruebas</h2>
-		<form:form id="regForm" modelAttribute="pruebas" action="pruebasProcessA" method="post">
-                <div class="container">
-                			<form:hidden required="true" path="proyecto" name="proyecto" id="proyecto" value="${param.id_proyecto}"/>
+<div class="container"> <br>    
+          <div class="col-sm-4">
+            <div class="sidebar-nav">
+            <img src="${pageContext.request.contextPath}/resources/logo.jpg" width="220px" />      
+              <div class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <span class="visible-xs navbar-brand">Menu Principal</span>
+                </div>
+                <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="Admin.html">Inicio</a></li> 
+                    <li><a href="ProyectosAd.html" class="icon-cogs">Proyectos</a></li>   
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registros<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href=ListaProA.html>Informacion de Proyectos</a></li>							
+                          	<li class="divider"></li>
+                          	<li class="dropdown-header">Otros registros</li>
+                          	<li><a href=IssuesAdmin.html?e="${pageContext.request.userPrincipal.name}">Tickets</a></li>
+							<li><a href=EmpresaA.html>Empresas</a></li>
+							<li><a href=register.html>Usuarios</a></li>
+							<li><a href=Actividades.html>Actividades</a></li>
+							<li><a href=CrearTareas.html>Tareas</a></li>
+							<li><a href=CrearSub.html>Subtareas</a></li>
+                        </ul>
+                      </li>
+                    <li><a href="VerRegistrosA.html" class="icon-twitter">Consultas</a></li>
+                    <c:if test="${pageContext.request.userPrincipal.name != null}">
+					<li><a href="javascript:formSubmit()" class="icon-envelope">Salir</a></li>
+					</c:if>
+                  </ul>
+                </div><!--/.nav-collapse -->
+              </div>
+            </div>
+          </div>      
+          
+          <br><br><br>
+          <div class="col-sm-5" style="border: 3px solid #f1f1f1; padding:30px">                    
+		  <h4>Actividades</h4>
+		  <hr>
+		  	<form:form id="regForm" modelAttribute="pruebas" action="pruebasProcessA" method="post" class="form-horizontal">                            
+            <form:hidden required="true" path="proyecto" name="proyecto" id="proyecto" value="${param.id_proyecto}"/>
                 			<form:hidden required="true" path="modulo" name="modulo" id="modulo" value="${param.id}"/>
                             <form:label path="requerimiento">Requerimiento</form:label>
-                			<form:select required="true" path="requerimiento" name="requerimiento" id="requerimiento">
+                			<form:select class="form-control" required="true" path="requerimiento" name="requerimiento" id="requerimiento">
                 			<c:forEach var="req2" items="${listRequerimientos}" varStatus="status">
                     		<option value="${req2.id_req}">${req2.actividad}</option>
                 			</c:forEach> 
                 			</form:select>            
-                			<br><br>
+                			<br>
                             <form:label path="entrada">Entrada</form:label>
-                            <form:textarea required="true" path="entrada" name="entrada" id="entrada" col="30" rows="3" /><br>
+                            <form:textarea class="form-control" required="true" path="entrada" name="entrada" id="entrada" col="30" rows="3" /><br>
                             <form:label path="proceso">Proceso</form:label>
-                            <form:textarea required="true" path="proceso" name="proceso" id="proceso" col="30" rows="3"/>
+                            <form:textarea class="form-control" required="true" path="proceso" name="proceso" id="proceso" col="30" rows="3"/>
                             <form:label path="salida">Salida</form:label>
-                            <form:textarea required="true" path="salida" name="salida" id="salida" col="30" rows="4"/>
+                            <form:textarea class="form-control" required="true" path="salida" name="salida" id="salida" col="30" rows="4"/>
                             <form:label path="observaciones">Observaciones</form:label>
-                            <form:textarea required="true" path="observaciones" name="observaciones" id="observaciones" col="30" rows="5"/>
-                            <form:label path="severidad">Nivel de severidad</form:label><br>
-                            <div class="radio">
-                            <form:radiobutton required="true" path="severidad" name="severidad" id="severidad" value="5"/> No hay errores<br>
-                            <form:radiobutton required="true" path="severidad" name="severidad" id="severidad" value="1"/> No es posible continuar en el sistema<br>
-                            <form:radiobutton required="true" path="severidad" name="severidad" id="severidad" value="2"/>No es posible terminar una función<br>
-                            <form:radiobutton required="true" path="severidad" name="severidad" id="severidad" value="3"/>Funciones restringidas<br>
-                            <form:radiobutton required="true" path="severidad" name="severidad" id="severidad" value="4"/>Error, se continua el proceso</div><br>
-                            <form:label path="responsable">Responsable</form:label>
-                            <div class="radio"><form:radiobutton required="true" path="responsable" name="responsable" id="responsable" value="Fernando Torres"/>Fernando Torres<br>
-                            <form:radiobutton required="true" path="responsable" name="responsable" id="responsable" value="David Gutierrez"/>Juan David Gutierrez<br>
-                            <form:radiobutton required="true" path="responsable" name="responsable" id="responsable" value="Victor Castillo"/>Victor Castillo</div><br>
-                            <form:label path="estatus">Estatus</form:label>
-                            <div class="radio"><form:radiobutton required="true" path="estatus" name="estatus" id="estatus" value="Exitosa"/>Exitosa<br>
-                            <form:radiobutton required="true" path="estatus" name="estatus" id="estatus" value="Fallida"/>Fallida</div><br>
-                            <form:button>Guardar</form:button>
-                     </div>
-            </form:form>
-</div>
+                            <form:textarea class="form-control" required="true" path="observaciones" name="observaciones" id="observaciones" col="30" rows="5"/>
+                            <form:label path="severidad">Nivel de severidad</form:label><br>                            
+                            <div class="radio-inline"><form:radiobutton required="true" path="severidad" name="severidad" id="severidad" value="5"/> No hay errores</div><br>
+                            <div class="radio-inline"><form:radiobutton required="true" path="severidad" name="severidad" id="severidad" value="1"/> No es posible continuar en el sistema</div><br>
+                            <div class="radio-inline"><form:radiobutton required="true" path="severidad" name="severidad" id="severidad" value="2"/>No es posible terminar una función</div><br>
+                            <div class="radio-inline"><form:radiobutton required="true" path="severidad" name="severidad" id="severidad" value="3"/>Funciones restringidas</div><br>
+                            <div class="radio-inline"><form:radiobutton required="true" path="severidad" name="severidad" id="severidad" value="4"/>Error, se continua el proceso</div><br>
+                            
+                            <br><form:label path="responsable">Responsable</form:label><br>                            
+                            <form:select class="form-control" required="true" path="responsable" name="responsable" id="responsable">
+			                <c:forEach var="req2" items="${listUsuarios}" varStatus="status">
+			                <option value="${req2.id}">${req2.firstname} ${req2.lastname}</option>
+			                </c:forEach> 
+			                </form:select>            
+			                
+                            <br><form:label path="estatus">Estatus</form:label><br>
+                            <div class="radio-inline"><form:radiobutton required="true" path="estatus" name="estatus" id="estatus" value="Exitosa"/>Exitosa</div><br>
+                            <div class="radio-inline"><form:radiobutton required="true" path="estatus" name="estatus" id="estatus" value="Fallida"/>Fallida</div><br>
+                            
+                <br><br>                
+                <form:button class="btn btn-success col-xs-4 col-sm-offset-8">Guardar</form:button>                   
+            </form:form>	                     
+          </div>            
+          <br>                     
+</div><!-- /.container -->
+<br>
 </body>
 </html>
 

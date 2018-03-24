@@ -10,6 +10,7 @@ public class Diseno {
 	private String actividad;
 	private String descripcion;
 	private String entrega;
+	private String entrega_real;
 	private String codigo;
 	private String argumentos;
 	private String salida;
@@ -17,7 +18,13 @@ public class Diseno {
 	private int version;
 	private String estatus;
 	private Date alta;
-	
+		
+	public String getEntrega_real() {
+		return entrega_real;
+	}
+	public void setEntrega_real(String entrega_real) {
+		this.entrega_real = entrega_real;
+	}
 	public int getModulo() {
 		return modulo;
 	}

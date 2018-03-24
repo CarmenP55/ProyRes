@@ -149,6 +149,7 @@ public Requerimientos findReq(int id) {
 				a.setNombre(rs.getString("nombre"));
 				a.setDescripcion(rs.getString("descripcion"));
 				a.setEntrega(rs.getString("fecha_entrega"));
+				a.setEstatus(rs.getString("estatus"));
 				a.setAlta(rs.getDate("fecha_alta"));			
 				return a;
 			  }
@@ -426,7 +427,7 @@ public Requerimientos findReq(int id) {
 				aPruebas.setSalida(rs.getString("salida"));
 				aPruebas.setObservaciones(rs.getString("observaciones"));
 				aPruebas.setSeveridad(rs.getString("severidad"));
-				aPruebas.setResponsable(rs.getString("responsable"));
+				aPruebas.setResponsable(rs.getInt("responsable"));
 				aPruebas.setVersion(rs.getInt("version"));
 				aPruebas.setEstatus(rs.getString("estatus"));
 				return aPruebas;
@@ -448,7 +449,7 @@ public Requerimientos findReq(int id) {
 				aPruebas.setSalida(rs.getString("salida"));
 				aPruebas.setObservaciones(rs.getString("observaciones"));
 				aPruebas.setSeveridad(rs.getString("severidad"));
-				aPruebas.setResponsable(rs.getString("responsable"));
+				aPruebas.setResponsable(rs.getInt("responsable"));
 				aPruebas.setVersion(rs.getInt("version"));
 				aPruebas.setEstatus(rs.getString("estatus"));
 				return aPruebas;
@@ -658,6 +659,7 @@ public Requerimientos findReq(int id) {
 						a.setDescripcion(rs.getString("descripcion"));
 						a.setEntrega(rs.getString("fecha_entrega"));
 						a.setAlta(rs.getDate("fecha_alta"));
+						a.setEstatus(rs.getString("estatus"));
 						return a;
 					  }
 				return null;
@@ -757,7 +759,7 @@ public Requerimientos findReq(int id) {
 					aPruebas.setSalida(rs.getString("salida"));
 					aPruebas.setObservaciones(rs.getString("observaciones"));
 					aPruebas.setSeveridad(rs.getString("severidad"));
-					aPruebas.setResponsable(rs.getString("responsable"));
+					aPruebas.setResponsable(rs.getInt("responsable"));
 					aPruebas.setVersion(rs.getInt("version"));
 					aPruebas.setEstatus(rs.getString("estatus"));
 					return aPruebas;

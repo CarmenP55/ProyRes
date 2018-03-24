@@ -383,7 +383,9 @@ public class RegistrationController {
 	  int id = Integer.parseInt(request.getParameter("id"));
 	  List<Requerimientos> listRequerimientos = verDaoImpl.verRequerimientos(id);
 	  mav.addObject("listRequerimientos", listRequerimientos);
+	  List<User> listUsuarios=verDaoImpl.getUserByType();
 	  mav.addObject("pruebas", new Pruebas());
+	  mav.addObject("listUsuarios", listUsuarios);
 	  return mav;
   }
   
@@ -392,8 +394,6 @@ public class RegistrationController {
   @ModelAttribute("Pruebas") Pruebas pruebas) {
 	  userDaoImpl.pruebas(pruebas);
 	  ModelAndView mav = new ModelAndView("Inicio");
-	  List<Proyectos> listProyectos = verDaoImpl.verProyectos();
-	  mav.addObject("listProyectos", listProyectos);
 	  mav.addObject("pruebas", new Pruebas());
 	  return mav;
   }
@@ -402,9 +402,11 @@ public class RegistrationController {
   public ModelAndView showPrueA(HttpServletRequest request, HttpServletResponse response) {
 	  ModelAndView mav = new ModelAndView("AltaPruebasA");
 	  int id = Integer.parseInt(request.getParameter("id"));
+	  List<User> listUsuarios=verDaoImpl.getUserByType();
 	  List<Requerimientos> listRequerimientos = verDaoImpl.verRequerimientos(id);
 	  mav.addObject("listRequerimientos", listRequerimientos);
 	  mav.addObject("pruebas", new Pruebas());
+	  mav.addObject("listUsuarios", listUsuarios);
 	  return mav;
   }
   
@@ -412,9 +414,7 @@ public class RegistrationController {
   public ModelAndView addPrueA(HttpServletRequest request, HttpServletResponse response,
   @ModelAttribute("Pruebas") Pruebas pruebas) {
 	  userDaoImpl.pruebas(pruebas);
-	  ModelAndView mav = new ModelAndView("Admin");
-	  List<Proyectos> listProyectos = verDaoImpl.verProyectos();
-	  mav.addObject("listProyectos", listProyectos);
+	  ModelAndView mav = new ModelAndView("Admin");	  
 	  mav.addObject("pruebas", new Pruebas());
 	  return mav;
   }
@@ -447,6 +447,7 @@ public class RegistrationController {
   @RequestMapping(value = "/issuesProcess", method = RequestMethod.POST)
 	public ModelAndView iss(HttpServletRequest request, @RequestParam("archivo") MultipartFile archivo) throws IOException{
 		Issues issues = new Issues();
+		issues.setProyecto(Integer.parseInt(request.getParameter("proyecto")));
 		issues.setDescripcion(request.getParameter("descripcion"));
 		issues.setCriticidad(request.getParameter("criticidad"));
 		issues.setComentarios(request.getParameter("comentarios"));
@@ -494,6 +495,7 @@ public class RegistrationController {
 	    issues.setType(archivo.getContentType());     
 	    issues.setArchivo(archivo.getBytes());
 	    ModelAndView mav=null;
+	    issues.setProyecto(Integer.parseInt(request.getParameter("proyecto")));
 	    int id = Integer.parseInt(request.getParameter("id_sol"));
 	    issues.setId_sol(id);
 	    if (id==0) {
@@ -529,7 +531,8 @@ public class RegistrationController {
 		issues.setComentarios(request.getParameter("comentarios"));
 		issues.setSolicitante(request.getParameter("solicitante"));
 		issues.setNombre(archivo.getOriginalFilename());
-	    issues.setType(archivo.getContentType());     
+	    issues.setType(archivo.getContentType());
+	    issues.setProyecto(Integer.parseInt(request.getParameter("proyecto")));
 	    issues.setArchivo(archivo.getBytes());
 	    ModelAndView mav=null;
 	    int id = Integer.parseInt(request.getParameter("id_sol"));

@@ -85,7 +85,7 @@ div.cuadro {
                 <tr>
                 <td><img src="https://image.flaticon.com/icons/svg/74/74960.svg" alt="Home" width="50" height="50">Agregar Tareas<br></td>
                 <td><a href=ModDis.html?id_proyecto=${param.id_proyecto}>Agregar</a><br></td>
-                <td><a href=VerTareas.html?id_proyecto=${param.id_proyecto}>Ver registros</a><br></td></tr>
+                <td><a href=VerDiseno.html?id_proyecto=${param.id_proyecto}>Ver registros</a><br></td></tr>
                 <tr>
                 <tr>
                 <td><img src="https://www.redeszone.net/app/uploads/2016/11/especificaciones-tecnicas.png" alt="Home" width="50" height="50">Especificacion Tecnica</td>

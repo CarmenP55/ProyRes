@@ -47,9 +47,9 @@ public class EditDaoImpl{
   }
   
   public void updatePru(Pruebas pruebas) {
-	  String sql ="UPDATE pruebas SET entrada=?, proceso=?, salida=?, observaciones=?, severidad=?, responsable=?, estatus=? where id_pruebas=?";
+	  String sql ="UPDATE pruebas SET entrada=?, proceso=?, salida=?, observaciones=?, severidad=?, estatus=? where id_pruebas=?";
 	  template.update(sql, new Object[] {pruebas.getEntrada(), pruebas.getProceso(), pruebas.getSalida(), 
-			  pruebas.getObservaciones(), pruebas.getSeveridad(), pruebas.getResponsable(), pruebas.getEstatus(), pruebas.getId()});
+			  pruebas.getObservaciones(), pruebas.getSeveridad(), pruebas.getEstatus(), pruebas.getId()});
   }
   
   public void updateIssues(Issues issues) {
@@ -58,7 +58,7 @@ public class EditDaoImpl{
 	  template.update(sql, new Object[] {issues.getDescripcion(), issues.getCriticidad(),
 			   issues.getComentarios(), issues.getId()});}
 	  else {
-		  String sql ="UPDATE issues SET area=?, numero=?, descripcion=?, criticidad=?, comentarios=?, estatus_desarrollo=? where id_issue=?";
+		  String sql ="UPDATE issues SET descripcion=?, criticidad=?, comentarios=?, estatus_desarrollo=? where id_issue=?";
 		  template.update(sql, new Object[] {issues.getDescripcion(), issues.getCriticidad(),
 				   issues.getComentarios(), issues.getEstatus_desarrollo(), issues.getId()});
 	  }
@@ -66,11 +66,11 @@ public class EditDaoImpl{
   
   public void updateIssuesC(Issues issues) {
 	  if (issues.getEstatus_cliente().equals("FALSE")) {
-	  String sql ="UPDATE issues SET area=?, numero=?, descripcion=?, criticidad=?, comentarios=? where id_issue=?";
+	  String sql ="UPDATE issues SET descripcion=?, criticidad=?, comentarios=? where id_issue=?";
 	  template.update(sql, new Object[] {issues.getDescripcion(), issues.getCriticidad(),
 			   issues.getComentarios(), issues.getId()});}
 	 else {
-		  String sql ="UPDATE issues SET area=?, numero=?, descripcion=?, criticidad=?, comentarios=?, estatus_cliente=? where id_issue=?";
+		  String sql ="UPDATE issues SET descripcion=?, criticidad=?, comentarios=?, estatus_cliente=? where id_issue=?";
 		  template.update(sql, new Object[] {issues.getDescripcion(), issues.getCriticidad(),
 				   issues.getComentarios(), issues.getEstatus_cliente(), issues.getId()});
 	  }
@@ -78,11 +78,11 @@ public class EditDaoImpl{
   
   public void updateIssuesA(Issues issues) {
 	  if (issues.getProyecto()!=-1) {
-	  String sql ="UPDATE issues SET id_pro=?, area=?, numero=?, descripcion=?, criticidad=?, comentarios=? where id_issue=?";
+	  String sql ="UPDATE issues SET id_pro=?, descripcion=?, criticidad=?, comentarios=? where id_issue=?";
 	  template.update(sql, new Object[] {issues.getProyecto(), issues.getDescripcion(), issues.getCriticidad(),
 			   issues.getComentarios(), issues.getId()});}
 	  else {
-		  String sql ="UPDATE issues SET area=?, numero=?, descripcion=?, criticidad=?, comentarios=? where id_issue=?";
+		  String sql ="UPDATE issues SET descripcion=?, criticidad=?, comentarios=? where id_issue=?";
 		  template.update(sql, new Object[] {issues.getDescripcion(), issues.getCriticidad(),
 				   issues.getComentarios(), issues.getId()});
 	  }

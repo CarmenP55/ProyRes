@@ -6,76 +6,51 @@
 <html>
 <head>
 <title>Lanconta</title>
-<STYLE type="text/css">
-h2{
-	text-align:center;
-}
-form {
-    border: 3px solid #f1f1f1;
-    width: 40%;
-    margin: auto;
-}
-
-div.radio {
-	width: 100%;
-    padding: 5px 10px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    font-family: Trebuchet MS;
-    font-size:14;
-}
-
-input[type=text], input[type=password], input[type=date], textarea {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    font-family: Trebuchet MS;
-    font-size:14;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 0.4cm 0.4cm 0.4cm 0.4cm;
-    border: none;
-    cursor: pointer;
-    width: 30%;
-    float: right;
-}
-
-select {
-    width: 100%;
-    padding: 16px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #f1f1f1;
-}
-
-.container {
-    padding: 16px;
-    margin-bottom: 35px; 
-}
-
-div.head {    
-    width:60px;
-    height:60px;
-    float: right;
-    margin-right:70px;
-    margin-top:10px;
-}
-
-div.cuadro {
-	width: auto;
-	margin:auto;
-	padding-top:10px;
-
-}
-   
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <style type="text/css">
+	/* make sidebar nav vertical */ 
+	@media (min-width: 768px) {
+	  .sidebar-nav .navbar .navbar-collapse {
+		padding: 0;
+		max-height: none;
+	  }
+	  .sidebar-nav .navbar ul {
+		float: none;
+	  }
+	  .sidebar-nav .navbar ul:not {
+		display: block;
+	  }
+	  .sidebar-nav .navbar li {
+		float: none;
+		display: block;
+	  }
+	  .sidebar-nav .navbar li a {
+		padding-top: 12px;
+		padding-bottom: 12px;
+	  }
+	}
+	@media (min-width: 768px) {
+	  /* uncomment if you would like the menu to be fixed */
+	  /* .navbar {
+		  position: fixed;
+		  width: 170px;
+		  z-index: 2;
+	  } */
+	}
+	@media (min-width: 992px) {
+	  .navbar {
+		  width: 212px;
+	  }
+	}
+	@media (min-width: 1200px) {
+	  .navbar {
+		  width: 262px;
+	  }
+	}
+	.sidebar-nav .navbar-header{ float: none; }
 </style>
 </head>
 <body>

@@ -54,9 +54,10 @@ public class UserDaoImpl{
   }
   
   public void diseno (Diseno diseno) {
-	  String sql = "insert into diseno values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	  String sql = "insert into diseno values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	  template.update(sql, new Object[] {null, diseno.getProyecto(), diseno.getRequerimiento(), diseno.getActividad(), diseno.getDescripcion(), 
-			  diseno.getEntrega(), diseno.getCodigo(), diseno.getArgumentos(), diseno.getSalida(), 1, diseno.getComentarios(), "Finalizado", diseno.getModulo(), diseno.getAlta()});
+			  diseno.getEntrega(), diseno.getCodigo(), diseno.getArgumentos(), diseno.getSalida(), 1, diseno.getComentarios(), "Finalizado", 
+			  diseno.getModulo(), diseno.getAlta(), diseno.getEntrega_real()});
   }
   
   public void riesgos (Riesgos riesgos) {
@@ -67,7 +68,7 @@ public class UserDaoImpl{
   
   public void issues (Issues issues) {
 	  String sql = "insert into issues values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-	  template.update(sql, new Object[] {null, 1, null, issues.getDescripcion(), 
+	  template.update(sql, new Object[] {null, issues.getProyecto(), null, issues.getDescripcion(), 
 			  issues.getCriticidad(), issues.getComentarios(), "NO_INICIADO", "NO_RESUELTO", issues.getAlta(), null, 
 			  issues.getArchivo(), issues.getType(), issues.getNombre(),1,1, issues.getId_sol()});
   }

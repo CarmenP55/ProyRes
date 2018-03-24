@@ -6,75 +6,52 @@
 <html>
 <head>
 <title>Lanconta</title>
-<STYLE type="text/css">
-h2{
-	text-align:center;
-}
-form {
-    border: 3px solid #f1f1f1;
-    width: 40%;
-    margin: auto;
-}
-
-input[type=text], input[type=password], input[type=date], textarea {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    font-family: Trebuchet MS;
-    font-size:14;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 0.4cm 0.4cm 0.4cm 0.4cm;
-    border: none;
-    cursor: pointer;
-    width: 30%;
-    float: right;
-}
-
-.container {
-    padding: 16px;
-    margin-bottom: 35px; 
-}
-
-div.head {    
-    width:60px;
-    height:60px;
-    float: right;
-    margin-right:70px;
-    margin-top:10px;
-}
-
-div.cuadro {
-	width: auto;
-	margin:auto;
-	padding-top:10px;
-}
-
-select {
-    width: 100%;
-    padding: 16px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #f1f1f1;
-}
-
-div.radio {
-	width: 100%;
-    padding: 5px 10px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    font-family: Trebuchet MS;
-    font-size:14;
-}
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<title>Inicio</title>
+<style type="text/css">
+	/* make sidebar nav vertical */ 
+	@media (min-width: 768px) {
+	  .sidebar-nav .navbar .navbar-collapse {
+		padding: 0;
+		max-height: none;
+	  }
+	  .sidebar-nav .navbar ul {
+		float: none;
+	  }
+	  .sidebar-nav .navbar ul:not {
+		display: block;
+	  }
+	  .sidebar-nav .navbar li {
+		float: none;
+		display: block;
+	  }
+	  .sidebar-nav .navbar li a {
+		padding-top: 12px;
+		padding-bottom: 12px;
+	  }
+	}
+	@media (min-width: 768px) {
+	  /* uncomment if you would like the menu to be fixed */
+	  /* .navbar {
+		  position: fixed;
+		  width: 170px;
+		  z-index: 2;
+	  } */
+	}
+	@media (min-width: 992px) {
+	  .navbar {
+		  width: 212px;
+	  }
+	}
+	@media (min-width: 1200px) {
+	  .navbar {
+		  width: 262px;
+	  }
+	}
+	.sidebar-nav .navbar-header{ float: none; }
 </style>
 </head>
 <body>
@@ -89,47 +66,106 @@ div.radio {
 			}
 		</script>
 	</sec:authorize>
-<div class="head">
-<a href=irInicio.html><img src="https://image.flaticon.com/icons/svg/25/25694.svg" alt="Home" width="50" height="50"></a>
-</div>
-<div class="cuadro">
-	<h2> Riesgos</h2>
-	<form:form id="regForm" modelAttribute="riesgos" action="riesgosProcess" method="post">
-                <div class="container">
-                			<form:hidden value="${param.id_proyecto}" required="true" path="proyecto" name="proyecto" id="proyecto"/>
-                			<form:label path="modulo">Modulo</form:label>
-                			<form:select required="true" path="modulo" name="modulo" id="modulo">
-                			<c:forEach var="req" items="${listModulos}" varStatus="status">
-                    		<option value="${req.id}">${req.nombre}</option>
-                			</c:forEach> 
-                			</form:select>            
-                			<br><br>
-                            <form:label path="riesgo">Riesgo</form:label>
-                            <form:textarea required="true" path="riesgo" name="riesgo" id="riesgo" col="30" rows="4"  />
-                            <form:label path="descripcion">Descripción</form:label>
-                            <form:textarea path="descripcion" name="descripcion" id="descripcion" col="30" rows="4" /><br>
-                            <form:label path="ocurrencia">Probabilidad de ocurrencia</form:label>
-                            <div class="radio"><form:radiobutton path="ocurrencia" name="ocurrencia" id="ocurrencia" value="25"/>-25
-                            <form:radiobutton path="ocurrencia" name="ocurrencia" id="ocurrencia" value="50"/>50
-                            <form:radiobutton path="ocurrencia" name="ocurrencia" id="ocurrencia" value="75"/>+75</div>
-                            <form:label path="efectos">Efectos</form:label>
-                            <form:textarea path="efectos" name="efectos" id="efectos" col="30" rows="4" />
-                            <form:label path="accion">Plan de accion</form:label><br>
-                            <form:textarea path="accion" name="accion" id="accion" col="30" rows="4" />
-                            <form:label path="contingencia">Plan de contingencia</form:label>
-                            <form:textarea path="contingencia" name="contingencia" id="contingencia" col="30" rows="4" />
-                            <form:label path="clasificacion">Clasificacion</form:label>
-                            <form:select required="true" path="clasificacion" name="clasificacion" id="clasificacion">
-                    		<option value="Proyecto">Riesgos del Proyecto</option>
-                    		<option value="Producto">Riesgos del Producto</option>
-                    		<option value="Negocio">Riesgos del Negocio</option>
-                			</form:select>            
-                			<br><br>
-                            <form:button>Guardar</form:button>
-                     </div>
+<div class="container"> <br>    
+          <div class="col-sm-4">
+            <div class="sidebar-nav">
+            <img src="${pageContext.request.contextPath}/resources/logo.jpg" width="220px" />      
+              <div class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <span class="visible-xs navbar-brand">Menu Principal</span>
+                </div>
+                <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="irInicio.html">Inicio</a></li> 
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Proyectos<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="VerProyectos.html">Ver Proyectos</a></li>
+							<li><a href="Proyectos.html">Agregar nuevo proyecto</a></li>						                          	
+                        </ul>
+                      </li>  
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registrar<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href=ListaPro.html>Informacion de Proyectos</a></li>
+							<li><a href=IssuesD.html?e="${pageContext.request.userPrincipal.name}">Tickets</a></li>
+							<li><a href=Empresa.html>Empresas</a></li>
+							<li><a href=register2.html>Usuarios</a></li>
+                        </ul>
+                    </li>                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultar<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href=ListaVer.html>Informacion de Proyectos</a></li>
+							<li><a href=VerIssues.html>Tickets</a></li>
+							<li><a href=VerEmpresas.html>Empresas</a></li>
+							<li><a href=VerUsuariosD.html>Usuarios</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportes<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href=Reportes.html?e="${pageContext.request.userPrincipal.name}">Nuevo</a></li>
+							<li><a href=VerReportesD.html?e="${pageContext.request.userPrincipal.name}">Mis reportes</a></li>
+                        </ul>
+                    </li>
+                    <li><a href=PassD?e="${pageContext.request.userPrincipal.name}" class="icon-envelope">Mi cuenta</a></li>
+                    <c:if test="${pageContext.request.userPrincipal.name != null}">
+					<li><a href="javascript:formSubmit()" class="icon-envelope">Salir</a></li>
+					</c:if>
+                  </ul>
+                </div><!--/.nav-collapse -->
+              </div>
+            </div>
+          </div>
+          <br><br><br>
+          <div class="col-sm-5" style="border: 3px solid #f1f1f1; padding:30px">                    
+		  <h4>Riesgos</h4>
+		  <hr>
+		  	<form:form id="regForm" modelAttribute="riesgos" action="riesgosProcess" method="post">               
+                <form:hidden value="${param.id_proyecto}" required="true" path="proyecto" name="proyecto" id="proyecto"/>
+                <form:label path="modulo">Modulo</form:label>
+                <form:select required="true" path="modulo" name="modulo" id="modulo" class="form-control">
+                <c:forEach var="req" items="${listModulos}" varStatus="status">
+                <option value="${req.id}">${req.nombre}</option>
+                </c:forEach> 
+                </form:select>            
+                <br>
+                <form:label path="riesgo">Riesgo</form:label>
+                <form:textarea required="true" path="riesgo" name="riesgo" id="riesgo" rows="4" class="form-control" />
+                <form:label path="descripcion">Descripción</form:label>
+                <form:textarea path="descripcion" name="descripcion" id="descripcion" rows="4" class="form-control"/><br>
+                <form:label path="ocurrencia">Probabilidad de ocurrencia</form:label>
+                <div class="radio-inline"><form:radiobutton path="ocurrencia" name="ocurrencia" id="ocurrencia" value="25" />-25</div>
+                <div class="radio-inline"><form:radiobutton path="ocurrencia" name="ocurrencia" id="ocurrencia" value="50"/>50</div>
+                <div class="radio-inline"><form:radiobutton path="ocurrencia" name="ocurrencia" id="ocurrencia" value="75"/>+75</div>
+                <br><form:label path="efectos">Efectos</form:label>
+                <form:textarea path="efectos" name="efectos" id="efectos" rows="4" class="form-control"/>
+                <form:label path="accion">Plan de accion</form:label><br>
+                <form:textarea path="accion" name="accion" id="accion" rows="4" class="form-control"/>
+                <form:label path="contingencia">Plan de contingencia</form:label>
+                <form:textarea path="contingencia" name="contingencia" id="contingencia" rows="4" class="form-control"/>
+                <form:label path="clasificacion">Clasificacion</form:label>
+                <form:select required="true" path="clasificacion" name="clasificacion" id="clasificacion" class="form-control">
+                <option value="Proyecto">Riesgos del Proyecto</option>
+                <option value="Producto">Riesgos del Producto</option>
+                <option value="Negocio">Riesgos del Negocio</option>
+                </form:select>            
+                <br><br>
+                <form:button class="btn btn-success col-xs-4 col-sm-offset-8">Guardar</form:button>
+               
             </form:form>
-
-</div>
+	                     
+          </div>            
+          <br>             
+</div><!-- /.container -->
+<br>
 </body>
 </html>
 

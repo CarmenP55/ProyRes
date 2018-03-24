@@ -9,11 +9,14 @@ public class Modulo {
 	private String descripcion;
 	private String entrega;
 	private Date alta;
-	public Estatus estatus;
+	private String estatus;
 	
-	public enum Estatus {
-		NO_INICIADO, EN_PROGRESO, COMPLETADO, CANCELADO};
-	
+	public String getEstatus() {
+		return estatus;
+	}
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
+	}
 	public int getId() {
 		return id;
 	}
@@ -52,11 +55,4 @@ public class Modulo {
 	public void setAlta(Date alta) {
 		this.alta = alta;
 	}
-	public Estatus getEstatus() {
-		return estatus;
-	}
-	public void setEstatus(Estatus estatus) {
-		this.estatus = estatus;
-	}
-
 }

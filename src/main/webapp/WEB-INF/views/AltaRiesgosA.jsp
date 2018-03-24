@@ -66,7 +66,7 @@
 		</script>
 	</sec:authorize>
 	
-<div class="container"> <br>    
+<div class="container"><br>    
           <div class="col-sm-4">
             <div class="sidebar-nav">
             <img src="${pageContext.request.contextPath}/resources/logo.jpg" width="220px" />      
@@ -107,7 +107,8 @@
               </div>
             </div>
           </div>      
-          <div class="col-sm-4"><br>
+          <br><br><br>
+          <div class="col-sm-5" style="border: 3px solid #f1f1f1; padding:30px">                    
 		  <h4>Registrar riesgo</h4>
 		  <hr>
 		  	<form:form id="regForm" modelAttribute="riesgos" action="riesgosProcessA" method="post" class="form-horizontal">            
@@ -145,14 +146,13 @@
                 <option value="Producto">Riesgos del Producto</option>
                 <option value="Negocio">Riesgos del Negocio</option>
                 </form:select>            
-                <br><br>
-                
-                <form:button class="btn btn-success col-xs-4 col-sm-offset-8">Guardar</form:button>   
-                <br><br> 
-            </form:form>			         
-          </div>                
+                <br><br>                
+                <form:button class="btn btn-success col-xs-4 col-sm-offset-8">Guardar</form:button>                   
+            </form:form>	                     
+          </div>            
+          <br> 
 </div><!-- /.container -->
-
+<br>
 </body>
 </html>
 

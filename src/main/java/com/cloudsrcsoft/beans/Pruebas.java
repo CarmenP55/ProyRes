@@ -12,7 +12,7 @@ public class Pruebas {
 	private String salida;
 	private String observaciones;
 	private String severidad;
-	private String responsable;
+	private int responsable;
 	private int version;
 	private String estatus;
 	private Date alta;
@@ -84,10 +84,10 @@ public class Pruebas {
 	public void setSeveridad(String severidad) {
 		this.severidad = severidad;
 	}
-	public String getResponsable() {
+	public int getResponsable() {
 		return responsable;
 	}
-	public void setResponsable(String responsable) {
+	public void setResponsable(int responsable) {
 		this.responsable = responsable;
 	}
 	public String getEstatus() {
