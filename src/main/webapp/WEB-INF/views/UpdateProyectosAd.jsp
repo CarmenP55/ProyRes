@@ -54,7 +54,7 @@
 </style>
 </head>
 <body>
-	<sec:authorize access="hasRole('ROLE_ADMIN')">
+	<sec:authorize access="hasRole('ROLE_SUPER')">
 		<c:url value="/j_spring_security_logout" var="logoutUrl" />
 		<form action="${logoutUrl}" method="post" id="logoutForm">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -65,48 +65,78 @@
 			}
 		</script>
 	</sec:authorize>
-<div class="head">
-<a href=Admin.html><img src="https://image.flaticon.com/icons/svg/25/25694.svg" alt="Home" width="50" height="50"></a>
-</div>
-<div class="cuadro">
-	<h2>Proyecto</h2>
-	<form:form id="regForm" modelAttribute="proyectos" action="saveA" method="post">
-                <div class="container">
-                            <form:hidden path="id_proyecto" name="id_proyecto" id="id_proyecto"/>
-                            <form:label path="nombre">Nombre del Proyecto</form:label>
-                            <form:input required="true" path="nombre" name="nombre" id="nombre"/>
-                            <form:label path="tipo">Tipo de Proyecto</form:label>
-                            <div class="radio">
-                            <form:radiobutton required="true" path="tipo" name="tipo" id="tipo" value="Nuevo" />Nuevo
-                            <form:radiobutton required="true" path="tipo" name="tipo" id="tipo" value="Heredado" />Heredado</div>
-                            <form:label path="empresa">Empresa</form:label>
-                            <form:input required="true" path="empresa" name="empresa" id="empresa" disabled="true"/>
-                            <form:label path="responsable">Responsable de la empresa</form:label> 
-                            <form:input required="true" path="responsable" name="responsable" id="responsable" disabled="true"/>
-                            <form:label path="descripcion">Descripcion del proyecto</form:label>
-                            <form:textarea required="true" path="descripcion" name="descripcion" id="descripcion" col="40" rows="6" />
-                            <form:label path="solicitud">Fecha de solicitud</form:label>
-                            <form:input required="true" path="solicitud" name="solicitud" id="solicitud" type="date" disabled="true"/>
-                            <form:label path="desarrollador">Desarrollador</form:label>
-                			<form:input required="true" path="desarrollador" name="desarrollador" id="desarrollador" disabled="true"/>
-                			<form:label path="modelo">Modelo a seguir</form:label>
-                            <div class="radio">
-                            <form:radiobutton path="modelo" name="modelo" id="modelo" value="Cascada" disabled="true"/>Cascada
-                            <form:radiobutton required="true" path="modelo" name="modelo" id="modelo" value="Evolutivo" disabled="true"/>Evolutivo
-                            <form:radiobutton required="true" path="modelo" name="modelo" id="modelo" value="Espiral" disabled="true" />Espiral
-                            </div>
-                            <form:label path="entrega">Fecha de entrega</form:label>
-							<form:input required="true" path="entrega" name="entrega" id="entrega" type="date" />
-							<form:label path="tecnologia">Lenguaje de desarrollo</form:label>
-                            <form:input required="true" path="tecnologia" name="tecnologia" id="tecnologia"/>
-                            <form:label path="repositorio">Repositorio del proyecto</form:label>
-                            <form:input required="true" path="repositorio" name="repositorio" id="repositorio"/>
-                            <form:label path="detalle">Acceso repositorio</form:label>
-                            <form:textarea required="true" path="detalle" name="detalle" id="detalle" col="40" rows="4" />
-                            <form:button>Guardar</form:button>
-                     </div>
+	
+<div class="container"> <br>    
+          <div class="col-sm-4">
+            <div class="sidebar-nav">
+            <img src="${pageContext.request.contextPath}/resources/logo.jpg" width="220px" />      
+              <div class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <span class="visible-xs navbar-brand">Menu Principal</span>
+                </div>
+                <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="Admin.html">Inicio</a></li> 
+                    <li><a href="ProyectosAd.html" class="icon-cogs">Proyectos</a></li>   
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registros<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href=ListaProA.html>Informacion de Proyectos</a></li>							
+                          	<li class="divider"></li>
+                          	<li class="dropdown-header">Otros registros</li>
+                          	<li><a href=IssuesAdmin.html?e="${pageContext.request.userPrincipal.name}">Tickets</a></li>
+							<li><a href=EmpresaA.html>Empresas</a></li>
+							<li><a href=register.html>Usuarios</a></li>
+							<li><a href=Actividades.html>Actividades</a></li>
+							<li><a href=CrearTareas.html>Tareas</a></li>
+							<li><a href=CrearSub.html>Subtareas</a></li>
+                        </ul>
+                      </li>
+                    <li><a href="VerRegistrosA.html" class="icon-twitter">Consultas</a></li>
+                    <c:if test="${pageContext.request.userPrincipal.name != null}">
+					<li><a href="javascript:formSubmit()" class="icon-envelope">Salir</a></li>
+					</c:if>
+                  </ul>
+                </div><!--/.nav-collapse -->
+              </div>
+            </div>
+          </div>             
+		  <br><br><br>	
+          <div class="col-sm-5" style="border: 3px solid #f1f1f1; padding:30px">
+		  	<h2>Proyecto</h2>
+			<form:form id="regForm" modelAttribute="proyectos" action="saveA" method="post">
+				<form:hidden path="id_proyecto" name="id_proyecto" id="id_proyecto"/>
+                <form:label path="nombre">Nombre del Proyecto</form:label>
+                <form:input class="form-control" required="true" path="nombre" name="nombre" id="nombre"/>
+                <form:label path="tipo">Tipo de Proyecto</form:label>                
+                <div class="radio-inline"><form:radiobutton required="true" path="tipo" name="tipo" id="tipo" value="Nuevo" />Nuevo</div>
+                <div class="radio-inline"><form:radiobutton required="true" path="tipo" name="tipo" id="tipo" value="Heredado" />Heredado</div>
+                <form:label path="descripcion">Descripcion del proyecto</form:label>
+                <form:textarea required="true" path="descripcion" class="form-control" name="descripcion" id="descripcion" rows="6" />
+                <form:label path="solicitud">Fecha de solicitud</form:label>
+                <form:input required="true" path="solicitud" name="solicitud" class="form-control" id="solicitud" type="date" disabled="true"/>
+                <form:label path="entrega">Fecha de entrega</form:label>
+				<form:input required="true" path="entrega" name="entrega" id="entrega" type="date" class="form-control"/>
+				<form:label path="tecnologia">Lenguaje de desarrollo</form:label>
+                <form:input required="true" path="tecnologia" name="tecnologia" class="form-control" id="tecnologia"/>
+                <form:label path="repositorio">Repositorio del proyecto</form:label>
+                <form:input required="true" path="repositorio" name="repositorio" id="repositorio" class="form-control"/>
+                <form:label path="detalle">Acceso repositorio</form:label>
+                <form:textarea required="true" path="detalle" name="detalle" id="detalle" rows="4" class="form-control"/>
+                <br>
+                <form:button class="btn btn-success col-xs-4 col-sm-offset-8">Guardar</form:button>
             </form:form>
-</div>
+		</div>
+          
+                       
+</div><!-- /.container -->
+<br>
 </body>
 </html>
 

@@ -132,10 +132,9 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
             <tr bgcolor="#31B404">
                 <th>Actividad</th>
                 <th>Descripcion</th>
-                <th>Entrega</th>
+                <th>Fecha de Entrega</th>
                 <th>Criticidad</th>
                 <th>Accion</th>
-                <th>Solucion</th>
                 <th>Comentarios</th>
                 <th>Archivo</th>
                 <th>Estatus</th></tr>
@@ -147,9 +146,8 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                     <td>${req.entrega}</td>
                     <td>${req.criticidad}</td>
                     <td>${req.accion}</td>
-                    <td>${req.solucion}</td>
                     <td>${req.comentarios}</td>
-                    <td><a href="ArchivoReq?id=${req.id_req}">${req.nombre_archivo}</a></td>  
+                    <td><a href="ArchivoReq?id=${req.id_req}">Archivo</a></td>  
                     <td>${req.estatus}</td>
                 </tr>
                 </c:forEach>             

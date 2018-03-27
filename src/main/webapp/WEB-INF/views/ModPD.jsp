@@ -93,28 +93,84 @@ div.radio {
 			}
 		</script>
 	</sec:authorize>
-<div class="head">
-<a href=irInicio.html><img src="https://image.flaticon.com/icons/svg/25/25694.svg" alt="Home" width="50" height="50"></a>
-</div>
-<div class="cuadro">
-	<h2>Actualizar datos</h2>
-	<form:form id="regForm" modelAttribute="user" action="updateUsuD" method="post">
-                <div class="container">
-                			<form:hidden path="id" name="id" id="id"/>
-                            <form:label path="firstname">Nombre</form:label>
-                            <form:input path="firstname" name="firstname" id="firstname" disabled="true" />
-                            <form:label path="lastname">Apellidos</form:label>
-                            <form:input path="lastname" name="lastname" id="lastname" disabled="true"/>
-                            <form:label path="telefono">Telefono</form:label>
-                            <form:input path="telefono" name="telefono" id="telefono" />
-                            <form:label path="email">Correo Electronico</form:label>
-                            <form:input path="email" name="email" id="email" type="email" disabled="true"/>
-                            <form:label path="password">Contraseña</form:label>
-                            <form:input path="password" name="password" id="password" />
-                            <form:button>Guardar</form:button>
-                     </div>
-            </form:form>
-</div>
+<div class="container"> <br>    
+          <div class="col-sm-4">
+            <div class="sidebar-nav">
+            <img src="${pageContext.request.contextPath}/resources/logo.jpg" width="220px" />      
+              <div class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <span class="visible-xs navbar-brand">Menu Principal</span>
+                </div>
+                <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="irInicio.html">Inicio</a></li> 
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Proyectos<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="VerProyectos.html">Ver Proyectos</a></li>
+							<li><a href="Proyectos.html">Agregar nuevo proyecto</a></li>						                          	
+                        </ul>
+                      </li>  
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registrar<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href=ListaPro.html>Informacion de Proyectos</a></li>
+							<li><a href=IssuesD.html?e="${pageContext.request.userPrincipal.name}">Tickets</a></li>
+							<li><a href=Empresa.html>Empresas</a></li>
+							<li><a href=register2.html>Usuarios</a></li>
+                        </ul>
+                    </li>                    
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultar<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href=ListaVer.html>Informacion de Proyectos</a></li>
+							<li><a href=VerIssues.html>Tickets</a></li>
+							<li><a href=VerEmpresas.html>Empresas</a></li>
+							<li><a href=VerUsuariosD.html>Usuarios</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportes<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href=Reportes.html?e="${pageContext.request.userPrincipal.name}">Nuevo</a></li>
+							<li><a href=VerReportesD.html?e="${pageContext.request.userPrincipal.name}">Mis reportes</a></li>
+                        </ul>
+                    </li>
+                    <li><a href=PassD?e="${pageContext.request.userPrincipal.name}" class="icon-envelope">Mi cuenta</a></li>
+                    <c:if test="${pageContext.request.userPrincipal.name != null}">
+					<li><a href="javascript:formSubmit()" class="icon-envelope">Salir</a></li>
+					</c:if>
+                  </ul>
+                </div><!--/.nav-collapse -->
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-5">
+			<h4>Actualizar datos</h4>
+			<hr>
+			<form:form id="regForm" modelAttribute="user" action="updateUsuD" method="post">
+				<form:hidden path="id" name="id" id="id"/>
+                <form:label path="firstname">Nombre</form:label>
+                <form:input path="firstname" name="firstname" id="firstname" disabled="true" />
+                <form:label path="lastname">Apellidos</form:label>
+                <form:input path="lastname" name="lastname" id="lastname" disabled="true"/>
+                <form:label path="telefono">Telefono</form:label>
+                <form:input path="telefono" name="telefono" id="telefono" />
+                <form:label path="email">Correo Electronico</form:label>
+                <form:input path="email" name="email" id="email" type="email" disabled="true"/>
+                <form:label path="password">Contraseña</form:label>
+                <form:input path="password" name="password" id="password" />
+                <form:button>Guardar</form:button>
+           	</form:form>
+			</div>             
+</div><!-- /.container -->
+
 </body>
 </html>
 

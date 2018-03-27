@@ -155,8 +155,8 @@ function showhide(id) {
                     <td>${proyectos.detalle}</td>
                     <td>${proyectos.entrega}</td>
                     <td>${proyectos.estatus}</td>
-                    <td><a href="verProyectoA?id_proyecto=${proyectos.id_proyecto}">Ver</a>
-                    <a href="Proyecto.pdf?id_proyecto=${proyectos.id_proyecto}" target="_blank">PDF</a>
+                    <td><a href="verProyectoA?id_proyecto=${proyectos.id_proyecto}">Ver</a><br>
+                    <a href="Proyecto.pdf?id_proyecto=${proyectos.id_proyecto}" target="_blank">PDF</a><br>
                     <a href="editProyectoA?id_proyecto=${proyectos.id_proyecto}">Editar</a>
                     </td>
                 </tr>

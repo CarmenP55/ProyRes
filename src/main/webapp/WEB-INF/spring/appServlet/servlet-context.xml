@@ -21,8 +21,12 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.cloudsrcsoft.springmvc" />
-	
+	<beans:bean class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+  	<beans:property name="order" value="1"/>
+  	<beans:property name="basename" value="views"/>
+ 	</beans:bean>
+ 	
+	<context:component-scan base-package="com.cloudsrcsoft.springmvc" />	
 	
 	
 </beans:beans>

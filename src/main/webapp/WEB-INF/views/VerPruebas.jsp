@@ -65,7 +65,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
 			}
 		</script>
 	</sec:authorize>
-<div class="container"> <br>    
+<div class="container"><br> 
           <div class="col-sm-3">
             <div class="sidebar-nav">
             <img src="${pageContext.request.contextPath}/resources/logo.jpg" width="220px" />      
@@ -123,7 +123,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
               </div>
             </div>
           </div>    
-          <div class="col-sm-5">
+          <div class="col-sm-9">
           	<h4>Pruebas</h4>
 			<hr>
 			<table class="table table-bordered table-hover">
@@ -134,8 +134,9 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                 <th>Observaciones</th>
                 <th>Severidad</th>
                 <th>Responsable</th>
-                <th>Version</th>
-                <th>Estatus</th></tr>
+                <th>Estatus</th>
+                <th>Opciones</th>
+                </tr>
                 
                 <c:forEach var="req" items="${listPruebas}" varStatus="status">
                 <tr style="border-top-color:transparent">
@@ -144,11 +145,10 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                     <td>${req.salida}</td>
                     <td>${req.observaciones}</td>
                     <td>${req.severidad}</td>
-                    <td>${req.responsable}</td>
-                    <td>${req.version}</td>
+                    <td>${req.res_nombre}</td>
                     <td>${req.estatus}</td>
                     <td>
-                        <a href="updatePruebas?id=${req.id}">Edit</a>
+                        <a href="updatePruebas?id=${req.id}">Editar</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                     </td>
                 </tr>

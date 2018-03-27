@@ -124,7 +124,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
             </div>
           </div>    
           <div class="col-sm-7">
-          	<h2>Riesgos</h2>			
+          	<h4>Riesgos</h4>			
             <table class="table table-bordered table-hover">
             <tr bgcolor="#31B404">
                 <th>Riesgos</th>
@@ -134,7 +134,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                 <th>Accion</th>
                 <th>Contingencia</th>
                 <th>Clasificacion</th>
-                <th>Version</th></tr>
+                <th>Opciones</th></tr>
                 
                 <c:forEach var="req" items="${listRiesgos}" varStatus="status">
                 <tr style="border-top-color:transparent">
@@ -145,7 +145,6 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                     <td>${req.accion}</td>
                     <td>${req.contingencia}</td>
                     <td>${req.clasificacion}</td>
-                    <td>${req.version}</td>
                     <td>
                         <a href="updateRiesgos?id=${req.id}">Editar</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;

@@ -1,6 +1,7 @@
 package com.cloudsrcsoft.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +50,9 @@ public class UserDaoImpl{
   }  
   
   public void modulo (Modulo modulo) {
+	  Date alta= new Date();
 	  String sql = "insert into modulos values (?,?,?,?,?,?,?)";
-	  template.update(sql, new Object[] {null, modulo.getProyectos(), modulo.getNombre(), modulo.getDescripcion(), modulo.getEntrega(), modulo.getAlta(), "NO_INICIADO"});
+	  template.update(sql, new Object[] {null, modulo.getProyectos(), modulo.getNombre(), modulo.getDescripcion(), modulo.getEntrega(), alta, "NO_INICIADO"});
   }
   
   public void diseno (Diseno diseno) {
@@ -67,9 +69,10 @@ public class UserDaoImpl{
   }
   
   public void issues (Issues issues) {
+	  Date alta= new Date();
 	  String sql = "insert into issues values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	  template.update(sql, new Object[] {null, issues.getProyecto(), null, issues.getDescripcion(), 
-			  issues.getCriticidad(), issues.getComentarios(), "NO_INICIADO", "NO_RESUELTO", issues.getAlta(), null, 
+			  issues.getCriticidad(), issues.getComentarios(), "NO_INICIADO", "NO_RESUELTO", alta, null, 
 			  issues.getArchivo(), issues.getType(), issues.getNombre(),1,1, issues.getId_sol()});
   }
   

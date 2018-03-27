@@ -13,10 +13,17 @@ public class Pruebas {
 	private String observaciones;
 	private String severidad;
 	private int responsable;
+	private String res_nombre;
 	private int version;
 	private String estatus;
 	private Date alta;
-	
+		
+	public String getRes_nombre() {
+		return res_nombre;
+	}
+	public void setRes_nombre(String res_nombre) {
+		this.res_nombre = res_nombre;
+	}
 	public int getModulo() {
 		return modulo;
 	}

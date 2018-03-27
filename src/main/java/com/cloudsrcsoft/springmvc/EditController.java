@@ -311,7 +311,7 @@ public class EditController {
 	  @RequestMapping(value = "/updateUsuC", method = RequestMethod.POST)
 	  public ModelAndView updateUsc(@ModelAttribute User user) {
 	      editDaoImpl.updateUsuariosC(user);
-	      return new ModelAndView("Cliente");
+	      return new ModelAndView("login");
 	  }
 	  //cambio ps cliente
 	  @RequestMapping(value = "/PassC**", method = RequestMethod.GET)
@@ -319,9 +319,16 @@ public class EditController {
 		  String e = request.getParameter("e");
 		  User l=verDaoImpl.getUserBy(e);
 		  int id=l.getId();
-	      User user = verDaoImpl.getUser(id);
-	      ModelAndView model = new ModelAndView("ModP");
-	      model.addObject("user", user);
+		  ModelAndView model=null;
+		  if (id==0) {
+			  model = new ModelAndView("login");  
+		  }
+		  else {
+			  model = new ModelAndView("ModP");
+			  User user = verDaoImpl.getUser(id);	      
+		      model.addObject("user", user);
+		  }
+	      
 	      return model;
 	  }
 	  

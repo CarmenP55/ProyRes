@@ -15,8 +15,8 @@ public class Issues {
 	private String comentarios;
 	private String estatus_desarrollo;
 	private String estatus_cliente;
-	private Date alta;
-	private Date cierre;
+	private String alta;
+	private String cierre;
 	private byte[] archivo;
 	private String type;
 	private String nombre;
@@ -75,17 +75,16 @@ public class Issues {
 	public void setEstatus_cliente(String estatus_cliente) {
 		this.estatus_cliente = estatus_cliente;
 	}
-	public Date getAlta() {
-		alta=new Date();
+	public String getAlta() {
 		return alta;
 	}
-	public void setAlta(Date alta) {
+	public void setAlta(String alta) {
 		this.alta = alta;
 	}
-	public Date getCierre() {
+	public String getCierre() {
 		return cierre;
 	}
-	public void setCierre(Date cierre) {
+	public void setCierre(String cierre) {
 		this.cierre = cierre;
 	}
 	public int getId() {

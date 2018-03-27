@@ -108,10 +108,10 @@
             </div>
           </div>
         
-          <div class="col-sm-9">	
+          <div class="col-sm-5">	
 			<h3>${proyectos.nombre}</h3>
             <table class="table table-bordered table-hover">
-            <tr bgcolor="#31B404"><th>Tipo de Proyecto</th><td>${proyectos.tipo}</td></tr>
+            <tr><th>Tipo de Proyecto</th><td>${proyectos.tipo}</td></tr>
             <tr><th>Empresa</th><td>${empresa.nombre}</td></tr>
             <tr><th>Responsable</th><td>${userRes.firstname} ${userRes.lastname}</td></tr>
             <tr><th>Descripcion</th><td>${proyectos.descripcion}</td></tr>
@@ -122,6 +122,8 @@
             <tr><th>Estatus</th><td>${proyectos.estatus}</td></tr>
             </table>
             
+            </div>
+          <div class="col-sm-12" style="width:fit-content">				
             <h4>Requerimientos</h4>
             <table class="table table-bordered table-hover">
             <tr bgcolor="#31B404">
@@ -131,7 +133,6 @@
                 <th>Entrega</th>
                 <th>Criticidad</th>
                 <th>Accion</th>
-                <th>Solucion</th>
                 <th>Comentarios</th>
                 <th>Estatus</th></tr>
                 <c:forEach var="req" items="${listRequerimientos}" varStatus="status">
@@ -142,7 +143,6 @@
                     <td>${req.entrega}</td>
                     <td>${req.criticidad}</td>
                     <td>${req.accion}</td>
-                    <td>${req.solucion}</td>
                     <td>${req.comentarios}</td>
                     <td>${req.estatus}</td>
                 </tr>
@@ -181,7 +181,6 @@
                 <th>Observaciones</th>
                 <th>Severidad</th>
                 <th>Responsable</th>
-                <th>Version</th>
                 <th>Estatus</th></tr>
                 <c:forEach var="req" items="${listPruebas}" varStatus="status">
                 <tr style="border-top-color:transparent">
@@ -191,8 +190,7 @@
                     <td>${req.salida}</td>
                     <td>${req.observaciones}</td>
                     <td>${req.severidad}</td>
-                    <td>${req.responsable}</td>
-                    <td>${req.version}</td>
+                    <td>${req.res_nombre}</td>
                     <td>${req.estatus}</td>
                 </tr>
                 </c:forEach>             

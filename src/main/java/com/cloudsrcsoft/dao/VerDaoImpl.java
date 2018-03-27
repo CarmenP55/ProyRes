@@ -150,7 +150,7 @@ public Requerimientos findReq(int id) {
 				a.setDescripcion(rs.getString("descripcion"));
 				a.setEntrega(rs.getString("fecha_entrega"));
 				a.setEstatus(rs.getString("estatus"));
-				a.setAlta(rs.getDate("fecha_alta"));			
+				a.setAlta(rs.getString("fecha_alta"));			
 				return a;
 			  }
 		});
@@ -415,7 +415,7 @@ public Requerimientos findReq(int id) {
 	}
   
   public List<Pruebas> verPruebas(int id) {
-		String sql = "SELECT * FROM pruebas where id_pro="+id;
+		String sql = "SELECT * FROM pruebas join usuarios on usuarios.id_usuario= pruebas.responsable where id_pro="+id;
 		List<Pruebas> listPruebas = template.query(sql, new RowMapper<Pruebas>() {
 			public Pruebas mapRow(ResultSet rs, int arg1) throws SQLException {
 				Pruebas aPruebas = new Pruebas();
@@ -428,6 +428,7 @@ public Requerimientos findReq(int id) {
 				aPruebas.setObservaciones(rs.getString("observaciones"));
 				aPruebas.setSeveridad(rs.getString("severidad"));
 				aPruebas.setResponsable(rs.getInt("responsable"));
+				aPruebas.setRes_nombre(rs.getString("usuarios.nombre_usuario"));
 				aPruebas.setVersion(rs.getInt("version"));
 				aPruebas.setEstatus(rs.getString("estatus"));
 				return aPruebas;
@@ -437,7 +438,7 @@ public Requerimientos findReq(int id) {
 	}
   
   public List<Pruebas> verPruebasPro(int id_proyecto) {
-		String sql = "SELECT * FROM pruebas where id_pro="+id_proyecto;
+		String sql = "SELECT * FROM pruebas join usuarios on usuarios.id_usuario= pruebas.responsable where id_pro="+id_proyecto;
 		List<Pruebas> listPruebas = template.query(sql, new RowMapper<Pruebas>() {
 			public Pruebas mapRow(ResultSet rs, int arg1) throws SQLException {
 				Pruebas aPruebas = new Pruebas();
@@ -448,6 +449,7 @@ public Requerimientos findReq(int id) {
 				aPruebas.setProceso(rs.getString("proceso"));
 				aPruebas.setSalida(rs.getString("salida"));
 				aPruebas.setObservaciones(rs.getString("observaciones"));
+				aPruebas.setRes_nombre(rs.getString("usuarios.nombre_usuario"));
 				aPruebas.setSeveridad(rs.getString("severidad"));
 				aPruebas.setResponsable(rs.getInt("responsable"));
 				aPruebas.setVersion(rs.getInt("version"));
@@ -514,8 +516,8 @@ public Requerimientos findReq(int id) {
 				aIssues.setComentarios(rs.getString("comentarios"));
 				aIssues.setEstatus_desarrollo(rs.getString("estatus_desarrollo"));
 				aIssues.setEstatus_cliente(rs.getString("estatus_cliente"));
-				aIssues.setAlta(rs.getDate("fecha_alta"));
-				aIssues.setCierre(rs.getDate("fecha_cierre"));
+				aIssues.setAlta(rs.getString("fecha_alta"));
+				aIssues.setCierre(rs.getString("fecha_cierre"));
 				
 				return aIssues;
 			  }
@@ -538,8 +540,8 @@ public Requerimientos findReq(int id) {
 				aIssues.setSolicitante(u.getFirstname()+" "+u.getLastname());
 				aIssues.setEstatus_desarrollo(rs.getString("estatus_desarrollo"));
 				aIssues.setEstatus_cliente(rs.getString("estatus_cliente"));
-				aIssues.setAlta(rs.getDate("fecha_alta"));
-				aIssues.setCierre(rs.getDate("fecha_cierre"));
+				aIssues.setAlta(rs.getString("fecha_alta"));
+				aIssues.setCierre(rs.getString("fecha_cierre"));
 				aIssues.setNombre(rs.getString("nombre_archivo"));
 				aIssues.setType(rs.getString("type"));
 				aIssues.setArchivo(rs.getBytes("archivo"));
@@ -658,7 +660,7 @@ public Requerimientos findReq(int id) {
 						a.setNombre(rs.getString("nombre"));
 						a.setDescripcion(rs.getString("descripcion"));
 						a.setEntrega(rs.getString("fecha_entrega"));
-						a.setAlta(rs.getDate("fecha_alta"));
+						a.setAlta(rs.getString("fecha_alta"));
 						a.setEstatus(rs.getString("estatus"));
 						return a;
 					  }
@@ -807,8 +809,8 @@ public Requerimientos findReq(int id) {
 					aIssues.setComentarios(rs.getString("comentarios"));
 					aIssues.setEstatus_desarrollo(rs.getString("estatus_desarrollo"));
 					aIssues.setEstatus_cliente(rs.getString("estatus_cliente"));
-					aIssues.setAlta(rs.getDate("fecha_alta"));
-					aIssues.setCierre(rs.getDate("fecha_cierre"));
+					aIssues.setAlta(rs.getString("fecha_alta"));
+					aIssues.setCierre(rs.getString("fecha_cierre"));
 					
 					return aIssues;
 					  }

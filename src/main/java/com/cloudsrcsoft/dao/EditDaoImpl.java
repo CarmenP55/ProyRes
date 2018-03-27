@@ -11,8 +11,8 @@ public class EditDaoImpl{
 	}
   
   public void save(Proyectos proyectos) {
-	  String sql = "UPDATE proyectos SET nombre_proyecto=?, tipo_proyecto=?, descripcion=?, fecha_entrega=?, repositorio=?, tecnologia=?, detalle_repo=? WHERE id_proyecto=?";
-	  template.update(sql, new Object[] {proyectos.getNombre(), proyectos.getTipo(), proyectos.getDescripcion(), proyectos.getEntrega(), proyectos.getRepositorio(), 
+	  String sql = "UPDATE proyectos SET nombre_proyecto=?, descripcion=?, fecha_entrega=?, repositorio=?, tecnologia=?, detalle_repo=? WHERE id_proyecto=?";
+	  template.update(sql, new Object[] {proyectos.getNombre(), proyectos.getDescripcion(), proyectos.getEntrega(), proyectos.getRepositorio(), 
 			  proyectos.getTecnologia(), proyectos.getDetalle(), proyectos.getId_proyecto()});
 	}
   
@@ -108,8 +108,8 @@ public class EditDaoImpl{
 	  }
   }
   public void updateUsuariosC(User user) {
-	  String sql ="UPDATE usuarios SET password=?, telefono=? where id_usuario=?";
-	  template.update(sql, new Object[] {user.getPassword(), user.getTelefono(), user.getId()});
+	  String sql ="UPDATE usuarios SET nombre_usuario=?, apellido_usuario=?, email=?, password=?, telefono=? where id_usuario=?";
+	  template.update(sql, new Object[] {user.getFirstname(), user.getLastname(), user.getEmail(), user.getPassword(), user.getTelefono(), user.getId()});
   }  
 }
 

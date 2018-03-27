@@ -8,7 +8,7 @@ public class Modulo {
 	private String nombre;
 	private String descripcion;
 	private String entrega;
-	private Date alta;
+	private String alta;
 	private String estatus;
 	
 	public String getEstatus() {
@@ -47,12 +47,11 @@ public class Modulo {
 	public void setEntrega(String entrega) {
 		this.entrega = entrega;
 	}
-	public Date getAlta() {
-		alta = new Date();
+	public String getAlta() {
 		return alta;
 	}
 	
-	public void setAlta(Date alta) {
+	public void setAlta(String alta) {
 		this.alta = alta;
 	}
 }
