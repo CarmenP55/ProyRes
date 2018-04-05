@@ -66,7 +66,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
 		</script>
 	</sec:authorize>
 <div class="container"> <br>    
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <div class="sidebar-nav">
             <img src="${pageContext.request.contextPath}/resources/logo.jpg" width="220px" />      
               <div class="navbar navbar-default" role="navigation">
@@ -105,10 +105,9 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
               </div>
             </div>
           </div>
-          
-	<div class="col-sm-7">
+          <br>
+	<div class="col-sm-9">
 		<h4>Requerimientos</h4>
-		<hr>	
             <table class="table table-bordered table-hover">
             <tr bgcolor="#31B404">
                 <th>Actividad</th>

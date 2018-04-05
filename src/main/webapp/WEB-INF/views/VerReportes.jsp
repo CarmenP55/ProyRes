@@ -108,8 +108,9 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
             </div>
           </div>
           
-		<div class="col-sm-9">
+		<div class="col-sm-12">
 			<h2>Reportes</h2>
+			<input class="form-control" id="myInput" type="text" placeholder="Buscar..">
 			<div class="cuadroEmp">
 			<table class="table table-bordered table-hover">
 	            <tr bgcolor="#31B404">            
@@ -123,17 +124,19 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                 <th>Hora fin</th>
                 <th>Total horas</th>
                 <c:forEach var="req" items="${listRep}" varStatus="status">
+                <tbody id="myTable">
                 <tr style="border-top-color:transparent">
                 	<td>${req.nombre_usuario}</td>
                 	<td>${req.nombre_proyecto}</td>
                     <td>${req.nombre_actividad}</td>
                     <td>${req.comentarios}</td>
-                    <td>${req.fecha_fin}</td>
+                    <td style="white-space:nowrap">${req.fecha_fin}</td>
                     <td>${req.fecha_inicio}</td>       
                     <td>${req.hora_inicio}</td>       
                     <td>${req.hora_fin}</td>
                     <td>${req.total}</td>
                 </tr>
+                </tbody>
                 </c:forEach>             
             </table>
             </div>
@@ -141,6 +144,16 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
           
                        
 </div><!-- /.container -->
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 </body>
 </html>
 

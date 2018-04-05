@@ -87,14 +87,14 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Proyectos<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="VerProyectos.html">Ver Proyectos</a></li>
+                            <li><a href=VerProyectos.html?e="${pageContext.request.userPrincipal.name}">Ver Proyectos</a></li>
 							<li><a href="Proyectos.html">Agregar nuevo proyecto</a></li>						                          	
                         </ul>
                       </li>  
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registrar<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href=ListaPro.html>Informacion de Proyectos</a></li>
+                            <li><a href=ListaPro.html?e="${pageContext.request.userPrincipal.name}">Informacion de Proyectos</a></li>
 							<li><a href=IssuesD.html?e="${pageContext.request.userPrincipal.name}">Tickets</a></li>
 							<li><a href=Empresa.html>Empresas</a></li>
 							<li><a href=register2.html>Usuarios</a></li>
@@ -103,8 +103,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultar<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href=ListaVer.html>Informacion de Proyectos</a></li>
-							<li><a href=VerIssues.html>Tickets</a></li>
+							<li><a href=VerIssues.html?e="${pageContext.request.userPrincipal.name}">Tickets</a></li>
 							<li><a href=VerEmpresas.html>Empresas</a></li>
 							<li><a href=VerUsuariosD.html>Usuarios</a></li>
                         </ul>
@@ -133,7 +132,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
             	<th>Ver Registros</th>
             	</tr>
                 <tr>
-                <td><img src="https://image.flaticon.com/icons/svg/74/74960.svg" alt="Home" width="50" height="50">Agregar Tareas<br></td>
+                <td><img src="https://image.flaticon.com/icons/svg/74/74960.svg" alt="Home" width="50" height="50">Agregar diseño<br></td>
                 <td><a href=ModDis.html?id_proyecto=${param.id_proyecto}>Agregar</a><br></td>
                 <td><a href=VerDiseno.html?id_proyecto=${param.id_proyecto}>Ver registros</a><br></td></tr>
                 <tr>

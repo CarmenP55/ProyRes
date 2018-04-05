@@ -1,5 +1,7 @@
 package com.cloudsrcsoft.dao;
 
+import java.util.Date;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import com.cloudsrcsoft.beans.*;
 
@@ -11,14 +13,29 @@ public class EditDaoImpl{
 	}
   
   public void save(Proyectos proyectos) {
-	  String sql = "UPDATE proyectos SET nombre_proyecto=?, descripcion=?, fecha_entrega=?, repositorio=?, tecnologia=?, detalle_repo=? WHERE id_proyecto=?";
-	  template.update(sql, new Object[] {proyectos.getNombre(), proyectos.getDescripcion(), proyectos.getEntrega(), proyectos.getRepositorio(), 
-			  proyectos.getTecnologia(), proyectos.getDetalle(), proyectos.getId_proyecto()});
+	  if (proyectos.getEstatus().equals("SELECCIONAR")) {
+		  String sql = "UPDATE proyectos SET nombre_proyecto=?, descripcion=?, fecha_entrega=?, repositorio=?, tecnologia=?, detalle_repo=? WHERE id_proyecto=?";
+		  template.update(sql, new Object[] {proyectos.getNombre(), proyectos.getDescripcion(), proyectos.getEntrega(), proyectos.getRepositorio(), 
+				  proyectos.getTecnologia(), proyectos.getDetalle(), proyectos.getId_proyecto()});		  
+	  }
+	  else {
+		  String sql = "UPDATE proyectos SET nombre_proyecto=?, descripcion=?, fecha_entrega=?, estatus=?, repositorio=?, tecnologia=?, detalle_repo=? WHERE id_proyecto=?";
+		  template.update(sql, new Object[] {proyectos.getNombre(), proyectos.getDescripcion(), proyectos.getEntrega(), proyectos.getEstatus(), proyectos.getRepositorio(), 
+				  proyectos.getTecnologia(), proyectos.getDetalle(), proyectos.getId_proyecto()});
+	  }
+	  
 	}
   
   public void updateMod(Modulo modulo) {
-	  String sql= "UPDATE modulos SET nombre=?, descripcion=?, fecha_entrega=?, estatus=? WHERE id_modulo=?";
-	  template.update(sql, new Object[] {modulo.getNombre(), modulo.getDescripcion(), modulo.getEntrega(), "NO_INICIADO", modulo.getId()});
+	  if (modulo.getEstatus().equals("SELECCIONAR")) {
+		  String sql= "UPDATE modulos SET nombre=?, descripcion=?, fecha_entrega=? WHERE id_modulo=?";
+		  template.update(sql, new Object[] {modulo.getNombre(), modulo.getDescripcion(), modulo.getEntrega(), modulo.getId()});  
+	  }
+	  else {
+		  String sql= "UPDATE modulos SET nombre=?, descripcion=?, fecha_entrega=?, estatus=? WHERE id_modulo=?";
+		  template.update(sql, new Object[] {modulo.getNombre(), modulo.getDescripcion(), modulo.getEntrega(), modulo.getEstatus(), modulo.getId()});
+	  }
+	  
   }
   
   public void updateReq(Requerimientos requerimientos) {
@@ -41,9 +58,19 @@ public class EditDaoImpl{
   }
   
   public void updateDis(Diseno diseno) {
-	  String sql ="UPDATE diseno SET actividad=?, descripcion=?, entrega=?, codigo=?, argumentos=?, salida=?, comentarios=? where id_diseno=?";
-	  template.update(sql, new Object[] {diseno.getActividad(), diseno.getDescripcion(), 
-			  diseno.getEntrega(), diseno.getCodigo(), diseno.getArgumentos(), diseno.getSalida(), diseno.getComentarios(), diseno.getId()});
+	  if (diseno.getEstatus().equals("SELECCIONAR")) {
+		  String sql ="UPDATE diseno SET actividad=?, descripcion=?, entrega=?, codigo=?, argumentos=?, salida=?, comentarios=? where id_diseno=?";
+		  template.update(sql, new Object[] {diseno.getActividad(), diseno.getDescripcion(), 
+				  diseno.getEntrega(), diseno.getCodigo(), diseno.getArgumentos(), diseno.getSalida(), diseno.getComentarios(), 
+				  diseno.getId()});
+	  }
+	  else {
+		  String sql ="UPDATE diseno SET actividad=?, descripcion=?, entrega=?, codigo=?, argumentos=?, salida=?, comentarios=?, estatus=? where id_diseno=?";
+		  template.update(sql, new Object[] {diseno.getActividad(), diseno.getDescripcion(), 
+				  diseno.getEntrega(), diseno.getCodigo(), diseno.getArgumentos(), diseno.getSalida(), diseno.getComentarios(), 
+				  diseno.getEstatus(), diseno.getId()});
+	  }
+	  
   }
   
   public void updatePru(Pruebas pruebas) {
@@ -65,14 +92,23 @@ public class EditDaoImpl{
   }
   
   public void updateIssuesC(Issues issues) {
+	  Date cierre= new Date();
 	  if (issues.getEstatus_cliente().equals("FALSE")) {
 	  String sql ="UPDATE issues SET descripcion=?, criticidad=?, comentarios=? where id_issue=?";
 	  template.update(sql, new Object[] {issues.getDescripcion(), issues.getCriticidad(),
 			   issues.getComentarios(), issues.getId()});}
 	 else {
-		  String sql ="UPDATE issues SET descripcion=?, criticidad=?, comentarios=?, estatus_cliente=? where id_issue=?";
-		  template.update(sql, new Object[] {issues.getDescripcion(), issues.getCriticidad(),
-				   issues.getComentarios(), issues.getEstatus_cliente(), issues.getId()});
+		  if (issues.getEstatus_cliente().equals("RESUELTO")) {
+			  String sql ="UPDATE issues SET descripcion=?, criticidad=?, comentarios=?, estatus_cliente=?, fecha_cierre=? where id_issue=?";
+			  template.update(sql, new Object[] {issues.getDescripcion(), issues.getCriticidad(),
+					   issues.getComentarios(), issues.getEstatus_cliente(), cierre, issues.getId()});
+		  }		  
+		  else {
+			  String sql ="UPDATE issues SET descripcion=?, criticidad=?, comentarios=?, estatus_cliente=? where id_issue=?";
+			  template.update(sql, new Object[] {issues.getDescripcion(), issues.getCriticidad(),
+					   issues.getComentarios(), issues.getEstatus_cliente(), issues.getId()});
+		  }
+			  
 	  }
   }
   

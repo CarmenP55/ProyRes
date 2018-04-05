@@ -85,14 +85,14 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Proyectos<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="VerProyectos.html">Ver Proyectos</a></li>
+                            <li><a href=VerProyectos.html?e="${pageContext.request.userPrincipal.name}">Ver Proyectos</a></li>
 							<li><a href="Proyectos.html">Agregar nuevo proyecto</a></li>						                          	
                         </ul>
                       </li>  
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registrar<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href=ListaPro.html>Informacion de Proyectos</a></li>
+                            <li><a href=ListaPro.html?e="${pageContext.request.userPrincipal.name}">Informacion de Proyectos</a></li>
 							<li><a href=IssuesD.html?e="${pageContext.request.userPrincipal.name}">Tickets</a></li>
 							<li><a href=Empresa.html>Empresas</a></li>
 							<li><a href=register2.html>Usuarios</a></li>
@@ -101,8 +101,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultar<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href=ListaVer.html>Informacion de Proyectos</a></li>
-							<li><a href=VerIssues.html>Tickets</a></li>
+							<li><a href=VerIssues.html?e="${pageContext.request.userPrincipal.name}">Tickets</a></li>
 							<li><a href=VerEmpresas.html>Empresas</a></li>
 							<li><a href=VerUsuariosD.html>Usuarios</a></li>
                         </ul>

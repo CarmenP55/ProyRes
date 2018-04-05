@@ -3,6 +3,8 @@ package com.cloudsrcsoft.springmvc;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
+import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,6 +14,8 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cloudsrcsoft.beans.*;
@@ -21,12 +25,22 @@ import com.cloudsrcsoft.dao.VerDaoImpl;
 public class ConsultasController {	
 	@Autowired
 	VerDaoImpl verDaoImpl;
-	
+	//lista de proyectos para el desarrollador
 	@RequestMapping(value="/VerProyectos.html")
-	public ModelAndView listProyectos(ModelAndView model) throws IOException{
-		List<Proyectos> listProyectos = verDaoImpl.verProyectos();
-		model.addObject("listProyectos", listProyectos);
-		model.setViewName("VerProyectos");
+	public ModelAndView listProyectos(ModelAndView model, HttpServletRequest request) throws IOException{
+		//solo ver proyectos donde es el responsable de la empresa o el desarrollador
+		try {
+			String e = request.getParameter("e");
+			User l=verDaoImpl.getUserBy(e);
+			int id=l.getId();		
+			List<Proyectos> listProyectos = verDaoImpl.verProyectosRes(id);
+			model.addObject("listProyectos", listProyectos);
+			model.setViewName("VerProyectos");
+		}
+		catch (NullPointerException npe) {
+			model.setViewName("login");
+		}
+							
 		return model;
 	}
 	
@@ -123,10 +137,18 @@ public class ConsultasController {
 	}
 	
 	@RequestMapping(value="/VerIssues.html")
-	public ModelAndView listIss(ModelAndView model) throws IOException{
-		List<Issues> listIssues = verDaoImpl.verIssues();
-		model.addObject("listIssues", listIssues);
-		model.setViewName("VerIssues");
+	public ModelAndView listIss(ModelAndView model, HttpServletRequest request) throws IOException{
+		try {
+			String e = request.getParameter("e");
+			User l=verDaoImpl.getUserBy(e);
+			int id=l.getId();		
+			List<Issues> listIssues = verDaoImpl.verIssuesRes(id);
+			model.addObject("listIssues", listIssues);
+			model.setViewName("VerIssues");
+		}
+		catch (NullPointerException npe) {
+			model.setViewName("login");
+		}		
 		return model;
 	}
 	
@@ -176,12 +198,18 @@ public class ConsultasController {
 	
 	@RequestMapping(value="/VerTickets.html")
 	public ModelAndView listTickets(ModelAndView model, HttpServletRequest request) throws IOException{
-		String e = request.getParameter("e");
-		User l=verDaoImpl.getUserBy(e);
-		int id=l.getId();
-		List<Issues> listIssues = verDaoImpl.verIssuesC(id);
-		model.addObject("listIssues", listIssues);
-		model.setViewName("VerTickets");
+		try {
+			String e = request.getParameter("e");
+			User l=verDaoImpl.getUserBy(e);
+			int id=l.getId();		
+			List<Issues> listIssues = verDaoImpl.verIssuesC(id);
+			model.addObject("listIssues", listIssues);
+			model.setViewName("VerTickets");
+		}
+		catch (NullPointerException npe) {
+			model.setViewName("login");
+		}
+		
 		return model;
 	}
 	//VER US

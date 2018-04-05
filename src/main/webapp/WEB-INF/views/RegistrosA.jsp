@@ -104,8 +104,6 @@ function showhide(id) {
 							<li><a href=EmpresaA.html>Empresas</a></li>
 							<li><a href=register.html>Usuarios</a></li>
 							<li><a href=Actividades.html>Actividades</a></li>
-							<li><a href=CrearTareas.html>Tareas</a></li>
-							<li><a href=CrearSub.html>Subtareas</a></li>
                         </ul>
                       </li>
                     <li><a href="VerRegistrosA.html" class="icon-twitter">Consultas</a></li>
@@ -129,7 +127,7 @@ function showhide(id) {
                 <td>N/A</td>
                 <td><a href="ET.pdf?id_proyecto=${param.id_proyecto}" target="_blank">Generar ET</a><br></td></tr>
             	<tr>
-                <td><img src="https://image.flaticon.com/icons/svg/74/74960.svg" alt="Home" width="50" height="50" title="Agregar informacion">Tareas</td>
+                <td><img src="https://image.flaticon.com/icons/svg/74/74960.svg" alt="Home" width="50" height="50" title="Agregar informacion">Diseño</td>
                 <td><a href="javascript:showhide('diseno')"?id_proyecto=${param.id_proyecto}>Agregar</a><br></td>
                 <td><a href="javascript:showhide('verDiseno')"?id_proyecto=${param.id_proyecto}>Ver registros</a><br></td>
                 </tr>
@@ -191,7 +189,7 @@ function showhide(id) {
             </form:form>
 </div>
 
-<div class="col-sm-4" id="verDiseno" style="display:none;">	
+<div class="col-sm-8" id="verDiseno" style="display:none;">	
 			<h2>Diseno</h2>
             <table class="table table-bordered table-hover">
 	            <tr bgcolor="#31B404">
@@ -228,7 +226,6 @@ function showhide(id) {
                 <th>Observaciones</th>
                 <th>Severidad</th>
                 <th>Responsable</th>
-                <th>Version</th>
                 <th>Estatus</th>
                 <th>Opciones</th>
                 </tr>
@@ -240,8 +237,7 @@ function showhide(id) {
                     <td>${req.salida}</td>
                     <td>${req.observaciones}</td>
                     <td>${req.severidad}</td>
-                    <td>${req.responsable}</td>
-                    <td>${req.version}</td>
+                    <td>${req.res_nombre}</td>
                     <td>${req.estatus}</td>
                     <td>
                         <a href="updatePruebasA?id=${req.id}">Editar</a>
@@ -290,9 +286,23 @@ function showhide(id) {
                 <th>Estatus</th>
                 </tr>
                 <c:forEach var="req" items="${listRequerimientos}" varStatus="status">
-                <tr style="border-top-color:transparent">
-                    <td><a title="Modificar" href="updateRequerimientoA?id_req=${req.id_req}">${req.actividad}</a></td>
-                    <td>${req.descripcion}</td>
+                
+                <c:choose>
+			    <c:when test="${req.estatus eq 'FINALIZADO'}">
+			        <tr class="bg-success text-white" style="border-top-color:transparent">
+			        <td>${req.actividad}</td>			        
+			    </c:when>    
+			    <c:when test="${req.estatus eq 'CANCELADO'}">
+			        <tr class="bg-danger text-white" style="border-top-color:transparent">
+			        <td><a title="Modificar" href="updateRequerimientoA?id_req=${req.id_req}">${req.actividad}</a></td>		        
+			    </c:when>
+			    <c:otherwise>
+			        <tr style="border-top-color:transparent">
+			        <td><a title="Modificar" href="updateRequerimientoA?id_req=${req.id_req}">${req.actividad}</a></td> 			        
+			    </c:otherwise>
+				</c:choose>
+				
+				<td>${req.descripcion}</td>
                     <td>${req.entrega}</td>
                     <td>${req.criticidad}</td>
                     <td>${req.accion}</td>

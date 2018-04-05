@@ -78,7 +78,7 @@ function showhide(id) {
 	</sec:authorize>
 	
 <div class="container"> <br>    
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <div class="sidebar-nav">
             <img src="${pageContext.request.contextPath}/resources/logo.jpg" width="220px" />      
               <div class="navbar navbar-default" role="navigation">
@@ -105,8 +105,6 @@ function showhide(id) {
 							<li><a href=EmpresaA.html>Empresas</a></li>
 							<li><a href=register.html>Usuarios</a></li>
 							<li><a href=Actividades.html>Actividades</a></li>
-							<li><a href=CrearTareas.html>Tareas</a></li>
-							<li><a href=CrearSub.html>Subtareas</a></li>
                         </ul>
                       </li>
                     <li><a href="VerRegistrosA.html" class="icon-twitter">Consultas</a></li>
@@ -118,7 +116,7 @@ function showhide(id) {
               </div>
             </div>
           </div>
-	<div class="col-sm-8">	
+	<div class="col-sm-9">	
 	<div class="cuadro" id="all">
 		<h4 style="text-decoration: underline">Consultar</h4>
 		<hr>	
@@ -138,24 +136,21 @@ function showhide(id) {
                 <th>Correo</th>
                 <th>Telefono</th>
                 <th>Empresa</th>
-                <th>Tipo de usuario</th>
-                <th>Estatus</th>
+                <th>Tipo de usuario</th>                
                 <th>Opciones</th>
                 </tr>
                 
                 <c:forEach var="req" items="${listUsuarios}" varStatus="status">
                 <tr style="border-top-color:transparent">
-                    <td>${req.firstname}${req.lastname}</td>
+                    <td>${req.firstname} ${req.lastname}</td>
                     <td>${req.email}</td>
                     <td>${req.telefono}</td>
                     <td>${req.empresa}</td>
                     <td>${req.tipo}</td>
-                    <td>${req.estatus}</td>
                     <td>
                         <a href="updateUsuarios?id=${req.id}">Editar</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                    </td>
-                             
+                    </td>                             
                 </tr>
                 </c:forEach>             
             </table>
@@ -186,8 +181,16 @@ function showhide(id) {
                     <td>${req.criticidad}</td>
                     <td>${req.comentarios}</td>
                     <td>${req.estatus_desarrollo}</td>
-                    <td>${req.estatus_cliente}</td>                    
-                    <td style="white-space:normal"><a href="ArchivoTicket?id=${req.id}">Archivo</a></td>                    
+                    <td>${req.estatus_cliente}</td>    
+                     
+                    <c:choose>
+				    <c:when test="${not empty req.nombre}">
+				        <td><a href="ArchivoTicket?id=${req.id}">Archivo</a></td>			        
+				    </c:when>	
+				    <c:otherwise>
+				    <td></td></c:otherwise>			    
+				    </c:choose>
+				                   
                     <td>
                         <a href="updateIssuesA?id=${req.id}">Editar</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -198,7 +201,6 @@ function showhide(id) {
             </table>
             </div>
 	</div>
-
 
 	<div id="empresa" style="display:none;">
 	<h2>Empresas</h2>
@@ -278,17 +280,15 @@ function showhide(id) {
 	<div class="cuadroEmp">
 	<table class="table table-bordered table-hover">
             <tr bgcolor="#31B404">
-            	<th>Ref</th>
-                <th>Tarea</th>
+            	<th>Tarea</th>
+                <th>Sub Tarea</th>
                 <th>Descripcion</th>
-                <th>Opciones</th>
                 
-                <c:forEach var="req" items="${listTareas}" varStatus="status">
+                <c:forEach var="req" items="${listSub}" varStatus="status">
                 <tr style="border-top-color:transparent">
-                	<td>${req.id}</td>
+                	<td>${req.nombre_tarea}</td>
                     <td>${req.nombre}</td>
-                    <td>${req.descripcion}</td>
-                    <td><a href="javascript:showhide('tareas')?id=${req.id}">Subtareas</a></td>                    
+                    <td>${req.descripcion}</td>                   
                 </tr>
                 </c:forEach>             
             </table>

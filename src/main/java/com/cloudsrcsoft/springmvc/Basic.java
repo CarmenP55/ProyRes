@@ -67,11 +67,21 @@ public class Basic {
 	}
 	//ver p admin
 	@RequestMapping("ListaPro")
-	public ModelAndView regP() {
+	public ModelAndView regP(HttpServletRequest request) {
 		ModelAndView MV=new ModelAndView();
-		List<Proyectos> listProyectos= verDao.verProyectos();
-		MV.setViewName("ListaProyectos");
-		MV.addObject("listProyectos", listProyectos);
+		//solo ver proyectos donde es el responsable de la empresa o el desarrollador
+		try {
+			String e = request.getParameter("e");
+			User l=verDao.getUserBy(e);
+			int id=l.getId();		
+			List<Proyectos> listProyectos = verDao.verProyectosRes(id);
+			MV.addObject("listProyectos", listProyectos);
+			MV.setViewName("ListaProyectos");
+		}
+		catch (NullPointerException npe) {
+			MV.setViewName("login");
+		}
+		
 		return MV;
 	}
 	//lista p su
@@ -97,9 +107,12 @@ public class Basic {
 	}
 	//lista p admin
 	@RequestMapping("ListaVer**")
-	public ModelAndView regPV() {
-		ModelAndView MV=new ModelAndView();
-		List<Proyectos> listProyectos= verDao.verProyectos();
+	public ModelAndView regPV(HttpServletRequest request) {
+		ModelAndView MV=new ModelAndView();		
+		String e = request.getParameter("e");
+		User l=verDao.getUserBy(e);
+		int id=l.getId();
+		List<Proyectos> listProyectos= verDao.verProyectosRes(id);
 		MV.setViewName("ListaProyectosVer");
 		MV.addObject("listProyectos", listProyectos);
 		return MV;

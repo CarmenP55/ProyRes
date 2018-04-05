@@ -94,8 +94,6 @@
 							<li><a href=EmpresaA.html>Empresas</a></li>
 							<li><a href=register.html>Usuarios</a></li>
 							<li><a href=Actividades.html>Actividades</a></li>
-							<li><a href=CrearTareas.html>Tareas</a></li>
-							<li><a href=CrearSub.html>Subtareas</a></li>
                         </ul>
                       </li>
                     <li><a href="VerRegistrosA.html" class="icon-twitter">Consultas</a></li>
@@ -108,7 +106,7 @@
             </div>
           </div>
         
-          <div class="col-sm-5">	
+          <div class="col-sm-7">	
 			<h3>${proyectos.nombre}</h3>
             <table class="table table-bordered table-hover">
             <tr><th>Tipo de Proyecto</th><td>${proyectos.tipo}</td></tr>
@@ -117,6 +115,9 @@
             <tr><th>Descripcion</th><td>${proyectos.descripcion}</td></tr>
             <tr><th>Fecha solicitud</th><td>${proyectos.solicitud}</td></tr>
             <tr><th>Desarrollador</th><td>${userDes.firstname} ${userDes.lastname}</td></tr>
+            <tr><th>Lenguaje</th><td>${proyectos.tecnologia}</td></tr>
+            <tr><th>Repositorio</th><td>${proyectos.repositorio}</td></tr>
+            <tr><th>Acceso</th><td>${proyectos.detalle}</td></tr>
             <tr><th>Modelo</th><td>${proyectos.modelo}</td></tr>
             <tr><th>Fecha entrega</th><td>${proyectos.entrega}</td></tr>
             <tr><th>Estatus</th><td>${proyectos.estatus}</td></tr>

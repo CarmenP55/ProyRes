@@ -104,8 +104,6 @@ function showhide(id) {
 							<li><a href=EmpresaA.html>Empresas</a></li>
 							<li><a href=register.html>Usuarios</a></li>
 							<li><a href=Actividades.html>Actividades</a></li>
-							<li><a href=CrearTareas.html>Tareas</a></li>
-							<li><a href=CrearSub.html>Subtareas</a></li>
                         </ul>
                       </li>
                     <li><a href="VerRegistrosA.html" class="icon-twitter">Consultas</a></li>
@@ -126,34 +124,24 @@ function showhide(id) {
 			<h4><a href="javascript:showhide('see')">Ver Proyectos</a></h4>	                     
           </div>            
           <br>              
-       <div class="col-sm-5" id="see" style="display:none; width:fit-content">
+       <div id="see" class="col-sm-11" style="display:none;">
 		<div class="cuadroSee">	
 			<br><br>
             <table class="table table-bordered table-hover">
             <tr bgcolor="#31B404">
                 <th>Proyecto</th>
-                <th>Tipo de Proyecto</th>
                 <th>Descripcion</th>
-                <th>Fecha solicitud</th>
-                <th>Modelo</th>
-                <th>Lenguaje de desarrollo</th>
-                <th>Repositorio</th>
-                <th>Acceso</th>
-                <th>Fecha entrega</th>
+                <th>Fecha de solicitud</th>
+                <th>Fecha de entrega</th>
                 <th>Estatus</th>
                 <th>Opciones</th>
                 </tr>
                 <c:forEach var="proyectos" items="${listProyectos}" varStatus="status">
                 <tr style="border-top-color:transparent">
                     <td>${proyectos.nombre}</td>
-                    <td>${proyectos.tipo}</td>
-                    <td>${proyectos.descripcion}</td>
-                    <td>${proyectos.solicitud}</td>
-                    <td>${proyectos.modelo}</td>
-                    <td>${proyectos.tecnologia}</td>
-                    <td>${proyectos.repositorio}</td>
-                    <td>${proyectos.detalle}</td>
-                    <td>${proyectos.entrega}</td>
+                    <td style="white-space:pre-line">${proyectos.descripcion}</td>
+                    <td style="white-space:nowrap">${proyectos.solicitud}</td>                    
+                    <td style="white-space:nowrap">${proyectos.entrega}</td>
                     <td>${proyectos.estatus}</td>
                     <td><a href="verProyectoA?id_proyecto=${proyectos.id_proyecto}">Ver</a><br>
                     <a href="Proyecto.pdf?id_proyecto=${proyectos.id_proyecto}" target="_blank">PDF</a><br>
@@ -169,12 +157,10 @@ function showhide(id) {
 <div class="cuadroAdd">	
             <table class="table table-bordered table-hover">
             <tr bgcolor="#31B404">
-                <th></th>
                 <th>Empresa</th>
                 <th>Opciones</th>
                 <c:forEach var="req" items="${listEmpresas}" varStatus="status">
                 <tr style="border-top-color:transparent">
-                    <td>${req.id}</td>
                     <td>${req.nombre}</td>
                     <td>
                         <a href="AltaA?id=${req.id}">Nuevo</a>

@@ -107,8 +107,8 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
               </div>
             </div>
           </div>        
-          <div class="col-sm-6">
-			<h4>Historial de tickets</h4>
+          <div class="col-sm-12">
+			<h4>Lista de tickets</h4>
 			<hr>
 			<table class="table table-bordered table-hover">
             <tr bgcolor="#31B404">
@@ -127,13 +127,20 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                     <td>${req.descripcion}</td>
                     <td>${req.criticidad}</td>
                     <td>${req.comentarios}</td>
-                    <td>${req.estatus_desarrollo}</td>
+                    <td class="bg-info text-white" >${req.estatus_desarrollo}</td>
                     <td>${req.estatus_cliente}</td>
-                    <td><a href="updateIssuesC?id=${req.id}">Editar</a></td>                             
+                    <c:choose>
+				    <c:when test="${req.estatus_cliente eq 'RESUELTO'}">
+				        <td>- - - -</td>			        
+				    </c:when>    
+				    
+				    <c:otherwise>
+				        <td><a href="updateIssuesC?id=${req.id}">Editar</a></td> 			        
+				    </c:otherwise>
+					</c:choose>                                                
                 </tr>
                 </c:forEach>             
-            </table>
-        			         
+            </table>        			         
           </div>     
 </div><!-- /.container -->
 

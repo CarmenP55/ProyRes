@@ -26,7 +26,7 @@
   	<beans:property name="basename" value="views"/>
  	</beans:bean>
  	
-	<context:component-scan base-package="com.cloudsrcsoft.springmvc" />	
+	<context:component-scan base-package="com.cloudsrcsoft" />	
 	
 	
 </beans:beans>

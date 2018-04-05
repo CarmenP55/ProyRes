@@ -93,7 +93,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registrar<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href=ListaPro.html>Informacion de Proyectos</a></li>
+                            <li><a href=ListaPro.html?e="${pageContext.request.userPrincipal.name}">Informacion de Proyectos</a></li>
 							<li><a href=IssuesD.html?e="${pageContext.request.userPrincipal.name}">Tickets</a></li>
 							<li><a href=Empresa.html>Empresas</a></li>
 							<li><a href=register2.html>Usuarios</a></li>
@@ -102,8 +102,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultar<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href=ListaVer.html>Informacion de Proyectos</a></li>
-							<li><a href=VerIssues.html>Tickets</a></li>
+							<li><a href=VerIssues.html?e="${pageContext.request.userPrincipal.name}">Tickets</a></li>
 							<li><a href=VerEmpresas.html>Empresas</a></li>
 							<li><a href=VerUsuariosD.html>Usuarios</a></li>
                         </ul>
@@ -139,9 +138,23 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                 <th>Archivo</th>
                 <th>Estatus</th></tr>
                 
-                <c:forEach var="req" items="${listRequerimientos}" varStatus="status">
-                <tr style="border-top-color:transparent">
-                    <td><a title="Modificar" href="updateRequerimiento?id_req=${req.id_req}">${req.actividad}</a></td>
+                <c:forEach var="req" items="${listRequerimientos}" varStatus="status">               
+              	
+              	<c:choose>
+			    <c:when test="${req.estatus eq 'FINALIZADO'}">
+			        <tr class="bg-success text-white" style="border-top-color:transparent">
+			        <td>${req.actividad}</td>			        
+			    </c:when>    
+			    <c:when test="${req.estatus eq 'CANCELADO'}">
+			        <tr class="bg-danger text-white" style="border-top-color:transparent">
+			        <td><a title="Modificar" href="updateRequerimientoA?id_req=${req.id_req}">${req.actividad}</a></td>		        
+			    </c:when>
+			    <c:otherwise>
+			        <tr style="border-top-color:transparent">
+			        <td><a title="Modificar" href="updateRequerimientoA?id_req=${req.id_req}">${req.actividad}</a></td> 			        
+			    </c:otherwise>
+				</c:choose>
+				              	                    
                     <td>${req.descripcion}</td>
                     <td>${req.entrega}</td>
                     <td>${req.criticidad}</td>

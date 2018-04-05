@@ -67,68 +67,15 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
 		</script>
 	</sec:authorize>
 	
-<div class="container"> <br>    
-          <div class="col-sm-3">
-            <div class="sidebar-nav">
-            <img src="${pageContext.request.contextPath}/resources/logo.jpg" width="220px" />      
-              <div class="navbar navbar-default" role="navigation">
-                <div class="navbar-header">
-                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                  </button>
-                  <span class="visible-xs navbar-brand">Menu Principal</span>
-                </div>
-                <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                  <ul class="nav navbar-nav">
-                    <li class="active"><a href="irInicio.html">Inicio</a></li> 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Proyectos<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="VerProyectos.html">Ver Proyectos</a></li>
-							<li><a href="Proyectos.html">Agregar nuevo proyecto</a></li>						                          	
-                        </ul>
-                      </li>  
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registrar<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href=ListaPro.html>Informacion de Proyectos</a></li>
-							<li><a href=IssuesD.html?e="${pageContext.request.userPrincipal.name}">Tickets</a></li>
-							<li><a href=Empresa.html>Empresas</a></li>
-							<li><a href=register2.html>Usuarios</a></li>
-                        </ul>
-                    </li>                    
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultar<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href=ListaVer.html>Informacion de Proyectos</a></li>
-							<li><a href=VerIssues.html>Tickets</a></li>
-							<li><a href=VerEmpresas.html>Empresas</a></li>
-							<li><a href=VerUsuariosD.html>Usuarios</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportes<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href=Reportes.html?e="${pageContext.request.userPrincipal.name}">Nuevo</a></li>
-							<li><a href=VerReportesD.html?e="${pageContext.request.userPrincipal.name}">Mis reportes</a></li>
-                        </ul>
-                    </li>
-                    <li><a href=PassD?e="${pageContext.request.userPrincipal.name}" class="icon-envelope">Mi cuenta</a></li>
-                    <c:if test="${pageContext.request.userPrincipal.name != null}">
-					<li><a href="javascript:formSubmit()" class="icon-envelope">Salir</a></li>
-					</c:if>
-                  </ul>
-                </div><!--/.nav-collapse -->
-              </div>
-            </div>
-          </div><br><br><br>  
-          <div style="width:130%">
+<div class="container"> <br>              
+          <a href="irInicio.html" class="btn btn-info btn-lg">
+          	<span class="glyphicon glyphicon-home"></span> Inicio
+        	</a>    
+          <br><br>
+          <div style="width:140%; padding-right:30px">
             <table class="table table-bordered table-hover">
-            <tr bgcolor="#31B404">
-            	<td>Proyecto</td>
+            <tr>
+            	<th>Proyecto</th>
                 <th>Solicitante</th>
                 <th>Descripcion</th>
                 <th>Criticidad</th>
@@ -140,7 +87,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                 <th>Archivo</th>
                 <th>Opciones</th>
                 </tr>
-                
+                <tbody id="myTable">
                 <c:forEach var="req" items="${listIssues}" varStatus="status">
                 <tr style="border-top-color:transparent">
                     <td>${req.nombre_proyecto}
@@ -148,23 +95,54 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                     <td>${req.descripcion}</td>
                     <td>${req.criticidad}</td>
                     <td>${req.comentarios}</td>
-                    <td>${req.estatus_desarrollo}</td>
+                    <c:choose>
+				    <c:when test="${req.estatus_desarrollo eq 'NO_INICIADO'}">
+				        <td class="bg-danger text-white">${req.estatus_desarrollo}</td>			        
+				    </c:when>    
+				    <c:when test="${req.estatus_desarrollo eq 'RESUELTO'}">
+				        <td class="bg-info text-white">${req.estatus_desarrollo}</td>		        
+				    </c:when>
+				    <c:otherwise>
+				        <td class="bg-warning text-white">${req.estatus_desarrollo}</td> 			        
+				    </c:otherwise>
+					</c:choose>
+					                    
                     <td>${req.estatus_cliente}</td>
                     <td>${req.alta}</td>
                     <td>${req.cierre}</td>
-                    <td><a href="ArchivoTicket?id=${req.id}">Archivo</a></td> 
+                    
+                    <c:choose>
+				    <c:when test="${not empty req.nombre}">
+				        <td><a href="ArchivoTicket?id=${req.id}">Archivo</a></td>			        
+				    </c:when>
+				    <c:otherwise>
+                    <th></th>
+                    </c:otherwise>
+                    				    
+				    </c:choose>
                     <td>
                         <a href="updateIssues?id=${req.id}">Editar</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                     </td>
                              
                 </tr>
-                </c:forEach>             
+                </c:forEach>  
+                </tbody>           
             </table>
         
 		</div>           
 </div><!-- /.container -->
 
 </body>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 </html>
 

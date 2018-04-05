@@ -92,8 +92,6 @@
 							<li><a href=EmpresaA.html>Empresas</a></li>
 							<li><a href=register.html>Usuarios</a></li>
 							<li><a href=Actividades.html>Actividades</a></li>
-							<li><a href=CrearTareas.html>Tareas</a></li>
-							<li><a href=CrearSub.html>Subtareas</a></li>
                         </ul>
                       </li>
                     <li><a href="VerRegistrosA.html" class="icon-twitter">Consultas</a></li>
@@ -118,7 +116,7 @@
                 <div class="radio-inline"><form:radiobutton required="true" path="tipo" name="tipo" id="tipo" value="Heredado" />Heredado</div>
                 <form:hidden path="empresa" name="empresa" id="empresa" value="${param.id}"/>
                 <form:hidden required="true" path="empresa" name="empresa" value="${param.id}" id="empresa" disabled="true"/>
-                <form:label path="responsable">Responsable de la empresa</form:label>
+                <br><form:label path="responsable">Responsable de la empresa</form:label>
                 <form:select class="form-control" required="true" path="responsable" name="responsable" id="responsable">
                 <br><br><c:forEach var="req" items="${listUsuarios}" varStatus="status">
                 <option value="${req.id}">${req.firstname} ${req.lastname}</option>
@@ -126,7 +124,7 @@
                 </form:select><br>
                 <form:label path="descripcion">Descripcion del proyecto</form:label>
                 <form:textarea class="form-control" required="true" path="descripcion" name="descripcion" id="descripcion" rows="6" />
-                <form:label path="solicitud">Fecha de solicitud</form:label>
+                <br><form:label path="solicitud">Fecha de solicitud</form:label>
                 <form:input class="form-control" required="true" path="solicitud" name="solicitud" id="solicitud" type="date"/>
                 <form:label path="desarrollador">Desarrollador</form:label>
                 <form:select class="form-control" required="true" path="desarrollador" name="desarrollador" id="desarrollador">
@@ -138,7 +136,7 @@
                 <div class="radio-inline"><form:radiobutton path="modelo" name="modelo" id="modelo" value="Cascada" />Cascada</div>
                 <div class="radio-inline"><form:radiobutton required="true" path="modelo" name="modelo" id="modelo" value="Evolutivo" />Evolutivo</div>
                 <div class="radio-inline"><form:radiobutton required="true" path="modelo" name="modelo" id="modelo" value="Espiral" />Espiral</div>
-                <form:label path="entrega">Fecha de entrega</form:label>
+                <br><form:label path="entrega">Fecha de entrega</form:label>
 				<form:input class="form-control" required="true" path="entrega" name="entrega" id="entrega" type="date" />
 				<form:label path="tecnologia">Lenguaje de desarrollo</form:label>
                 <form:input class="form-control" required="true" path="tecnologia" name="tecnologia" id="tecnologia"/>

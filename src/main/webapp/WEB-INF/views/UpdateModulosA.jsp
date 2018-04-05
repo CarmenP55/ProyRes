@@ -93,8 +93,6 @@
 							<li><a href=EmpresaA.html>Empresas</a></li>
 							<li><a href=register.html>Usuarios</a></li>
 							<li><a href=Actividades.html>Actividades</a></li>
-							<li><a href=CrearTareas.html>Tareas</a></li>
-							<li><a href=CrearSub.html>Subtareas</a></li>
                         </ul>
                       </li>
                     <li><a href="VerRegistrosA.html" class="icon-twitter">Consultas</a></li>
@@ -117,6 +115,15 @@
                 <form:textarea class="form-control" required="true" path="descripcion" name="descripcion" id="descripcion" rows="4" />
                 <form:label path="entrega">Fecha de entrega</form:label>
                 <form:input required="true" class="form-control" path="entrega" name="entrega" id="entrega" type="date" />
+      			<form:label path="estatus">Estatus</form:label>
+				<form:select class="form-control" required="true" path="estatus" name="estatus">
+				<option value="SELECCIONAR">--SELECCIONAR--</option>                	
+                <option value="NO_INICIADO">NO INICIADO</option>
+             	<option value="EN_PROGRESO">EN PROGRESO</option>
+             	<option value="FINALIZADO">FINALIZADO</option>
+             	<option value="CANCELADO">CANCELADO</option> 
+             	</form:select>
+			    <br>
       			<br>
                 <form:button class="btn btn-success col-xs-4 col-sm-offset-8">Guardar</form:button>                
             </form:form>

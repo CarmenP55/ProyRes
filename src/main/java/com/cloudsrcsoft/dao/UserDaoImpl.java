@@ -58,7 +58,7 @@ public class UserDaoImpl{
   public void diseno (Diseno diseno) {
 	  String sql = "insert into diseno values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	  template.update(sql, new Object[] {null, diseno.getProyecto(), diseno.getRequerimiento(), diseno.getActividad(), diseno.getDescripcion(), 
-			  diseno.getEntrega(), diseno.getCodigo(), diseno.getArgumentos(), diseno.getSalida(), 1, diseno.getComentarios(), "Finalizado", 
+			  diseno.getEntrega(), diseno.getCodigo(), diseno.getArgumentos(), diseno.getSalida(), 1, diseno.getComentarios(), diseno.getEstatus(), 
 			  diseno.getModulo(), diseno.getAlta(), diseno.getEntrega_real()});
   }
   
@@ -88,9 +88,9 @@ public class UserDaoImpl{
   }
   
   public void reportes (Reportes reportes) {
-	  String sql = "insert into reportes values(?,?,?,?,?,?,?,?,?)";
+	  String sql = "insert into reportes values(?,?,?,?,?,?,?,?)";
 	  template.update(sql, new Object[] {null, reportes.getId_pro(), reportes.getId_usu(), 
-			  reportes.getId_actividad(), reportes.getFecha_inicio(), reportes.getFecha_fin(), reportes.getComentarios(),
+			  reportes.getId_actividad(), reportes.getFecha_inicio(), reportes.getComentarios(),
 			  reportes.getHora_inicio(), reportes.getHora_fin()});
   }
   

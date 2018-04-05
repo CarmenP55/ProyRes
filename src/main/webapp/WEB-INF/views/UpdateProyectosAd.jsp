@@ -66,7 +66,7 @@
 		</script>
 	</sec:authorize>
 	
-<div class="container"> <br>    
+<div class="container"><br>    
           <div class="col-sm-4">
             <div class="sidebar-nav">
             <img src="${pageContext.request.contextPath}/resources/logo.jpg" width="220px" />      
@@ -94,8 +94,6 @@
 							<li><a href=EmpresaA.html>Empresas</a></li>
 							<li><a href=register.html>Usuarios</a></li>
 							<li><a href=Actividades.html>Actividades</a></li>
-							<li><a href=CrearTareas.html>Tareas</a></li>
-							<li><a href=CrearSub.html>Subtareas</a></li>
                         </ul>
                       </li>
                     <li><a href="VerRegistrosA.html" class="icon-twitter">Consultas</a></li>
@@ -114,9 +112,7 @@
 				<form:hidden path="id_proyecto" name="id_proyecto" id="id_proyecto"/>
                 <form:label path="nombre">Nombre del Proyecto</form:label>
                 <form:input class="form-control" required="true" path="nombre" name="nombre" id="nombre"/>
-                <form:label path="tipo">Tipo de Proyecto</form:label>                
-                <div class="radio-inline"><form:radiobutton required="true" path="tipo" name="tipo" id="tipo" value="Nuevo" />Nuevo</div>
-                <div class="radio-inline"><form:radiobutton required="true" path="tipo" name="tipo" id="tipo" value="Heredado" />Heredado</div>
+                
                 <form:label path="descripcion">Descripcion del proyecto</form:label>
                 <form:textarea required="true" path="descripcion" class="form-control" name="descripcion" id="descripcion" rows="6" />
                 <form:label path="solicitud">Fecha de solicitud</form:label>
@@ -129,6 +125,13 @@
                 <form:input required="true" path="repositorio" name="repositorio" id="repositorio" class="form-control"/>
                 <form:label path="detalle">Acceso repositorio</form:label>
                 <form:textarea required="true" path="detalle" name="detalle" id="detalle" rows="4" class="form-control"/>
+                <form:label path="estatus">Actualizar Estatus</form:label>
+			    <form:select required="true" class="form-control" path="estatus" name="estatus" id="estatus">
+			    <option value="SELECCIONAR">-- SELECCIONAR --</option>
+			    <option value="EN_PROGRESO">EN PROGRESO</option>
+			    <option value="FINALIZADO">FINALIZADO</option>
+			    <option value="CANCELADO">CANCELADO</option>
+			    </form:select>            			    
                 <br>
                 <form:button class="btn btn-success col-xs-4 col-sm-offset-8">Guardar</form:button>
             </form:form>

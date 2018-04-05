@@ -24,7 +24,9 @@ public class EditController {
 	  @RequestMapping(value = "/save", method = RequestMethod.POST)
 	  public ModelAndView saveProyecto(@ModelAttribute Proyectos proyectos) {
 	      editDaoImpl.save(proyectos);
-	      return new ModelAndView("Inicio");
+	      ModelAndView model= new ModelAndView("Inicio"); 
+	      model.addObject("enviados", "Los datos han sido enviados!");
+	      return model;
 	  }
 	  
 	  @RequestMapping(value = "/editProyecto", method = RequestMethod.GET)
@@ -43,7 +45,9 @@ public class EditController {
 	  @RequestMapping(value = "/saveA", method = RequestMethod.POST)
 	  public ModelAndView saveProyectoA(@ModelAttribute Proyectos proyectos) {
 	      editDaoImpl.save(proyectos);
-	      return new ModelAndView("Admin");
+	      ModelAndView model= new ModelAndView("Admin"); 
+	      model.addObject("enviados", "Los datos han sido enviados!");
+	      return model;
 	  }
 	  
 	  @RequestMapping(value = "/editProyectoA", method = RequestMethod.GET)
@@ -56,13 +60,16 @@ public class EditController {
 	      model.addObject("listEmpresa", listEmpresa);
 	      model.addObject("proyectos", proyectos);
 	      model.addObject("listUsuarios2", listUsuarios2);
+	      model.addObject("enviados", "Los datos han sido enviados!");
 	      return model;
 	  }
 	  
 	  @RequestMapping(value = "/updateMod", method = RequestMethod.POST)
 	  public ModelAndView saveModulo(@ModelAttribute Modulo modulo) {
 	      editDaoImpl.updateMod(modulo);
-	      return new ModelAndView("Inicio");
+	      ModelAndView model= new ModelAndView("Inicio"); 
+	      model.addObject("enviados", "Los datos han sido enviados!");
+	      return model;
 	  }
 	  
 	  @RequestMapping(value = "/updateModulos", method = RequestMethod.GET)
@@ -77,7 +84,9 @@ public class EditController {
 	  @RequestMapping(value = "/updateModA", method = RequestMethod.POST)
 	  public ModelAndView saveModuloA(@ModelAttribute Modulo modulo) {
 	      editDaoImpl.updateMod(modulo);
-	      return new ModelAndView("Admin");
+	      ModelAndView model= new ModelAndView("Admin"); 
+	      model.addObject("enviados", "Los datos han sido enviados!");
+	      return model;
 	  }
 	  
 	  @RequestMapping(value = "/updateModulosA", method = RequestMethod.GET)
@@ -92,7 +101,9 @@ public class EditController {
 	  @RequestMapping(value = "/updateReq", method = RequestMethod.POST)
 	  public ModelAndView updateReq(@ModelAttribute Requerimientos requerimientos) {
 	      editDaoImpl.updateReq(requerimientos);
-	      return new ModelAndView("Inicio");
+	      ModelAndView model= new ModelAndView("Inicio"); 
+	      model.addObject("enviados", "Los datos han sido enviados!");
+	      return model;
 	  }
 	  
 	  @RequestMapping(value = "/updateRequerimiento", method = RequestMethod.GET)
@@ -107,7 +118,9 @@ public class EditController {
 	  @RequestMapping(value = "/updateReqA", method = RequestMethod.POST)
 	  public ModelAndView updateReqA(@ModelAttribute Requerimientos requerimientos) {
 	      editDaoImpl.updateReq(requerimientos);
-	      return new ModelAndView("Admin");
+	      ModelAndView model= new ModelAndView("Admin"); 
+	      model.addObject("enviados", "Los datos han sido enviados!");
+	      return model;
 	  }
 	  
 	  @RequestMapping(value = "/updateRequerimientoA", method = RequestMethod.GET)
@@ -122,7 +135,9 @@ public class EditController {
 	  @RequestMapping(value = "/updateDis", method = RequestMethod.POST)
 	  public ModelAndView updateDis(@ModelAttribute Diseno diseno) {
 	      editDaoImpl.updateDis(diseno);
-	      return new ModelAndView("Inicio");
+	      ModelAndView model= new ModelAndView("Inicio"); 
+	      model.addObject("enviados", "Los datos han sido enviados!");
+	      return model;
 	  }
 	  
 	  @RequestMapping(value = "/updateDiseno", method = RequestMethod.GET)
@@ -137,7 +152,9 @@ public class EditController {
 	  @RequestMapping(value = "/updateDisA", method = RequestMethod.POST)
 	  public ModelAndView updateDisA(@ModelAttribute Diseno diseno) {
 	      editDaoImpl.updateDis(diseno);
-	      return new ModelAndView("Admin");
+	      ModelAndView model= new ModelAndView("Admin"); 
+	      model.addObject("enviados", "Los datos han sido enviados!");
+	      return model;
 	  }
 	  
 	  @RequestMapping(value = "/updateDisenoA", method = RequestMethod.GET)
@@ -152,7 +169,9 @@ public class EditController {
 	  @RequestMapping(value = "/updatePru", method = RequestMethod.POST)
 	  public ModelAndView updatePru(@ModelAttribute Pruebas pruebas) {
 	      editDaoImpl.updatePru(pruebas);
-	      return new ModelAndView("Inicio");
+	      ModelAndView model= new ModelAndView("Inicio"); 
+	      model.addObject("enviados", "Los datos han sido enviados!");
+	      return model;
 	  }
 	  
 	  @RequestMapping(value = "/updatePruebas", method = RequestMethod.GET)
@@ -167,7 +186,9 @@ public class EditController {
 	  @RequestMapping(value = "/updatePruA", method = RequestMethod.POST)
 	  public ModelAndView updatePruA(@ModelAttribute Pruebas pruebas) {
 	      editDaoImpl.updatePru(pruebas);
-	      return new ModelAndView("Admin");
+	      ModelAndView model= new ModelAndView("Admin"); 
+	      model.addObject("enviados", "Los datos han sido enviados!");
+	      return model;
 	  }
 	  
 	  @RequestMapping(value = "/updatePruebasA", method = RequestMethod.GET)
@@ -182,7 +203,9 @@ public class EditController {
 	  @RequestMapping(value = "/updateRie", method = RequestMethod.POST)
 	  public ModelAndView updateRie(@ModelAttribute Riesgos riesgos) {
 	      editDaoImpl.updateRie(riesgos);
-	      return new ModelAndView("Inicio");
+	      ModelAndView model= new ModelAndView("Inicio"); 
+	      model.addObject("enviados", "Los datos han sido enviados!");
+	      return model;
 	  }
 	  
 	  @RequestMapping(value = "/updateRiesgos", method = RequestMethod.GET)
@@ -197,7 +220,9 @@ public class EditController {
 	  @RequestMapping(value = "/updateRieA", method = RequestMethod.POST)
 	  public ModelAndView updateRieA(@ModelAttribute Riesgos riesgos) {
 	      editDaoImpl.updateRie(riesgos);
-	      return new ModelAndView("Admin");
+	      ModelAndView model= new ModelAndView("Admin"); 
+	      model.addObject("enviados", "Los datos han sido enviados!");
+	      return model;
 	  }
 	  
 	  @RequestMapping(value = "/updateRiesgosA", method = RequestMethod.GET)
@@ -213,7 +238,9 @@ public class EditController {
 	  @RequestMapping(value = "/updateIss", method = RequestMethod.POST)
 	  public ModelAndView updateIss(@ModelAttribute Issues issues) {
 	      editDaoImpl.updateIssues(issues);
-	      return new ModelAndView("Inicio");
+	      ModelAndView model= new ModelAndView("Inicio"); 
+	      model.addObject("enviados", "Los datos han sido enviados!");
+	      return model;
 	  }
 	  
 	  @RequestMapping(value = "/updateIssues", method = RequestMethod.GET)
@@ -231,7 +258,9 @@ public class EditController {
 	  @RequestMapping(value = "/updateIssA", method = RequestMethod.POST)
 	  public ModelAndView updateIssA(@ModelAttribute Issues issues) {
 	      editDaoImpl.updateIssuesA(issues);
-	      return new ModelAndView("Admin");
+	      ModelAndView model= new ModelAndView("Admin"); 
+	      model.addObject("enviados", "Los datos han sido enviados!");
+	      return model;
 	  }
 	  
 	  @RequestMapping(value = "/updateIssuesA", method = RequestMethod.GET)
@@ -249,7 +278,9 @@ public class EditController {
 	  @RequestMapping(value = "/updateIssC", method = RequestMethod.POST)
 	  public ModelAndView updateIssC(@ModelAttribute Issues issues) {
 	      editDaoImpl.updateIssuesC(issues);
-	      return new ModelAndView("Cliente");
+	      ModelAndView model= new ModelAndView("Cliente"); 
+	      model.addObject("enviados", "Los datos han sido enviados!");
+	      return model;
 	  }
 	  
 	  @RequestMapping(value = "/updateIssuesC", method = RequestMethod.GET)
@@ -266,7 +297,9 @@ public class EditController {
 	  @RequestMapping(value = "/updateEmp", method = RequestMethod.POST)
 	  public ModelAndView updateEmp(@ModelAttribute Empresa empresa) {
 	      editDaoImpl.updateEmpresas(empresa);
-	      return new ModelAndView("Inicio");
+	      ModelAndView model= new ModelAndView("Inicio"); 
+	      model.addObject("enviados", "Los datos han sido enviados!");
+	      return model;
 	  }
 	  
 	  @RequestMapping(value = "/updateEmpresa", method = RequestMethod.GET)
@@ -281,7 +314,9 @@ public class EditController {
 	  @RequestMapping(value = "/updateEmpA", method = RequestMethod.POST)
 	  public ModelAndView updateEmpA(@ModelAttribute Empresa empresa) {
 	      editDaoImpl.updateEmpresas(empresa);
-	      return new ModelAndView("Admin");
+	      ModelAndView model= new ModelAndView("Admin"); 
+	      model.addObject("enviados", "Los datos han sido enviados!");
+	      return model;
 	  }
 	  
 	  @RequestMapping(value = "/updateEmpresaA", method = RequestMethod.GET)
@@ -296,7 +331,9 @@ public class EditController {
 	  @RequestMapping(value = "/updateUsu", method = RequestMethod.POST)
 	  public ModelAndView updateUs(@ModelAttribute User user) {
 	      editDaoImpl.updateUsuarios(user);
-	      return new ModelAndView("Admin");
+	      ModelAndView model= new ModelAndView("Admin"); 
+	      model.addObject("enviados", "Los datos han sido enviados!");
+	      return model;
 	  }
 	  
 	  @RequestMapping(value = "/updateUsuarios", method = RequestMethod.GET)
@@ -335,7 +372,7 @@ public class EditController {
 	  @RequestMapping(value = "/updateUsuD", method = RequestMethod.POST)
 	  public ModelAndView updateUscD(@ModelAttribute User user) {
 	      editDaoImpl.updateUsuariosC(user);
-	      return new ModelAndView("Inicio");
+	      return new ModelAndView("login");
 	  }
 	  //cambio ps admin
 	  @RequestMapping(value = "/PassD**", method = RequestMethod.GET)
@@ -343,9 +380,16 @@ public class EditController {
 		  String e = request.getParameter("e");
 		  User l=verDaoImpl.getUserBy(e);
 		  int id=l.getId();
-	      User user = verDaoImpl.getUser(id);
-	      ModelAndView model = new ModelAndView("ModPD");
-	      model.addObject("user", user);
+		  ModelAndView model=null;
+		  if (id==0) {
+			  model = new ModelAndView("login");  
+		  }
+		  else {
+			  model = new ModelAndView("ModPD");
+			  User user = verDaoImpl.getUser(id);	      
+		      model.addObject("user", user);
+		  }
+	      
 	      return model;
 	  }
 }

@@ -139,6 +139,31 @@ public Requerimientos findReq(int id) {
 		return listProyectos;
 	}
 	
+  public List<Proyectos> verProyectosRes(int id) {
+		String sql = "SELECT * FROM proyectos where responsable ="+id+" or desarrollador="+id;
+		List<Proyectos> listProyectos = template.query(sql, new RowMapper<Proyectos>() {
+			public Proyectos mapRow(ResultSet rs, int arg1) throws SQLException {
+			    Proyectos aProyectos = new Proyectos();
+			    aProyectos.setId_proyecto(rs.getInt("id_proyecto"));
+			    aProyectos.setNombre(rs.getString("nombre_proyecto"));
+				aProyectos.setTipo(rs.getString("tipo_proyecto"));
+				aProyectos.setEmpresa(rs.getInt("id_empresa"));
+				aProyectos.setResponsable(rs.getInt("responsable"));
+				aProyectos.setDescripcion(rs.getString("descripcion"));
+				aProyectos.setSolicitud(rs.getString("fecha_solicitud"));
+				aProyectos.setDesarrollador(rs.getInt("desarrollador"));
+				aProyectos.setTecnologia(rs.getString("tecnologia"));
+				aProyectos.setRepositorio(rs.getString("repositorio"));
+				aProyectos.setDetalle(rs.getString("detalle_repo"));
+				aProyectos.setModelo(rs.getString("modelo"));
+				aProyectos.setEntrega(rs.getString("fecha_entrega"));
+				aProyectos.setEstatus(rs.getString("estatus"));
+				return aProyectos;
+			  }
+		});
+		return listProyectos;
+	}
+  
   public List<Modulo> verModulos(int id) {
 		String sql = "SELECT * FROM modulos where id_pro="+id;
 		List<Modulo> listModulos = template.query(sql, new RowMapper<Modulo>() {
@@ -204,7 +229,7 @@ public Requerimientos findReq(int id) {
 			  
 			  User u= new User();
 			  u=nombre_us(rs.getInt("id_usu"));
-			  a.setNombre_usuario(u.getFirstname()+" "+u.getLastname());
+			  a.setNombre_usuario(u.getFirstname());
 			  
 			  Actividades l=new Actividades();
 			  l=nombre_act(rs.getInt("id_actividad"));
@@ -218,15 +243,19 @@ public Requerimientos findReq(int id) {
 			
 			  String[] h2 = rs.getString("hora_inicio").split(":");
 			  String[] h1 = rs.getString("hora_fin").split(":");
-			  int resto = 0;
-
+			  int hora = (Integer.parseInt(h1[0])-Integer.parseInt(h2[0]));
 			  int minuto = (Integer.parseInt(h1[1])-Integer.parseInt(h2[1]));
 			  if (minuto < 0){
-			     minuto = 60 -(-1)*minuto;
-			     resto = -1;
+				  hora --;
+			      minuto = 60 -(-1)*minuto;
 			  }
-			  int hora = (Integer.parseInt(h1[0])-Integer.parseInt(h2[0]));			  
-			  a.setTotal(hora+":"+minuto+":00"); 
+			  if (minuto<10) {
+				  a.setTotal(hora+":0"+minuto+":00");
+			  }
+			  else {
+				  a.setTotal(hora+":"+minuto+":00");			  
+			  }
+			  
 			return a;
 			 
 		  }
@@ -246,7 +275,7 @@ public Requerimientos findReq(int id) {
 			  
 			  User u= new User();
 			  u=nombre_us(rs.getInt("id_usu"));
-			  a.setNombre_usuario(u.getFirstname()+" "+u.getLastname());
+			  a.setNombre_usuario(u.getFirstname());
 			  
 			  Actividades l=new Actividades();
 			  l=nombre_act(rs.getInt("id_actividad"));
@@ -260,15 +289,22 @@ public Requerimientos findReq(int id) {
 			
 			  String[] h2 = rs.getString("hora_inicio").split(":");
 			  String[] h1 = rs.getString("hora_fin").split(":");
-			  int resto = 0;
 
 			  int minuto = (Integer.parseInt(h1[1])-Integer.parseInt(h2[1]));
+			  int hora = (Integer.parseInt(h1[0])-Integer.parseInt(h2[0]));
+			  
 			  if (minuto < 0){
 			     minuto = 60 -(-1)*minuto;
-			     resto = -1;
+			     hora--;
 			  }
-			  int hora = (Integer.parseInt(h1[0])-Integer.parseInt(h2[0]));			  
-			  a.setTotal(hora+":"+minuto+":00"); 
+			  	
+			  if (minuto<10) {
+				  a.setTotal(hora+":0"+minuto+":00");
+			  }
+			  else {
+				  a.setTotal(hora+":"+minuto+":00");			  
+			  }
+	 
 			return a;
 			 
 		  }
@@ -527,6 +563,33 @@ public Requerimientos findReq(int id) {
   
   public List<Issues> verIssues() {
 		String sql = "SELECT * FROM issues join proyectos on proyectos.id_proyecto=issues.id_pro";
+		List<Issues> listIssues = template.query(sql, new RowMapper<Issues>() {
+			public Issues mapRow(ResultSet rs, int arg1) throws SQLException {
+				Issues aIssues = new Issues();
+				aIssues.setId(rs.getInt("id_issue"));
+				aIssues.setNombre_proyecto(rs.getString("nombre_proyecto"));
+				aIssues.setDescripcion(rs.getString("descripcion"));
+				aIssues.setCriticidad(rs.getString("criticidad"));
+				aIssues.setComentarios(rs.getString("comentarios"));
+				User u= new User();
+				u=getUser(rs.getInt("id_sol"));
+				aIssues.setSolicitante(u.getFirstname()+" "+u.getLastname());
+				aIssues.setEstatus_desarrollo(rs.getString("estatus_desarrollo"));
+				aIssues.setEstatus_cliente(rs.getString("estatus_cliente"));
+				aIssues.setAlta(rs.getString("fecha_alta"));
+				aIssues.setCierre(rs.getString("fecha_cierre"));
+				aIssues.setNombre(rs.getString("nombre_archivo"));
+				aIssues.setType(rs.getString("type"));
+				aIssues.setArchivo(rs.getBytes("archivo"));
+				return aIssues;
+			  }
+		});
+		return listIssues;
+	}
+  
+  public List<Issues> verIssuesRes(int id) {
+		String sql = "SELECT * FROM issues join proyectos on proyectos.id_proyecto=issues.id_pro"
+				+ " where proyectos.responsable="+id+" or proyectos.desarrollador="+id+" or issues.id_sol="+id;
 		List<Issues> listIssues = template.query(sql, new RowMapper<Issues>() {
 			public Issues mapRow(ResultSet rs, int arg1) throws SQLException {
 				Issues aIssues = new Issues();

@@ -94,7 +94,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registrar<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href=ListaPro.html>Informacion de Proyectos</a></li>
+                            <li><a href=ListaPro.html?e="${pageContext.request.userPrincipal.name}">Informacion de Proyectos</a></li>
 							<li><a href=IssuesD.html?e="${pageContext.request.userPrincipal.name}">Tickets</a></li>
 							<li><a href=Empresa.html>Empresas</a></li>
 							<li><a href=register2.html>Usuarios</a></li>
@@ -103,8 +103,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultar<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href=ListaVer.html>Informacion de Proyectos</a></li>
-							<li><a href=VerIssues.html>Tickets</a></li>
+							<li><a href=VerIssues.html?e="${pageContext.request.userPrincipal.name}">Tickets</a></li>
 							<li><a href=VerEmpresas.html>Empresas</a></li>
 							<li><a href=VerUsuariosD.html>Usuarios</a></li>
                         </ul>
@@ -145,6 +144,14 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                 <form:input required="true" path="repositorio" name="repositorio" id="repositorio" class="form-control"/>
                 <form:label path="detalle">Acceso repositorio</form:label>
                 <form:textarea required="true" path="detalle" name="detalle" id="detalle" class="form-control" rows="4" />
+                <form:label path="estatus">Actualizar Estatus</form:label>
+			    <form:select required="true" class="form-control" path="estatus" name="estatus" id="estatus">
+			    <option value="SELECCIONAR">-- SELECCIONAR --</option>
+			    <option value="EN_PROGRESO">EN PROGRESO</option>
+			    <option value="FINALIZADO">FINALIZADO</option>
+			    <option value="CANCELADO">CANCELADO</option>
+			    </form:select>            
+			    <br>
                 <br><form:button class="btn btn-success col-xs-4 col-sm-offset-8">Guardar</form:button>
             </form:form>
 	</div>

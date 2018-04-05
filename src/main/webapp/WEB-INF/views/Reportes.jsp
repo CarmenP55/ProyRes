@@ -94,7 +94,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registrar<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href=ListaPro.html>Informacion de Proyectos</a></li>
+                            <li><a href=ListaPro.html?e="${pageContext.request.userPrincipal.name}">Informacion de Proyectos</a></li>
 							<li><a href=IssuesD.html?e="${pageContext.request.userPrincipal.name}">Tickets</a></li>
 							<li><a href=Empresa.html>Empresas</a></li>
 							<li><a href=register2.html>Usuarios</a></li>
@@ -103,8 +103,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultar<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href=ListaVer.html>Informacion de Proyectos</a></li>
-							<li><a href=VerIssues.html>Tickets</a></li>
+							<li><a href=VerIssues.html?e="${pageContext.request.userPrincipal.name}">Tickets</a></li>
 							<li><a href=VerEmpresas.html>Empresas</a></li>
 							<li><a href=VerUsuariosD.html>Usuarios</a></li>
                         </ul>
@@ -145,12 +144,11 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
             </c:forEach> 
             </form:select>            
 
-            <br><form:label path="fecha_inicio">Fecha inicio</form:label><br>
+            <br><form:label path="fecha_inicio">Fecha</form:label><br>
             <form:input required="true" class="form-control" path="fecha_inicio" name="fecha_inicio" id="fecha_inicio" type="date"/>
-            <form:input required="true" path="hora_inicio" class="form-control" name="hora_inicio" id="hora_inicio" type="time"/>
-            <br><form:label path="fecha_fin">Fecha fin</form:label><br>
-            <form:input required="true" path="fecha_fin" name="fecha_fin" class="form-control" id="fecha_fin" type="date"/>
-            <form:input required="true" path="hora_fin" name="hora_fin" id="hora_fin" class="form-control" type="time"/>
+            <br><form:label path="fecha_fin">Horario</form:label><br>
+            De:<form:input required="true" path="hora_inicio" class="form-control" name="hora_inicio" id="hora_inicio" type="time"/>                       
+            Hasta:<form:input required="true" path="hora_fin" name="hora_fin" id="hora_fin" class="form-control" type="time"/>
             <br><form:label path="comentarios">Comentarios</form:label><br>
             <form:textarea path="comentarios" name="comentarios" id="comentarios" rows="4" class="form-control"/>
             <br>

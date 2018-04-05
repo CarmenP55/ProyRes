@@ -45,7 +45,9 @@ public class RegistrationController {
   public ModelAndView addUser(HttpServletRequest request, HttpServletResponse response,
 	  @ModelAttribute("user") User user) {
 	  userDaoImpl.register(user);
-	  return new ModelAndView("Admin");
+	  ModelAndView mav = new ModelAndView("Admin");
+  	  mav.addObject("enviados", "Los datos han sido enviados!");
+	  return mav;
   }
   
   @RequestMapping(value = "/disenoProcessA", method = RequestMethod.POST)
@@ -54,6 +56,13 @@ public class RegistrationController {
 	  userDaoImpl.diseno(diseno);  
 	  ModelAndView mav = new ModelAndView("Admin");
 	  mav.addObject("diseno", new Diseno());
+	  mav.addObject("enviados", "Los datos han sido enviados!");
+	  return mav;
+  }
+  
+  @RequestMapping(value = "/TareasC.html", method = RequestMethod.GET)
+  public ModelAndView showRegister2s(HttpServletRequest request, HttpServletResponse response) {
+	  ModelAndView mav = new ModelAndView("TareasC");	 	 
 	  return mav;
   }
 	
@@ -70,7 +79,9 @@ public class RegistrationController {
   public ModelAndView addUsera(HttpServletRequest request, HttpServletResponse response,
 	  @ModelAttribute("user") User user) {
 	  userDaoImpl.register(user);
-	  return new ModelAndView("Inicio");
+	  ModelAndView mav = new ModelAndView("Inicio");
+  	  mav.addObject("enviados", "Los datos han sido enviados!");
+	  return mav;
   }
   //add proy ad
   @RequestMapping(value = "/Alta", method = RequestMethod.GET)
@@ -103,6 +114,7 @@ public class RegistrationController {
 	 userDaoImpl.proyectos(proyectos);
 	 ModelAndView mav = new ModelAndView("Admin");
 	 mav.addObject("proyectos", new Proyectos());
+ 	 mav.addObject("enviados", "Los datos han sido enviados!");
 	 return mav;
   }
   
@@ -120,6 +132,7 @@ public class RegistrationController {
 	 userDaoImpl.proyectos(proyectos);
 	 ModelAndView mav = new ModelAndView("Inicio");
 	 mav.addObject("proyectos", new Proyectos());
+ 	 mav.addObject("enviados", "Los datos han sido enviados!");
 	 return mav;
   }
   //reg mod ad
@@ -134,11 +147,12 @@ public class RegistrationController {
   
   @RequestMapping(value = "/modulosProcess", method = RequestMethod.POST)
   public ModelAndView addModulo(HttpServletRequest request, HttpServletResponse response,
-  @ModelAttribute("modulo") Modulo modulo) {
-  userDaoImpl.modulo(modulo);
-  ModelAndView mav = new ModelAndView("Inicio");
-  mav.addObject("modulo", new Modulo());
-  return mav;
+  @ModelAttribute("modulo") Modulo modulo) {	  
+	  userDaoImpl.modulo(modulo);
+	  ModelAndView mav = new ModelAndView("Inicio");
+	  mav.addObject("modulo", new Modulo());
+	  mav.addObject("enviados", "Los datos han sido enviados!");
+	  return mav;
   }
 
   @RequestMapping(value = "/modulosProcessA", method = RequestMethod.POST)
@@ -146,7 +160,8 @@ public class RegistrationController {
   @ModelAttribute("modulo") Modulo modulo) {
   userDaoImpl.modulo(modulo);
   ModelAndView mav = new ModelAndView("Admin");
-  mav.addObject("modulo", new Modulo());
+  mav.addObject("modulo", new Modulo());  
+  mav.addObject("enviados", "Los datos han sido enviados!");
   return mav;
   }
   //add req ad
@@ -180,6 +195,7 @@ public class RegistrationController {
 	  userDaoImpl.requerimientos(requerimientos);
 	  ModelAndView mav = new ModelAndView("Inicio");
 	  mav.addObject("requerimientos", new Requerimientos());
+  	  mav.addObject("enviados", "Los datos han sido enviados!");
 	  return mav;
   }
   //add req su
@@ -213,6 +229,7 @@ public class RegistrationController {
 	  userDaoImpl.requerimientos(requerimientos);
 	  ModelAndView mav = new ModelAndView("Admin");
 	  mav.addObject("requerimientos", new Requerimientos());
+  	  mav.addObject("enviados", "Los datos han sido enviados!");
 	  return mav;
   }
   
@@ -263,11 +280,23 @@ public class RegistrationController {
 	  return mav;
   }
   
+  
+  @RequestMapping(value = "/subtareasC", method = RequestMethod.POST)
+  public ModelAndView addTareasC(HttpServletRequest request, HttpServletResponse response,
+  @ModelAttribute("subtareas") SubTareas subtareas) {
+	  //userDaoImpl.tareas(subtareas);  
+	  ModelAndView mav = new ModelAndView("Admin");
+	  mav.addObject("subtareas", new SubTareas());
+  	  mav.addObject("enviados", "Los datos han sido enviados!");
+	  return mav;
+  }
+  
   @RequestMapping(value = "/tareasProcessC", method = RequestMethod.POST)
   public ModelAndView addTareas(HttpServletRequest request, HttpServletResponse response,
   @ModelAttribute("tareas") Tareas tareas) {
 	  userDaoImpl.tareas(tareas);  
 	  ModelAndView mav = new ModelAndView("Admin");
+  	  mav.addObject("enviados", "Los datos han sido enviados!");
 	  mav.addObject("tareas", new Tareas());
 	  return mav;
   }
@@ -286,7 +315,8 @@ public class RegistrationController {
   @ModelAttribute("tareas") SubTareas subtareas) {
 	  userDaoImpl.subtareas(subtareas);  
 	  ModelAndView mav = new ModelAndView("Admin");
-	  mav.addObject("tareas", new Tareas());
+	  mav.addObject("tareas", new Tareas());	  
+  	  mav.addObject("enviados", "Los datos han sido enviados!");
 	  return mav;
   }
   
@@ -296,6 +326,7 @@ public class RegistrationController {
 	  userDaoImpl.diseno(diseno);  
 	  ModelAndView mav = new ModelAndView("Inicio");
 	  mav.addObject("diseno", new Diseno());
+  	  mav.addObject("enviados", "Los datos han sido enviados!");
 	  return mav;
   }
   
@@ -323,6 +354,7 @@ public class RegistrationController {
 	  userDaoImpl.riesgos(riesgos);
 	  ModelAndView mav = new ModelAndView("Inicio");
 	  mav.addObject("riesgos", new Riesgos());
+  	  mav.addObject("enviados", "Los datos han sido enviados!");
 	  return mav;
   }
   
@@ -341,6 +373,7 @@ public class RegistrationController {
   @ModelAttribute("riesgos") Riesgos riesgos) {
 	  userDaoImpl.riesgos(riesgos);
 	  ModelAndView mav = new ModelAndView("Admin");
+  	  mav.addObject("enviados", "Los datos han sido enviados!");
 	  mav.addObject("riesgos", new Riesgos());
 	  return mav;
   }
@@ -357,6 +390,7 @@ public class RegistrationController {
   @ModelAttribute("empresa") Empresa empresa) {
 	  userDaoImpl.empresa(empresa);
 	  ModelAndView mav = new ModelAndView("Inicio");
+  	  mav.addObject("enviados", "Los datos han sido enviados!");
 	  mav.addObject("empresa", new Empresa());
 	  return mav;
   }
@@ -373,6 +407,7 @@ public class RegistrationController {
   @ModelAttribute("empresa") Empresa empresa) {
 	  userDaoImpl.empresa(empresa);
 	  ModelAndView mav = new ModelAndView("Admin");
+  	  mav.addObject("enviados", "Los datos han sido enviados!");
 	  mav.addObject("empresa", new Empresa());
 	  return mav;
   }
@@ -394,6 +429,7 @@ public class RegistrationController {
   @ModelAttribute("Pruebas") Pruebas pruebas) {
 	  userDaoImpl.pruebas(pruebas);
 	  ModelAndView mav = new ModelAndView("Inicio");
+  	  mav.addObject("enviados", "Los datos han sido enviados!");
 	  mav.addObject("pruebas", new Pruebas());
 	  return mav;
   }
@@ -414,7 +450,8 @@ public class RegistrationController {
   public ModelAndView addPrueA(HttpServletRequest request, HttpServletResponse response,
   @ModelAttribute("Pruebas") Pruebas pruebas) {
 	  userDaoImpl.pruebas(pruebas);
-	  ModelAndView mav = new ModelAndView("Admin");	  
+	  ModelAndView mav = new ModelAndView("Admin");	
+  	  mav.addObject("enviados", "Los datos han sido enviados!");
 	  mav.addObject("pruebas", new Pruebas());
 	  return mav;
   }
@@ -465,6 +502,7 @@ public class RegistrationController {
 	    else {
 	    	userDaoImpl.issues(issues);
 			mav = new ModelAndView("Inicio");
+	    	mav.addObject("enviados", "Los datos han sido enviados!");
 	    }
 	    		
 		return mav;
@@ -505,6 +543,7 @@ public class RegistrationController {
 	    else {
 	    	userDaoImpl.issues(issues);
 			mav = new ModelAndView("Cliente");
+	    	mav.addObject("enviados", "Los datos han sido enviados!");
 	    }
 	    		
 		return mav;
@@ -543,24 +582,32 @@ public class RegistrationController {
 	    }
 	    else {
 	    	userDaoImpl.issues(issues);
-			mav = new ModelAndView("Admin");
+	    	mav = new ModelAndView("Admin");
+	    	mav.addObject("enviados", "Los datos han sido enviados!");
 	    }
 	    		
 		return mav;
 	}
    
   @RequestMapping(value = "/Reportes.html", method = RequestMethod.GET)
-  public ModelAndView addRep(HttpServletRequest request, HttpServletResponse response) {
-	  ModelAndView mav = new ModelAndView("Reportes");
-	  String e = request.getParameter("e");
-	  User l=verDaoImpl.getUserBy(e);
-	  int id=l.getId();
-	  List<Proyectos> listProyectos = verDaoImpl.verProyectos();
-	  List<Actividades> listAct=verDaoImpl.verActividades();
-	  mav.addObject("id", id);
-	  mav.addObject("listAct", listAct);
-	  mav.addObject("listProyectos", listProyectos);
-	  mav.addObject("reportes", new Reportes());
+  public ModelAndView addRep(HttpServletRequest request, HttpServletResponse response) {	  
+	  ModelAndView mav = null;
+	  try {
+		  mav = new ModelAndView("Reportes");
+		  String e = request.getParameter("e");	  
+		  User l=verDaoImpl.getUserBy(e);
+		  int id=l.getId();
+		  List<Proyectos> listProyectos = verDaoImpl.verProyectosRes(id);
+		  List<Actividades> listAct=verDaoImpl.verActividades();
+		  mav.addObject("id", id);
+		  mav.addObject("listAct", listAct);
+		  mav.addObject("listProyectos", listProyectos);
+		  mav.addObject("reportes", new Reportes());		  
+	  }
+	  catch (NullPointerException npe) {
+		  mav = new ModelAndView("login");
+	  }
+	  
 	  return mav;
   }
   
@@ -569,6 +616,7 @@ public class RegistrationController {
   @ModelAttribute("Reportes") Reportes reportes) {
 	  userDaoImpl.reportes(reportes);
 	  ModelAndView mav = new ModelAndView("Inicio");
+	  mav.addObject("enviados", "Los datos han sido enviados!");
 	  return mav;
   }
   
@@ -584,6 +632,7 @@ public class RegistrationController {
   @ModelAttribute("Actividades") Actividades actividades) {
 	  userDaoImpl.actividades(actividades);
 	  ModelAndView mav = new ModelAndView("Admin");
+  	  mav.addObject("enviados", "Los datos han sido enviados!");
 	  return mav;
   }
   

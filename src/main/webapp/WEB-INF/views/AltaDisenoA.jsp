@@ -94,8 +94,6 @@
 							<li><a href=EmpresaA.html>Empresas</a></li>
 							<li><a href=register.html>Usuarios</a></li>
 							<li><a href=Actividades.html>Actividades</a></li>
-							<li><a href=CrearTareas.html>Tareas</a></li>
-							<li><a href=CrearSub.html>Subtareas</a></li>
                         </ul>
                       </li>
                     <li><a href="VerRegistrosA.html" class="icon-twitter">Consultas</a></li>
@@ -123,7 +121,7 @@
                 	</c:forEach> 
                 	</form:select>            
                 	<br>
-                	<form:label path="actividad">Tarea</form:label>
+                	<form:label path="actividad">Actividad</form:label>
                     <form:textarea class="form-control" required="true" path="actividad" name="actividad" id="actividad" col="30" rows="2"/>
                     <form:label path="descripcion">Descripción</form:label>
 					<form:textarea class="form-control" required="true" path="descripcion" name="descripcion" id="descripcion" col="30" rows="4" /><br>
@@ -139,6 +137,13 @@
                     <form:textarea class="form-control" required="true" path="salida" name="salida" id="salida" col="20" rows="3"/>
                     <form:label path="comentarios">Comentarios adicionales</form:label><br>
                     <form:textarea class="form-control" path="comentarios" name="comentarios" id="comentarios" col="30" rows="4"/>
+					<form:label path="estatus">Estatus</form:label>
+					<form:select class="form-control" required="true" path="estatus" name="estatus">                	
+                    <option value="NO_INICIADO">NO INICIADO</option>
+                	<option value="EN_PROGRESO">EN PROGRESO</option>
+                	<option value="FINALIZADO">FINALIZADO</option>
+                	<option value="CANCELADO">CANCELADO</option> 
+                	</form:select>
 					<br>      
                     <form:button class="btn btn-success col-xs-4 col-sm-offset-8">Guardar</form:button>     
                

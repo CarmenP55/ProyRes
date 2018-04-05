@@ -87,14 +87,14 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Proyectos<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="VerProyectos.html">Ver Proyectos</a></li>
+                            <li><a href=VerProyectos.html?e="${pageContext.request.userPrincipal.name}">Ver Proyectos</a></li>
 							<li><a href="Proyectos.html">Agregar nuevo proyecto</a></li>						                          	
                         </ul>
                       </li>  
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registrar<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href=ListaPro.html>Informacion de Proyectos</a></li>
+                            <li><a href=ListaPro.html?e="${pageContext.request.userPrincipal.name}">Informacion de Proyectos</a></li>
 							<li><a href=IssuesD.html?e="${pageContext.request.userPrincipal.name}">Tickets</a></li>
 							<li><a href=Empresa.html>Empresas</a></li>
 							<li><a href=register2.html>Usuarios</a></li>
@@ -103,8 +103,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultar<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href=ListaVer.html>Informacion de Proyectos</a></li>
-							<li><a href=VerIssues.html>Tickets</a></li>
+							<li><a href=VerIssues.html?e="${pageContext.request.userPrincipal.name}">Tickets</a></li>
 							<li><a href=VerEmpresas.html>Empresas</a></li>
 							<li><a href=VerUsuariosD.html>Usuarios</a></li>
                         </ul>
@@ -130,12 +129,8 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
             <table class="table table-bordered table-hover">
             <tr bgcolor="#31B404">            
                 <th>Proyecto</th>
-                <th>Tipo de Proyecto</th>
                 <th>Descripcion</th>
                 <th>Fecha solicitud</th>
-                <th>Lenguaje de desarrollo</th>
-                <th>Repositorio</th>
-                <th>Acceso</th>
                 <th>Fecha entrega</th>
                 <th>Estatus</th>
                 <th>Opciones</th>
@@ -143,12 +138,8 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
                 <c:forEach var="proyectos" items="${listProyectos}" varStatus="status">
                 <tr style="border-top-color:transparent">
                     <td>${proyectos.nombre}</td>
-                    <td>${proyectos.tipo}</td>
                     <td>${proyectos.descripcion}</td>
                     <td>${proyectos.solicitud}</td>
-                    <td>${proyectos.tecnologia}</td>
-                    <td>${proyectos.repositorio}</td>
-                    <td>${proyectos.detalle}</td>
                     <td>${proyectos.entrega}</td>
                     <td>${proyectos.estatus}</td>
                     <td><a href="verProyecto?id_proyecto=${proyectos.id_proyecto}">Ver</a><br>
